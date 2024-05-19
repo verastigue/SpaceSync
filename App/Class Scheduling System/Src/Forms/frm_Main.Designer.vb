@@ -825,6 +825,7 @@ Partial Class frm_Main
         tbctrl_Section = New Guna.UI2.WinForms.Guna2TabControl()
         SaveFileDialog1 = New SaveFileDialog()
         openFile = New OpenFileDialog()
+        Timer1 = New Timer(components)
         Guna2Panel1.SuspendLayout()
         Guna2Panel2.SuspendLayout()
         CType(Guna2PictureBox5, ComponentModel.ISupportInitialize).BeginInit()
@@ -8075,6 +8076,9 @@ Partial Class frm_Main
         ' 
         openFile.FileName = "OpenFileDialog1"
         ' 
+        ' Timer1
+        ' 
+        ' 
         ' frm_Main
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -8599,6 +8603,7 @@ Partial Class frm_Main
     Friend WithEvents btn_reset As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btn_save As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btn_import As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents Timer1 As Timer
 
 
 End Class

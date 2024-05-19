@@ -2,7 +2,7 @@
 Imports Mysqlx
 
 Module Database
-    Private conn As New MySqlConnection
+    Public conn As New MySqlConnection
     Private cmd As New MySqlCommand
     Public dbServer As String = "localhost"
     Public dbUser As String = "root"

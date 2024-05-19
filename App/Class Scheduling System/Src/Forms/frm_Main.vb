@@ -76,17 +76,27 @@ Public Class frm_Main
         time_date.Start()
         CenterLabel()
 
+        Timer1.Interval = 1000
+        Timer1.Start()
+
     End Sub
     'TIMER
     Private Sub time_date_Tick(sender As Object, e As EventArgs) Handles time_date.Tick
         UpdateDate()
+    End Sub
 
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Dim currentTime As String = Date.Now.ToString("HH:mm:ss")
         Dim count As Integer = schedule.CountTime(currentTime)
 
         If count > 0 Then
-            refreshRoomsData()
+            Timer1.Interval = 10000
+            Timer1.Start()
+            refreshData()
         End If
+
+        Timer1.Interval = 1000
+        Timer1.Start()
     End Sub
 
     Private Sub ctrlbx_max_Click(sender As Object, e As EventArgs) Handles ctrlbx_max.Click
@@ -1681,4 +1691,6 @@ Public Class frm_Main
     Private Sub Guna2Button25_Click(sender As Object, e As EventArgs) Handles Guna2Button25.Click
 
     End Sub
+
+
 End Class
