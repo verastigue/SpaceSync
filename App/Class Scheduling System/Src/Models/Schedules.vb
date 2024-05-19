@@ -190,10 +190,22 @@ Public Class Schedules
         Return dataTable
     End Function
 
+    Function CountTime(currentTime As String) As Integer
+        Dim tryCount As Integer = 0
+        Try
+            sql = "SELECT COUNT(*) AS match_count FROM tbl_schedules WHERE class_day LIKE CONCAT('%', DATE_FORMAT(NOW(), '%a'), '%') AND (DATE_FORMAT(start_time, '%H:%i:%s') = '" & currentTime & "' OR DATE_FORMAT(end_time, '%H:%i:%s') = '" & currentTime & "');"
+            tryCount = count(sql)
+        Catch ex As Exception
+            Console.WriteLine(ex.ToString())
+        End Try
+
+        Return tryCount
+    End Function
+
     Function ReadAllStartTimeSchedule() As DataTable
         Dim dataTable As New DataTable
         Try
-            sql = "SELECT start_time, end_time FROM tbl_schedules WHERE class_day LIKE CONCAT('%', DATE_FORMAT(NOW(), '%a'), '%')"
+            sql = "SELECT start_time, end_time FROM tbl_schedules WHERE class_day LIKE CONCAT('%', DATE_FORMAT(NOW(), '%a'), '%') ORDER BY ABS(TIMESTAMPDIFF(MINUTE, NOW(), start_time)), ABS(TIMESTAMPDIFF(MINUTE, NOW(), end_time));"
             dataTable = read(sql)
         Catch ex As Exception
             Console.WriteLine(ex.ToString())

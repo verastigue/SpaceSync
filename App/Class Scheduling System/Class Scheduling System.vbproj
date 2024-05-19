@@ -22,6 +22,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Guna.UI2.WinForms" Version="2.0.4.6" />
+    <PackageReference Include="MySql.Data" Version="8.4.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="My Project\Application.Designer.vb">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -39,12 +45,6 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Bunifu.UI.WinForms" Version="7.0.0" />
-    <PackageReference Include="Guna.UI2.WinForms" Version="2.0.4.6" />
-    <PackageReference Include="MySql.Data" Version="8.3.0" />
   </ItemGroup>
 
   <ItemGroup>

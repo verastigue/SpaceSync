@@ -79,8 +79,14 @@ Public Class frm_Main
     End Sub
     'TIMER
     Private Sub time_date_Tick(sender As Object, e As EventArgs) Handles time_date.Tick
-        ' Update the date and time
         UpdateDate()
+
+        Dim currentTime As String = Date.Now.ToString("HH:mm:ss")
+        Dim count As Integer = schedule.CountTime(currentTime)
+
+        If count > 0 Then
+            refreshRoomsData()
+        End If
     End Sub
 
     Private Sub ctrlbx_max_Click(sender As Object, e As EventArgs) Handles ctrlbx_max.Click

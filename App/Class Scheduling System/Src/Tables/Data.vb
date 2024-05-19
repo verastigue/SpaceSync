@@ -37,6 +37,7 @@ Module Data
 
     'ALL DATA
     Sub refreshData()
+        refreshRoomsData()
         refreshUsersData()
         refreshSchoolsData()
         refreshProgramsData()
@@ -44,7 +45,6 @@ Module Data
         RefreshCoursesData()
         refreshInstructorsData()
         refreshSchedulesData()
-        refreshRoomsData()
         refreshDashboard()
     End Sub
 
@@ -177,6 +177,15 @@ Module Data
     Sub refreshRoomsData()
         frm_Main.flowPanel.Controls.Clear()
 
+
+        ongoingSchedule = schedule.ReadAllOngoingSchedule
+        nextSchedule = schedule.ReadAllNextSchedule
+        finishSchedule = schedule.ReadAllFinishSchedule
+
+        AddSchedulePanels(ongoingSchedule, Color.FromArgb(255, 138, 128), Color.FromArgb(255, 244, 243))
+        AddSchedulePanels(nextSchedule, Color.FromArgb(255, 213, 9), Color.FromArgb(255, 248, 241))
+        AddSchedulePanels(finishSchedule, Color.FromArgb(76, 175, 80), Color.FromArgb(246, 246, 241))
+
         roomsData = room.ReadAllRooms()
         roomsData.Columns.Remove("id")
         frm_Main.dtgv_room.DataSource = roomsData
@@ -185,22 +194,11 @@ Module Data
         frm_Main.dtgv_roomNotSche.DataSource = roomNotSche
 
 
-        ongoingSchedule = schedule.ReadAllOngoingSchedule
-        nextSchedule = schedule.ReadAllNextSchedule
-        finishSchedule = schedule.ReadAllFinishSchedule
-
-
-        AddSchedulePanels(ongoingSchedule, Color.FromArgb(255, 138, 128), Color.FromArgb(255, 244, 243))
-        AddSchedulePanels(nextSchedule, Color.FromArgb(255, 213, 9), Color.FromArgb(255, 248, 241))
-        AddSchedulePanels(finishSchedule, Color.FromArgb(76, 175, 80), Color.FromArgb(246, 246, 241))
-
-
     End Sub
 
 
-
-
-
+    Public startTimet As String
+    Public endTimet As String
 
     'SCHEDULE
     Sub refreshSchedulesData()
@@ -244,7 +242,6 @@ Module Data
         frm_Main.lbl_countQueueSchedule.Text = schedule.CountUpcomingScheduleByDay
         frm_Main.lbl_countGoingSchedule.Text = schedule.CountOnGoingScheduleByDay
         frm_Main.lbl_countFinishedSchedule.Text = schedule.CountFinishedScheduleByDay
-
     End Sub
 
 End Module

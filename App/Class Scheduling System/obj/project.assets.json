@@ -15,42 +15,6 @@
           }
         }
       },
-      "Bunifu.Licensing/6.0.2": {
-        "type": "package",
-        "dependencies": {
-          "Newtonsoft.Json": "13.0.3",
-          "RestSharp": "110.2.0",
-          "System.Management": "8.0.0"
-        },
-        "compile": {
-          "lib/net8.0-windows7.0/Bunifu.Licensing.dll": {}
-        },
-        "runtime": {
-          "lib/net8.0-windows7.0/Bunifu.Licensing.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.WindowsDesktop.App.WindowsForms"
-        ]
-      },
-      "Bunifu.UI.WinForms/7.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Bunifu.Licensing": "6.0.2"
-        },
-        "compile": {
-          "lib/net8.0-windows7.0/Bunifu.UI.WinForms.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0-windows7.0/Bunifu.UI.WinForms.dll": {
-            "related": ".xml"
-          }
-        },
-        "frameworkReferences": [
-          "Microsoft.WindowsDesktop.App.WindowsForms"
-        ]
-      },
       "Google.Protobuf/3.25.1": {
         "type": "package",
         "compile": {
@@ -163,7 +127,7 @@
           }
         }
       },
-      "MySql.Data/8.3.0": {
+      "MySql.Data/8.4.0": {
         "type": "package",
         "dependencies": {
           "BouncyCastle.Cryptography": "2.2.1",
@@ -226,22 +190,6 @@
           }
         }
       },
-      "RestSharp/110.2.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Text.Json": "7.0.2"
-        },
-        "compile": {
-          "lib/net7.0/RestSharp.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/RestSharp.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "System.Buffers/4.5.1": {
         "type": "package",
         "compile": {
@@ -251,15 +199,15 @@
           "lib/netcoreapp2.0/_._": {}
         }
       },
-      "System.CodeDom/8.0.0": {
+      "System.CodeDom/7.0.0": {
         "type": "package",
         "compile": {
-          "lib/net8.0/System.CodeDom.dll": {
+          "lib/net7.0/System.CodeDom.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net8.0/System.CodeDom.dll": {
+          "lib/net7.0/System.CodeDom.dll": {
             "related": ".xml"
           }
         },
@@ -353,18 +301,18 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
-      "System.Management/8.0.0": {
+      "System.Management/7.0.0": {
         "type": "package",
         "dependencies": {
-          "System.CodeDom": "8.0.0"
+          "System.CodeDom": "7.0.0"
         },
         "compile": {
-          "lib/net8.0/System.Management.dll": {
+          "lib/net7.0/System.Management.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net8.0/System.Management.dll": {
+          "lib/net7.0/System.Management.dll": {
             "related": ".xml"
           }
         },
@@ -372,7 +320,7 @@
           "buildTransitive/net6.0/_._": {}
         },
         "runtimeTargets": {
-          "runtimes/win/lib/net8.0/System.Management.dll": {
+          "runtimes/win/lib/net7.0/System.Management.dll": {
             "assetType": "runtime",
             "rid": "win"
           }
@@ -585,7 +533,7 @@
           }
         }
       },
-      "System.Text.Json/7.0.2": {
+      "System.Text.Json/7.0.1": {
         "type": "package",
         "dependencies": {
           "System.Text.Encodings.Web": "7.0.0"
@@ -678,55 +626,6 @@
         "lib/netstandard2.0/BouncyCastle.Cryptography.dll",
         "lib/netstandard2.0/BouncyCastle.Cryptography.xml",
         "packageIcon.png"
-      ]
-    },
-    "Bunifu.Licensing/6.0.2": {
-      "sha512": "riR7300VAWONnWt9dN22C9eYp3aWc6OuL11P0PzV58W3HRdJB/NmHseDtqkXen8LaAyLJ9e6pEV2deDNBIvnWA==",
-      "type": "package",
-      "path": "bunifu.licensing/6.0.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "LICENSE.txt",
-        "LICENSING README.md",
-        "bunifu.licensing.6.0.2.nupkg.sha512",
-        "bunifu.licensing.nuspec",
-        "lib/net462/Bunifu.Licensing.dll",
-        "lib/net472/Bunifu.Licensing.dll",
-        "lib/net48/Bunifu.Licensing.dll",
-        "lib/net5.0-windows7.0/Bunifu.Licensing.dll",
-        "lib/net6.0-windows7.0/Bunifu.Licensing.dll",
-        "lib/net7.0-windows7.0/Bunifu.Licensing.dll",
-        "lib/net8.0-windows7.0/Bunifu.Licensing.dll"
-      ]
-    },
-    "Bunifu.UI.WinForms/7.0.0": {
-      "sha512": "Nrl5TErhGP7vBzMr72se0Y+T04fm0QU32B4RcvSCKQkJeEsgTg/fHi2vZjRpHe2VeNzM5eM+mj1+xTjP2JekOA==",
-      "type": "package",
-      "path": "bunifu.ui.winforms/7.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "LICENSE.txt",
-        "README.md",
-        "bunifu.ui.winforms.7.0.0.nupkg.sha512",
-        "bunifu.ui.winforms.nuspec",
-        "lib/net462/Bunifu.UI.WinForms.dll",
-        "lib/net462/Bunifu.UI.WinForms.xml",
-        "lib/net472/Bunifu.UI.WinForms.dll",
-        "lib/net472/Bunifu.UI.WinForms.xml",
-        "lib/net48/Bunifu.UI.WinForms.dll",
-        "lib/net48/Bunifu.UI.WinForms.xml",
-        "lib/net5.0-windows7.0/Bunifu.UI.WinForms.dll",
-        "lib/net5.0-windows7.0/Bunifu.UI.WinForms.xml",
-        "lib/net6.0-windows7.0/Bunifu.UI.WinForms.dll",
-        "lib/net6.0-windows7.0/Bunifu.UI.WinForms.xml",
-        "lib/net7.0-windows7.0/Bunifu.UI.WinForms.dll",
-        "lib/net7.0-windows7.0/Bunifu.UI.WinForms.xml",
-        "lib/net8.0-windows7.0/Bunifu.UI.WinForms.dll",
-        "lib/net8.0-windows7.0/Bunifu.UI.WinForms.xml"
       ]
     },
     "Google.Protobuf/3.25.1": {
@@ -898,10 +797,10 @@
         "version.txt"
       ]
     },
-    "MySql.Data/8.3.0": {
-      "sha512": "bAQlkLYvTYt5MtXAgHGURSBSUWynIvyN2FVQFUg51I2grxsOfnJSyGvO7YsDRnU7IvUNfMdxq8rNXiP5P4hMlw==",
+    "MySql.Data/8.4.0": {
+      "sha512": "NA273x7ybutfGwGbF2cd8rLVM5t7AkZCzRHr/+tGms1FeMlfl+LgfjHXcb5qN1QxFpeNQQKZ+vqZw8v/S8gUiA==",
       "type": "package",
-      "path": "mysql.data/8.3.0",
+      "path": "mysql.data/8.4.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -921,7 +820,7 @@
         "lib/netstandard2.1/MySql.Data.dll",
         "lib/netstandard2.1/MySql.Data.xml",
         "logo-mysql-170x115.png",
-        "mysql.data.8.3.0.nupkg.sha512",
+        "mysql.data.8.4.0.nupkg.sha512",
         "mysql.data.nuspec",
         "runtimes/win-x64/native/comerr64.dll",
         "runtimes/win-x64/native/gssapi64.dll",
@@ -960,26 +859,6 @@
         "packageIcon.png"
       ]
     },
-    "RestSharp/110.2.0": {
-      "sha512": "FXGw0IMcqY7yO/hzS9QrD3iNswNgb9UxJnxWmfOxmGs4kRlZWqdtBoGPLuhlbgsDzX1RFo4WKui8TGGKXWKalw==",
-      "type": "package",
-      "path": "restsharp/110.2.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net471/RestSharp.dll",
-        "lib/net471/RestSharp.xml",
-        "lib/net6.0/RestSharp.dll",
-        "lib/net6.0/RestSharp.xml",
-        "lib/net7.0/RestSharp.dll",
-        "lib/net7.0/RestSharp.xml",
-        "lib/netstandard2.0/RestSharp.dll",
-        "lib/netstandard2.0/RestSharp.xml",
-        "restsharp.110.2.0.nupkg.sha512",
-        "restsharp.nuspec",
-        "restsharp.png"
-      ]
-    },
     "System.Buffers/4.5.1": {
       "sha512": "Rw7ijyl1qqRS0YQD/WycNst8hUUMgrMH4FCn1nNm27M4VxchZ1js3fVjQaANHO5f3sN4isvP4a+Met9Y4YomAg==",
       "type": "package",
@@ -1011,10 +890,10 @@
         "version.txt"
       ]
     },
-    "System.CodeDom/8.0.0": {
-      "sha512": "WTlRjL6KWIMr/pAaq3rYqh0TJlzpouaQ/W1eelssHgtlwHAH25jXTkUphTYx9HaIIf7XA6qs/0+YhtLEQRkJ+Q==",
+    "System.CodeDom/7.0.0": {
+      "sha512": "GLltyqEsE5/3IE+zYRP5sNa1l44qKl9v+bfdMcwg+M9qnQf47wK3H0SUR/T+3N4JEQXF3vV4CSuuo0rsg+nq2A==",
       "type": "package",
-      "path": "system.codedom/8.0.0",
+      "path": "system.codedom/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1031,11 +910,9 @@
         "lib/net6.0/System.CodeDom.xml",
         "lib/net7.0/System.CodeDom.dll",
         "lib/net7.0/System.CodeDom.xml",
-        "lib/net8.0/System.CodeDom.dll",
-        "lib/net8.0/System.CodeDom.xml",
         "lib/netstandard2.0/System.CodeDom.dll",
         "lib/netstandard2.0/System.CodeDom.xml",
-        "system.codedom.8.0.0.nupkg.sha512",
+        "system.codedom.7.0.0.nupkg.sha512",
         "system.codedom.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -1233,16 +1110,15 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Management/8.0.0": {
-      "sha512": "jrK22i5LRzxZCfGb+tGmke2VH7oE0DvcDlJ1HAKYU8cPmD8XnpUT0bYn2Gy98GEhGjtfbR/sxKTVb+dE770pfA==",
+    "System.Management/7.0.0": {
+      "sha512": "A4jed4QUviDOm7fJNKAJObEAEkEUXmkGL/w0iyCYTzrl1rezTj8LGFHfsVst4Vb9JwFcTpboiDrvdST48avBpw==",
       "type": "package",
-      "path": "system.management/8.0.0",
+      "path": "system.management/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
-        "PACKAGE.md",
         "THIRD-PARTY-NOTICES.TXT",
         "buildTransitive/net6.0/_._",
         "buildTransitive/netcoreapp2.0/System.Management.targets",
@@ -1251,17 +1127,13 @@
         "lib/net6.0/System.Management.xml",
         "lib/net7.0/System.Management.dll",
         "lib/net7.0/System.Management.xml",
-        "lib/net8.0/System.Management.dll",
-        "lib/net8.0/System.Management.xml",
         "lib/netstandard2.0/System.Management.dll",
         "lib/netstandard2.0/System.Management.xml",
         "runtimes/win/lib/net6.0/System.Management.dll",
         "runtimes/win/lib/net6.0/System.Management.xml",
         "runtimes/win/lib/net7.0/System.Management.dll",
         "runtimes/win/lib/net7.0/System.Management.xml",
-        "runtimes/win/lib/net8.0/System.Management.dll",
-        "runtimes/win/lib/net8.0/System.Management.xml",
-        "system.management.8.0.0.nupkg.sha512",
+        "system.management.7.0.0.nupkg.sha512",
         "system.management.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -1868,10 +1740,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Text.Json/7.0.2": {
-      "sha512": "/LZf/JrGyilojqwpaywb+sSz8Tew7ij4K/Sk+UW8AKfAK7KRhR6mKpKtTm06cYA7bCpGTWfYksIW+mVsdxPegQ==",
+    "System.Text.Json/7.0.1": {
+      "sha512": "OtDEmCCiNl8JAduFKZ/r0Sw6XZNHwIicUYy/mXgMDGeOsZLshH37qi3oPRzFYiryVktiMoQLByMGPtRCEMYbeQ==",
       "type": "package",
-      "path": "system.text.json/7.0.2",
+      "path": "system.text.json/7.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1934,7 +1806,7 @@
         "lib/net7.0/System.Text.Json.xml",
         "lib/netstandard2.0/System.Text.Json.dll",
         "lib/netstandard2.0/System.Text.Json.xml",
-        "system.text.json.7.0.2.nupkg.sha512",
+        "system.text.json.7.0.1.nupkg.sha512",
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -2086,9 +1958,9 @@
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "Bunifu.UI.WinForms >= 7.0.0",
       "Guna.UI2.WinForms >= 2.0.4.6",
-      "MySql.Data >= 8.3.0"
+      "MySql.Data >= 8.4.0",
+      "Newtonsoft.Json >= 13.0.3"
     ]
   },
   "packageFolders": {
@@ -2141,17 +2013,17 @@
       "net8.0-windows7.0": {
         "targetAlias": "net8.0-windows",
         "dependencies": {
-          "Bunifu.UI.WinForms": {
-            "target": "Package",
-            "version": "[7.0.0, )"
-          },
           "Guna.UI2.WinForms": {
             "target": "Package",
             "version": "[2.0.4.6, )"
           },
           "MySql.Data": {
             "target": "Package",
-            "version": "[8.3.0, )"
+            "version": "[8.4.0, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.3, )"
           }
         },
         "imports": [
