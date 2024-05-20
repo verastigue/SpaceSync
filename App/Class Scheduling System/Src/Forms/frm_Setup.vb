@@ -23,8 +23,10 @@ Public Class frm_Setup
             Else
                 user.createNewUser(txt_username.Text, txt_password.Text, "Admin")
                 school.CreateNewSchool(txt_schoolId.Text, txt_schoolName.Text, txt_schoolAdd.Text)
+                msg_information.Show("Successfully Login!")
                 Me.Hide()
                 frm_Login.Show()
+                ClearTextbox(textboxes)
             End If
         End If
     End Sub
@@ -47,9 +49,5 @@ Public Class frm_Setup
         Else
             txt_password.UseSystemPasswordChar = False
         End If
-    End Sub
-
-    Private Sub GroupBox1_Enter(sender As Object, e As EventArgs)
-
     End Sub
 End Class

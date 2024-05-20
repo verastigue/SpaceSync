@@ -27,6 +27,7 @@ Partial Class frm_LoadingScreen
         Dim CustomizableEdges2 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges3 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges4 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_LoadingScreen))
         Label11 = New Label()
         Label2 = New Label()
         Guna2PictureBox1 = New Guna.UI2.WinForms.Guna2PictureBox()
@@ -121,6 +122,7 @@ Partial Class frm_LoadingScreen
         Controls.Add(Label2)
         Controls.Add(Label11)
         FormBorderStyle = FormBorderStyle.None
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "frm_LoadingScreen"
         StartPosition = FormStartPosition.CenterScreen
         Text = "frm_LoadingScreen"

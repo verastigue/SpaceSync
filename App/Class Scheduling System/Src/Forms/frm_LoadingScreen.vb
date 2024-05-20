@@ -1,5 +1,6 @@
 ﻿Public Class frm_LoadingScreen
     Private Sub frm_LoadingScreen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.Cursor = Cursors.WaitCursor
         Me.loadingBar.Value = 0
         Timer1.Interval = 100
         Timer1.Start()

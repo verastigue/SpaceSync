@@ -43,7 +43,7 @@ Module Database
             cmd = New MySqlCommand(sql, conn)
             cmd.ExecuteNonQuery()
         Catch ex As Exception
-            frm_Main.msg_warning.Show("Error inserting Data: " & ex.Message)
+            frm_Main.msg_warning.Show("Error excuting Data: " & ex.Message)
         Finally
             closeConn()
         End Try

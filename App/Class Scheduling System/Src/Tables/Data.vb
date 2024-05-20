@@ -54,13 +54,28 @@ Module Data
         usersData = user.readAllUsers
 
         usersData.Columns.Remove("id")
+
+        frm_Main.dtgv_users.DataSource = usersData
     End Sub
 
     'SCHOOL
+
+    Public oldSchoolId As String
+    Public oldSchoolName As String
+    Public oldSchoolAdd As String
     Sub refreshSchoolsData()
         schoolsData = school.ReadAllSchool
 
         schoolsData.Columns.Remove("id")
+
+        For Each row In schoolsData.Rows
+            frm_Main.txt_schoolId.Text = row("school_id")
+            frm_Main.txt_schoolName.Text = row("school_name")
+            frm_Main.txt_schoolAdd.Text = row("address")
+            oldSchoolId = row("school_id")
+            oldSchoolName = row("school_name")
+            oldSchoolAdd = row("address")
+        Next
     End Sub
 
     'PROGRAM

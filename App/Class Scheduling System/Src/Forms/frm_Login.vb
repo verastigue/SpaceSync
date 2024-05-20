@@ -35,11 +35,13 @@ Public Class frm_Login
                 frm_Main.lbl_role.Text = ckb_role.SelectedItem.ToString
 
                 If ckb_role.SelectedItem.ToString = "Viewer" Then
+                    frm_Main.login_pic.Image = My.Resources.icon_viewer
                     frm_Main.pnl_sidebar.Visible = False
                     HandleButton_Click(frm_Main.btn_Monitor, frm_Main.tbp_Monitor)
                 End If
 
                 If ckb_role.SelectedItem.ToString = "Admin" Then
+                    frm_Main.login_pic.Image = My.Resources.icon_admin
                     frm_Main.pnl_sidebar.Visible = True
                     HandleButton_Click(frm_Main.btn_Dashboard, frm_Main.tbp_Dashboard)
                 End If
@@ -67,5 +69,13 @@ Public Class frm_Login
 
     Private Sub btn_exit_Click(sender As Object, e As EventArgs) Handles btn_exit.Click
         Application.Exit()
+    End Sub
+
+    Private Sub ckb_lgHideIcon_CheckedChanged(sender As Object, e As EventArgs) Handles ckb_lgHideIcon.CheckedChanged
+        If ckb_lgHideIcon.Checked = True Then
+            txt_password.UseSystemPasswordChar = True
+        Else
+            txt_password.UseSystemPasswordChar = False
+        End If
     End Sub
 End Class

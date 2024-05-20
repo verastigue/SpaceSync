@@ -487,7 +487,7 @@ Partial Class frm_Main
         Guna2PictureBox5 = New Guna.UI2.WinForms.Guna2PictureBox()
         TableLayoutPanel15 = New TableLayoutPanel()
         btn_logout = New Guna.UI2.WinForms.Guna2Button()
-        Guna2CirclePictureBox2 = New Guna.UI2.WinForms.Guna2CirclePictureBox()
+        login_pic = New Guna.UI2.WinForms.Guna2CirclePictureBox()
         lbl_role = New Label()
         Label11 = New Label()
         Guna2Panel5 = New Guna.UI2.WinForms.Guna2Panel()
@@ -797,6 +797,7 @@ Partial Class frm_Main
         Guna2Panel63 = New Guna.UI2.WinForms.Guna2Panel()
         Guna2Panel67 = New Guna.UI2.WinForms.Guna2Panel()
         dtgv_insNotSche = New Guna.UI2.WinForms.Guna2DataGridView()
+        tbctrl_Section = New Guna.UI2.WinForms.Guna2TabControl()
         tbp_Setting = New TabPage()
         btn_import = New Guna.UI2.WinForms.Guna2Button()
         btn_save = New Guna.UI2.WinForms.Guna2Button()
@@ -806,31 +807,33 @@ Partial Class frm_Main
         btn_browse = New Guna.UI2.WinForms.Guna2Button()
         txt_file = New Guna.UI2.WinForms.Guna2TextBox()
         btn_upload = New Guna.UI2.WinForms.Guna2Button()
-        Guna2Button22 = New Guna.UI2.WinForms.Guna2Button()
-        Guna2Button24 = New Guna.UI2.WinForms.Guna2Button()
-        Guna2Button25 = New Guna.UI2.WinForms.Guna2Button()
+        btn_deleteUser = New Guna.UI2.WinForms.Guna2Button()
+        btn_updateUser = New Guna.UI2.WinForms.Guna2Button()
+        btn_addUser = New Guna.UI2.WinForms.Guna2Button()
         Label21 = New Label()
         Guna2Panel24 = New Guna.UI2.WinForms.Guna2Panel()
-        Guna2DataGridView1 = New Guna.UI2.WinForms.Guna2DataGridView()
-        Guna2ComboBox1 = New Guna.UI2.WinForms.Guna2ComboBox()
-        Guna2TextBox2 = New Guna.UI2.WinForms.Guna2TextBox()
-        Guna2TextBox1 = New Guna.UI2.WinForms.Guna2TextBox()
+        dtgv_users = New Guna.UI2.WinForms.Guna2DataGridView()
+        cb_role = New Guna.UI2.WinForms.Guna2ComboBox()
+        txt_password = New Guna.UI2.WinForms.Guna2TextBox()
+        txt_username = New Guna.UI2.WinForms.Guna2TextBox()
         Guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
-        Guna2Button23 = New Guna.UI2.WinForms.Guna2Button()
+        btn_updateProfile = New Guna.UI2.WinForms.Guna2Button()
         Label8 = New Label()
         Guna2Panel22 = New Guna.UI2.WinForms.Guna2Panel()
-        Guna2TextBox6 = New Guna.UI2.WinForms.Guna2TextBox()
-        Guna2TextBox5 = New Guna.UI2.WinForms.Guna2TextBox()
-        Guna2TextBox4 = New Guna.UI2.WinForms.Guna2TextBox()
-        tbctrl_Section = New Guna.UI2.WinForms.Guna2TabControl()
-        SaveFileDialog1 = New SaveFileDialog()
+        txt_schoolAdd = New Guna.UI2.WinForms.Guna2TextBox()
+        txt_schoolName = New Guna.UI2.WinForms.Guna2TextBox()
+        txt_schoolId = New Guna.UI2.WinForms.Guna2TextBox()
+        file_save = New SaveFileDialog()
         openFile = New OpenFileDialog()
         Timer1 = New Timer(components)
+        Guna2HtmlToolTip1 = New Guna.UI2.WinForms.Guna2HtmlToolTip()
+        msg_confirm = New Guna.UI2.WinForms.Guna2MessageDialog()
+        msg_information = New Guna.UI2.WinForms.Guna2MessageDialog()
         Guna2Panel1.SuspendLayout()
         Guna2Panel2.SuspendLayout()
         CType(Guna2PictureBox5, ComponentModel.ISupportInitialize).BeginInit()
         TableLayoutPanel15.SuspendLayout()
-        CType(Guna2CirclePictureBox2, ComponentModel.ISupportInitialize).BeginInit()
+        CType(login_pic, ComponentModel.ISupportInitialize).BeginInit()
         pnl_sidebar.SuspendLayout()
         CType(ProgramsBindingSource, ComponentModel.ISupportInitialize).BeginInit()
         Guna2Panel3.SuspendLayout()
@@ -940,12 +943,12 @@ Partial Class frm_Main
         Guna2Panel63.SuspendLayout()
         Guna2Panel67.SuspendLayout()
         CType(dtgv_insNotSche, ComponentModel.ISupportInitialize).BeginInit()
+        tbctrl_Section.SuspendLayout()
         tbp_Setting.SuspendLayout()
         Guna2Panel25.SuspendLayout()
         Guna2Panel24.SuspendLayout()
-        CType(Guna2DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(dtgv_users, ComponentModel.ISupportInitialize).BeginInit()
         Guna2Panel22.SuspendLayout()
-        tbctrl_Section.SuspendLayout()
         SuspendLayout()
         ' 
         ' Guna2Panel1
@@ -1048,7 +1051,7 @@ Partial Class frm_Main
         TableLayoutPanel15.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 98F))
         TableLayoutPanel15.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 24F))
         TableLayoutPanel15.Controls.Add(btn_logout, 0, 0)
-        TableLayoutPanel15.Controls.Add(Guna2CirclePictureBox2, 0, 0)
+        TableLayoutPanel15.Controls.Add(login_pic, 0, 0)
         TableLayoutPanel15.Controls.Add(lbl_role, 0, 0)
         TableLayoutPanel15.Dock = DockStyle.Right
         TableLayoutPanel15.Location = New Point(1192, 0)
@@ -1083,20 +1086,20 @@ Partial Class frm_Main
         btn_logout.TabIndex = 10
         btn_logout.Text = "LOGOUT"
         ' 
-        ' Guna2CirclePictureBox2
+        ' login_pic
         ' 
-        Guna2CirclePictureBox2.Anchor = AnchorStyles.Right
-        Guna2CirclePictureBox2.BackColor = Color.Transparent
-        Guna2CirclePictureBox2.FillColor = Color.Snow
-        Guna2CirclePictureBox2.ImageRotate = 0F
-        Guna2CirclePictureBox2.Location = New Point(84, 12)
-        Guna2CirclePictureBox2.Name = "Guna2CirclePictureBox2"
-        Guna2CirclePictureBox2.ShadowDecoration.CustomizableEdges = CustomizableEdges13
-        Guna2CirclePictureBox2.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
-        Guna2CirclePictureBox2.Size = New Size(39, 40)
-        Guna2CirclePictureBox2.SizeMode = PictureBoxSizeMode.StretchImage
-        Guna2CirclePictureBox2.TabIndex = 9
-        Guna2CirclePictureBox2.TabStop = False
+        login_pic.Anchor = AnchorStyles.Right
+        login_pic.BackColor = Color.Transparent
+        login_pic.FillColor = Color.Snow
+        login_pic.ImageRotate = 0F
+        login_pic.Location = New Point(84, 12)
+        login_pic.Name = "login_pic"
+        login_pic.ShadowDecoration.CustomizableEdges = CustomizableEdges13
+        login_pic.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
+        login_pic.Size = New Size(39, 40)
+        login_pic.SizeMode = PictureBoxSizeMode.StretchImage
+        login_pic.TabIndex = 9
+        login_pic.TabStop = False
         ' 
         ' lbl_role
         ' 
@@ -2229,7 +2232,7 @@ Partial Class frm_Main
         msg_add.Caption = "Success"
         msg_add.Icon = Guna.UI2.WinForms.MessageDialogIcon.Information
         msg_add.Parent = Me
-        msg_add.Style = Guna.UI2.WinForms.MessageDialogStyle.Dark
+        msg_add.Style = Guna.UI2.WinForms.MessageDialogStyle.Default
         msg_add.Text = ""
         ' 
         ' msg_update
@@ -2238,7 +2241,7 @@ Partial Class frm_Main
         msg_update.Caption = "Success"
         msg_update.Icon = Guna.UI2.WinForms.MessageDialogIcon.Information
         msg_update.Parent = Me
-        msg_update.Style = Guna.UI2.WinForms.MessageDialogStyle.Dark
+        msg_update.Style = Guna.UI2.WinForms.MessageDialogStyle.Default
         msg_update.Text = Nothing
         ' 
         ' msg_delete
@@ -2247,7 +2250,7 @@ Partial Class frm_Main
         msg_delete.Caption = "Success"
         msg_delete.Icon = Guna.UI2.WinForms.MessageDialogIcon.Information
         msg_delete.Parent = Me
-        msg_delete.Style = Guna.UI2.WinForms.MessageDialogStyle.Dark
+        msg_delete.Style = Guna.UI2.WinForms.MessageDialogStyle.Default
         msg_delete.Text = Nothing
         ' 
         ' msg_warning
@@ -2256,7 +2259,7 @@ Partial Class frm_Main
         msg_warning.Caption = "Warning"
         msg_warning.Icon = Guna.UI2.WinForms.MessageDialogIcon.Warning
         msg_warning.Parent = Me
-        msg_warning.Style = Guna.UI2.WinForms.MessageDialogStyle.Dark
+        msg_warning.Style = Guna.UI2.WinForms.MessageDialogStyle.Default
         msg_warning.Text = Nothing
         ' 
         ' print_doc
@@ -2307,12 +2310,13 @@ Partial Class frm_Main
         ' 
         ' flowPanel
         ' 
-        flowPanel.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         flowPanel.AutoScroll = True
         flowPanel.BackColor = Color.Transparent
-        flowPanel.Location = New Point(8, 8)
+        flowPanel.Dock = DockStyle.Fill
+        flowPanel.Location = New Point(0, 0)
         flowPanel.Name = "flowPanel"
-        flowPanel.Size = New Size(1156, 628)
+        flowPanel.Padding = New Padding(20, 0, 0, 0)
+        flowPanel.Size = New Size(1172, 644)
         flowPanel.TabIndex = 0
         ' 
         ' TableLayoutPanel16
@@ -7406,6 +7410,44 @@ Partial Class frm_Main
         dtgv_insNotSche.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(CByte(231), CByte(229), CByte(255))
         dtgv_insNotSche.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
         ' 
+        ' tbctrl_Section
+        ' 
+        tbctrl_Section.Controls.Add(tbp_Setting)
+        tbctrl_Section.Controls.Add(tbp_Dashboard)
+        tbctrl_Section.Controls.Add(tbp_Course)
+        tbctrl_Section.Controls.Add(tbp_Program)
+        tbctrl_Section.Controls.Add(tbp_Instructor)
+        tbctrl_Section.Controls.Add(tbp_Room)
+        tbctrl_Section.Controls.Add(tbp_Schedule)
+        tbctrl_Section.Controls.Add(tbp_Print)
+        tbctrl_Section.Controls.Add(tbp_Section)
+        tbctrl_Section.Controls.Add(tbp_Monitor)
+        tbctrl_Section.Dock = DockStyle.Fill
+        tbctrl_Section.ItemSize = New Size(50, 40)
+        tbctrl_Section.Location = New Point(260, 94)
+        tbctrl_Section.Name = "tbctrl_Section"
+        tbctrl_Section.SelectedIndex = 0
+        tbctrl_Section.Size = New Size(1180, 806)
+        tbctrl_Section.TabButtonHoverState.BorderColor = Color.Empty
+        tbctrl_Section.TabButtonHoverState.FillColor = Color.FromArgb(CByte(40), CByte(52), CByte(70))
+        tbctrl_Section.TabButtonHoverState.Font = New Font("Segoe UI Semibold", 10F)
+        tbctrl_Section.TabButtonHoverState.ForeColor = Color.White
+        tbctrl_Section.TabButtonHoverState.InnerColor = Color.FromArgb(CByte(40), CByte(52), CByte(70))
+        tbctrl_Section.TabButtonIdleState.BorderColor = Color.Empty
+        tbctrl_Section.TabButtonIdleState.FillColor = Color.FromArgb(CByte(33), CByte(42), CByte(57))
+        tbctrl_Section.TabButtonIdleState.Font = New Font("Segoe UI Semibold", 10F)
+        tbctrl_Section.TabButtonIdleState.ForeColor = Color.FromArgb(CByte(156), CByte(160), CByte(167))
+        tbctrl_Section.TabButtonIdleState.InnerColor = Color.FromArgb(CByte(33), CByte(42), CByte(57))
+        tbctrl_Section.TabButtonSelectedState.BorderColor = Color.Empty
+        tbctrl_Section.TabButtonSelectedState.FillColor = Color.FromArgb(CByte(29), CByte(37), CByte(49))
+        tbctrl_Section.TabButtonSelectedState.Font = New Font("Segoe UI Semibold", 10F)
+        tbctrl_Section.TabButtonSelectedState.ForeColor = Color.White
+        tbctrl_Section.TabButtonSelectedState.InnerColor = Color.FromArgb(CByte(76), CByte(132), CByte(255))
+        tbctrl_Section.TabButtonSize = New Size(50, 40)
+        tbctrl_Section.TabIndex = 3
+        tbctrl_Section.TabMenuBackColor = Color.FromArgb(CByte(33), CByte(42), CByte(57))
+        tbctrl_Section.TabMenuOrientation = Guna.UI2.WinForms.TabMenuOrientation.HorizontalTop
+        ' 
         ' tbp_Setting
         ' 
         tbp_Setting.BackColor = Color.Snow
@@ -7414,12 +7456,12 @@ Partial Class frm_Main
         tbp_Setting.Controls.Add(btn_reset)
         tbp_Setting.Controls.Add(Label22)
         tbp_Setting.Controls.Add(Guna2Panel25)
-        tbp_Setting.Controls.Add(Guna2Button22)
-        tbp_Setting.Controls.Add(Guna2Button24)
-        tbp_Setting.Controls.Add(Guna2Button25)
+        tbp_Setting.Controls.Add(btn_deleteUser)
+        tbp_Setting.Controls.Add(btn_updateUser)
+        tbp_Setting.Controls.Add(btn_addUser)
         tbp_Setting.Controls.Add(Label21)
         tbp_Setting.Controls.Add(Guna2Panel24)
-        tbp_Setting.Controls.Add(Guna2Button23)
+        tbp_Setting.Controls.Add(btn_updateProfile)
         tbp_Setting.Controls.Add(Label8)
         tbp_Setting.Controls.Add(Guna2Panel22)
         tbp_Setting.Location = New Point(4, 44)
@@ -7546,7 +7588,7 @@ Partial Class frm_Main
         btn_browse.Font = New Font("Franklin Gothic Medium", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
         btn_browse.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
         btn_browse.Image = My.Resources.Resources.icon_folders
-        btn_browse.Location = New Point(70, 42)
+        btn_browse.Location = New Point(185, 44)
         btn_browse.Name = "btn_browse"
         btn_browse.ShadowDecoration.BorderRadius = 0
         btn_browse.ShadowDecoration.CustomizableEdges = CustomizableEdges49
@@ -7568,7 +7610,7 @@ Partial Class frm_Main
         txt_file.FocusedState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
         txt_file.Font = New Font("Segoe UI", 9F)
         txt_file.HoverState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
-        txt_file.Location = New Point(212, 42)
+        txt_file.Location = New Point(312, 44)
         txt_file.Name = "txt_file"
         txt_file.PasswordChar = ChrW(0)
         txt_file.PlaceholderText = ""
@@ -7590,7 +7632,7 @@ Partial Class frm_Main
         btn_upload.Font = New Font("Franklin Gothic Medium", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
         btn_upload.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
         btn_upload.Image = My.Resources.Resources.icon_uploadFile
-        btn_upload.Location = New Point(683, 42)
+        btn_upload.Location = New Point(721, 44)
         btn_upload.Name = "btn_upload"
         btn_upload.ShadowDecoration.BorderRadius = 0
         btn_upload.ShadowDecoration.CustomizableEdges = CustomizableEdges53
@@ -7601,83 +7643,83 @@ Partial Class frm_Main
         btn_upload.TabIndex = 18
         btn_upload.Text = "Upload"
         ' 
-        ' Guna2Button22
+        ' btn_deleteUser
         ' 
-        Guna2Button22.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        Guna2Button22.BackColor = Color.Transparent
-        Guna2Button22.BorderRadius = 10
-        Guna2Button22.CustomizableEdges = CustomizableEdges56
-        Guna2Button22.DisabledState.BorderColor = Color.DarkGray
-        Guna2Button22.DisabledState.CustomBorderColor = Color.DarkGray
-        Guna2Button22.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
-        Guna2Button22.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
-        Guna2Button22.FillColor = Color.FromArgb(CByte(255), CByte(138), CByte(128))
-        Guna2Button22.Font = New Font("Franklin Gothic Medium", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
-        Guna2Button22.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
-        Guna2Button22.Image = My.Resources.Resources.icon_delete
-        Guna2Button22.ImageSize = New Size(25, 25)
-        Guna2Button22.Location = New Point(764, 449)
-        Guna2Button22.Name = "Guna2Button22"
-        Guna2Button22.ShadowDecoration.BorderRadius = 10
-        Guna2Button22.ShadowDecoration.CustomizableEdges = CustomizableEdges57
-        Guna2Button22.ShadowDecoration.Depth = 64
-        Guna2Button22.ShadowDecoration.Enabled = True
-        Guna2Button22.ShadowDecoration.Shadow = New Padding(0, 0, 5, 5)
-        Guna2Button22.Size = New Size(121, 57)
-        Guna2Button22.TabIndex = 21
-        Guna2Button22.Text = "Delete"
+        btn_deleteUser.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
+        btn_deleteUser.BackColor = Color.Transparent
+        btn_deleteUser.BorderRadius = 10
+        btn_deleteUser.CustomizableEdges = CustomizableEdges56
+        btn_deleteUser.DisabledState.BorderColor = Color.DarkGray
+        btn_deleteUser.DisabledState.CustomBorderColor = Color.DarkGray
+        btn_deleteUser.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
+        btn_deleteUser.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
+        btn_deleteUser.FillColor = Color.FromArgb(CByte(255), CByte(138), CByte(128))
+        btn_deleteUser.Font = New Font("Franklin Gothic Medium", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
+        btn_deleteUser.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
+        btn_deleteUser.Image = My.Resources.Resources.icon_delete
+        btn_deleteUser.ImageSize = New Size(25, 25)
+        btn_deleteUser.Location = New Point(764, 449)
+        btn_deleteUser.Name = "btn_deleteUser"
+        btn_deleteUser.ShadowDecoration.BorderRadius = 10
+        btn_deleteUser.ShadowDecoration.CustomizableEdges = CustomizableEdges57
+        btn_deleteUser.ShadowDecoration.Depth = 64
+        btn_deleteUser.ShadowDecoration.Enabled = True
+        btn_deleteUser.ShadowDecoration.Shadow = New Padding(0, 0, 5, 5)
+        btn_deleteUser.Size = New Size(121, 57)
+        btn_deleteUser.TabIndex = 21
+        btn_deleteUser.Text = "Delete"
         ' 
-        ' Guna2Button24
+        ' btn_updateUser
         ' 
-        Guna2Button24.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        Guna2Button24.BackColor = Color.Transparent
-        Guna2Button24.BorderRadius = 10
-        Guna2Button24.CustomizableEdges = CustomizableEdges58
-        Guna2Button24.DisabledState.BorderColor = Color.DarkGray
-        Guna2Button24.DisabledState.CustomBorderColor = Color.DarkGray
-        Guna2Button24.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
-        Guna2Button24.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
-        Guna2Button24.FillColor = Color.FromArgb(CByte(255), CByte(213), CByte(79))
-        Guna2Button24.Font = New Font("Franklin Gothic Medium", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
-        Guna2Button24.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
-        Guna2Button24.Image = My.Resources.Resources.icon_update
-        Guna2Button24.ImageSize = New Size(25, 25)
-        Guna2Button24.Location = New Point(891, 449)
-        Guna2Button24.Name = "Guna2Button24"
-        Guna2Button24.ShadowDecoration.BorderRadius = 10
-        Guna2Button24.ShadowDecoration.CustomizableEdges = CustomizableEdges59
-        Guna2Button24.ShadowDecoration.Depth = 64
-        Guna2Button24.ShadowDecoration.Enabled = True
-        Guna2Button24.ShadowDecoration.Shadow = New Padding(0, 0, 5, 5)
-        Guna2Button24.Size = New Size(121, 57)
-        Guna2Button24.TabIndex = 20
-        Guna2Button24.Text = "Update"
+        btn_updateUser.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
+        btn_updateUser.BackColor = Color.Transparent
+        btn_updateUser.BorderRadius = 10
+        btn_updateUser.CustomizableEdges = CustomizableEdges58
+        btn_updateUser.DisabledState.BorderColor = Color.DarkGray
+        btn_updateUser.DisabledState.CustomBorderColor = Color.DarkGray
+        btn_updateUser.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
+        btn_updateUser.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
+        btn_updateUser.FillColor = Color.FromArgb(CByte(255), CByte(213), CByte(79))
+        btn_updateUser.Font = New Font("Franklin Gothic Medium", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
+        btn_updateUser.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
+        btn_updateUser.Image = My.Resources.Resources.icon_update
+        btn_updateUser.ImageSize = New Size(25, 25)
+        btn_updateUser.Location = New Point(891, 449)
+        btn_updateUser.Name = "btn_updateUser"
+        btn_updateUser.ShadowDecoration.BorderRadius = 10
+        btn_updateUser.ShadowDecoration.CustomizableEdges = CustomizableEdges59
+        btn_updateUser.ShadowDecoration.Depth = 64
+        btn_updateUser.ShadowDecoration.Enabled = True
+        btn_updateUser.ShadowDecoration.Shadow = New Padding(0, 0, 5, 5)
+        btn_updateUser.Size = New Size(121, 57)
+        btn_updateUser.TabIndex = 20
+        btn_updateUser.Text = "Update"
         ' 
-        ' Guna2Button25
+        ' btn_addUser
         ' 
-        Guna2Button25.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        Guna2Button25.BackColor = Color.Transparent
-        Guna2Button25.BorderRadius = 10
-        Guna2Button25.CustomizableEdges = CustomizableEdges60
-        Guna2Button25.DisabledState.BorderColor = Color.DarkGray
-        Guna2Button25.DisabledState.CustomBorderColor = Color.DarkGray
-        Guna2Button25.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
-        Guna2Button25.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
-        Guna2Button25.FillColor = Color.FromArgb(CByte(76), CByte(175), CByte(80))
-        Guna2Button25.Font = New Font("Franklin Gothic Medium", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
-        Guna2Button25.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
-        Guna2Button25.Image = My.Resources.Resources.icon_add
-        Guna2Button25.ImageSize = New Size(25, 25)
-        Guna2Button25.Location = New Point(1018, 449)
-        Guna2Button25.Name = "Guna2Button25"
-        Guna2Button25.ShadowDecoration.BorderRadius = 10
-        Guna2Button25.ShadowDecoration.CustomizableEdges = CustomizableEdges61
-        Guna2Button25.ShadowDecoration.Depth = 64
-        Guna2Button25.ShadowDecoration.Enabled = True
-        Guna2Button25.ShadowDecoration.Shadow = New Padding(0, 0, 5, 5)
-        Guna2Button25.Size = New Size(121, 57)
-        Guna2Button25.TabIndex = 17
-        Guna2Button25.Text = "Add"
+        btn_addUser.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
+        btn_addUser.BackColor = Color.Transparent
+        btn_addUser.BorderRadius = 10
+        btn_addUser.CustomizableEdges = CustomizableEdges60
+        btn_addUser.DisabledState.BorderColor = Color.DarkGray
+        btn_addUser.DisabledState.CustomBorderColor = Color.DarkGray
+        btn_addUser.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
+        btn_addUser.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
+        btn_addUser.FillColor = Color.FromArgb(CByte(76), CByte(175), CByte(80))
+        btn_addUser.Font = New Font("Franklin Gothic Medium", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
+        btn_addUser.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
+        btn_addUser.Image = My.Resources.Resources.icon_add
+        btn_addUser.ImageSize = New Size(25, 25)
+        btn_addUser.Location = New Point(1018, 449)
+        btn_addUser.Name = "btn_addUser"
+        btn_addUser.ShadowDecoration.BorderRadius = 10
+        btn_addUser.ShadowDecoration.CustomizableEdges = CustomizableEdges61
+        btn_addUser.ShadowDecoration.Depth = 64
+        btn_addUser.ShadowDecoration.Enabled = True
+        btn_addUser.ShadowDecoration.Shadow = New Padding(0, 0, 5, 5)
+        btn_addUser.Size = New Size(121, 57)
+        btn_addUser.TabIndex = 17
+        btn_addUser.Text = "Add"
         ' 
         ' Label21
         ' 
@@ -7695,10 +7737,10 @@ Partial Class frm_Main
         Guna2Panel24.BackColor = Color.Transparent
         Guna2Panel24.BorderColor = Color.FromArgb(CByte(38), CByte(166), CByte(154))
         Guna2Panel24.BorderThickness = 2
-        Guna2Panel24.Controls.Add(Guna2DataGridView1)
-        Guna2Panel24.Controls.Add(Guna2ComboBox1)
-        Guna2Panel24.Controls.Add(Guna2TextBox2)
-        Guna2Panel24.Controls.Add(Guna2TextBox1)
+        Guna2Panel24.Controls.Add(dtgv_users)
+        Guna2Panel24.Controls.Add(cb_role)
+        Guna2Panel24.Controls.Add(txt_password)
+        Guna2Panel24.Controls.Add(txt_username)
         Guna2Panel24.Controls.Add(Guna2HtmlLabel1)
         Guna2Panel24.CustomizableEdges = CustomizableEdges68
         Guna2Panel24.Location = New Point(22, 184)
@@ -7707,19 +7749,19 @@ Partial Class frm_Main
         Guna2Panel24.Size = New Size(1128, 295)
         Guna2Panel24.TabIndex = 19
         ' 
-        ' Guna2DataGridView1
+        ' dtgv_users
         ' 
-        Guna2DataGridView1.AllowUserToAddRows = False
-        Guna2DataGridView1.AllowUserToResizeRows = False
+        dtgv_users.AllowUserToAddRows = False
+        dtgv_users.AllowUserToResizeRows = False
         DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(206), CByte(220), CByte(221))
         DataGridViewCellStyle1.Font = New Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
         DataGridViewCellStyle1.ForeColor = SystemColors.ControlText
         DataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(CByte(231), CByte(229), CByte(255))
         DataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
-        Guna2DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Guna2DataGridView1.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        Guna2DataGridView1.BackgroundColor = Color.Silver
-        Guna2DataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.Raised
+        dtgv_users.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        dtgv_users.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        dtgv_users.BackgroundColor = Color.Silver
+        dtgv_users.CellBorderStyle = DataGridViewCellBorderStyle.Raised
         DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(11), CByte(102), CByte(106))
         DataGridViewCellStyle2.Font = New Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Pixel, CByte(0))
@@ -7727,8 +7769,8 @@ Partial Class frm_Main
         DataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(CByte(11), CByte(102), CByte(106))
         DataGridViewCellStyle2.SelectionForeColor = Color.Snow
         DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
-        Guna2DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
-        Guna2DataGridView1.ColumnHeadersHeight = 32
+        dtgv_users.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        dtgv_users.ColumnHeadersHeight = 32
         DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = Color.White
         DataGridViewCellStyle3.Font = New Font("Segoe UI", 9F)
@@ -7736,14 +7778,14 @@ Partial Class frm_Main
         DataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(CByte(231), CByte(229), CByte(255))
         DataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
         DataGridViewCellStyle3.WrapMode = DataGridViewTriState.False
-        Guna2DataGridView1.DefaultCellStyle = DataGridViewCellStyle3
-        Guna2DataGridView1.Enabled = False
-        Guna2DataGridView1.GridColor = Color.FromArgb(CByte(11), CByte(102), CByte(106))
-        Guna2DataGridView1.Location = New Point(586, 37)
-        Guna2DataGridView1.MultiSelect = False
-        Guna2DataGridView1.Name = "Guna2DataGridView1"
-        Guna2DataGridView1.ReadOnly = True
-        Guna2DataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
+        dtgv_users.DefaultCellStyle = DataGridViewCellStyle3
+        dtgv_users.Enabled = False
+        dtgv_users.GridColor = Color.FromArgb(CByte(11), CByte(102), CByte(106))
+        dtgv_users.Location = New Point(586, 37)
+        dtgv_users.MultiSelect = False
+        dtgv_users.Name = "dtgv_users"
+        dtgv_users.ReadOnly = True
+        dtgv_users.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
         DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle4.BackColor = Color.White
         DataGridViewCellStyle4.Font = New Font("Segoe UI", 9F)
@@ -7751,131 +7793,131 @@ Partial Class frm_Main
         DataGridViewCellStyle4.SelectionBackColor = Color.White
         DataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText
         DataGridViewCellStyle4.WrapMode = DataGridViewTriState.True
-        Guna2DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
-        Guna2DataGridView1.RowHeadersVisible = False
-        Guna2DataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        dtgv_users.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        dtgv_users.RowHeadersVisible = False
+        dtgv_users.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
         DataGridViewCellStyle5.BackColor = Color.FromArgb(CByte(206), CByte(220), CByte(221))
         DataGridViewCellStyle5.Font = New Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel, CByte(0))
         DataGridViewCellStyle5.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
         DataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(CByte(255), CByte(213), CByte(79))
         DataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
-        Guna2DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle5
-        Guna2DataGridView1.Size = New Size(355, 198)
-        Guna2DataGridView1.TabIndex = 20
-        Guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.FromArgb(CByte(206), CByte(220), CByte(221))
-        Guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = Nothing
-        Guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty
-        Guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty
-        Guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty
-        Guna2DataGridView1.ThemeStyle.BackColor = Color.Silver
-        Guna2DataGridView1.ThemeStyle.GridColor = Color.FromArgb(CByte(11), CByte(102), CByte(106))
-        Guna2DataGridView1.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(CByte(100), CByte(88), CByte(255))
-        Guna2DataGridView1.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None
-        Guna2DataGridView1.ThemeStyle.HeaderStyle.Font = New Font("Segoe UI", 9F)
-        Guna2DataGridView1.ThemeStyle.HeaderStyle.ForeColor = Color.White
-        Guna2DataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Guna2DataGridView1.ThemeStyle.HeaderStyle.Height = 32
-        Guna2DataGridView1.ThemeStyle.ReadOnly = True
-        Guna2DataGridView1.ThemeStyle.RowsStyle.BackColor = Color.FromArgb(CByte(206), CByte(220), CByte(221))
-        Guna2DataGridView1.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.Raised
-        Guna2DataGridView1.ThemeStyle.RowsStyle.Font = New Font("Segoe UI", 9F)
-        Guna2DataGridView1.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
-        Guna2DataGridView1.ThemeStyle.RowsStyle.Height = 25
-        Guna2DataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(CByte(231), CByte(229), CByte(255))
-        Guna2DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
+        dtgv_users.RowsDefaultCellStyle = DataGridViewCellStyle5
+        dtgv_users.Size = New Size(355, 198)
+        dtgv_users.TabIndex = 20
+        dtgv_users.ThemeStyle.AlternatingRowsStyle.BackColor = Color.FromArgb(CByte(206), CByte(220), CByte(221))
+        dtgv_users.ThemeStyle.AlternatingRowsStyle.Font = Nothing
+        dtgv_users.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty
+        dtgv_users.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty
+        dtgv_users.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty
+        dtgv_users.ThemeStyle.BackColor = Color.Silver
+        dtgv_users.ThemeStyle.GridColor = Color.FromArgb(CByte(11), CByte(102), CByte(106))
+        dtgv_users.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(CByte(100), CByte(88), CByte(255))
+        dtgv_users.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None
+        dtgv_users.ThemeStyle.HeaderStyle.Font = New Font("Segoe UI", 9F)
+        dtgv_users.ThemeStyle.HeaderStyle.ForeColor = Color.White
+        dtgv_users.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        dtgv_users.ThemeStyle.HeaderStyle.Height = 32
+        dtgv_users.ThemeStyle.ReadOnly = True
+        dtgv_users.ThemeStyle.RowsStyle.BackColor = Color.FromArgb(CByte(206), CByte(220), CByte(221))
+        dtgv_users.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.Raised
+        dtgv_users.ThemeStyle.RowsStyle.Font = New Font("Segoe UI", 9F)
+        dtgv_users.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
+        dtgv_users.ThemeStyle.RowsStyle.Height = 25
+        dtgv_users.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(CByte(231), CByte(229), CByte(255))
+        dtgv_users.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
         ' 
-        ' Guna2ComboBox1
+        ' cb_role
         ' 
-        Guna2ComboBox1.Anchor = AnchorStyles.Left
-        Guna2ComboBox1.BackColor = Color.Transparent
-        Guna2ComboBox1.BorderColor = Color.FromArgb(CByte(38), CByte(166), CByte(154))
-        Guna2ComboBox1.BorderThickness = 2
-        Guna2ComboBox1.CustomizableEdges = CustomizableEdges62
-        Guna2ComboBox1.DrawMode = DrawMode.OwnerDrawFixed
-        Guna2ComboBox1.DropDownStyle = ComboBoxStyle.DropDownList
-        Guna2ComboBox1.FillColor = Color.Snow
-        Guna2ComboBox1.FocusedColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
-        Guna2ComboBox1.FocusedState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
-        Guna2ComboBox1.Font = New Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Pixel)
-        Guna2ComboBox1.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
-        Guna2ComboBox1.HoverState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
-        Guna2ComboBox1.ItemHeight = 30
-        Guna2ComboBox1.Items.AddRange(New Object() {"Select Role", "Admin", "Viewer"})
-        Guna2ComboBox1.Location = New Point(129, 199)
-        Guna2ComboBox1.Name = "Guna2ComboBox1"
-        Guna2ComboBox1.ShadowDecoration.BorderRadius = 0
-        Guna2ComboBox1.ShadowDecoration.CustomizableEdges = CustomizableEdges63
-        Guna2ComboBox1.ShadowDecoration.Depth = 64
-        Guna2ComboBox1.ShadowDecoration.Enabled = True
-        Guna2ComboBox1.ShadowDecoration.Shadow = New Padding(0, 0, 0, 5)
-        Guna2ComboBox1.Size = New Size(300, 36)
-        Guna2ComboBox1.StartIndex = 0
-        Guna2ComboBox1.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material
-        Guna2ComboBox1.TabIndex = 19
+        cb_role.Anchor = AnchorStyles.Left
+        cb_role.BackColor = Color.Transparent
+        cb_role.BorderColor = Color.FromArgb(CByte(38), CByte(166), CByte(154))
+        cb_role.BorderThickness = 2
+        cb_role.CustomizableEdges = CustomizableEdges62
+        cb_role.DrawMode = DrawMode.OwnerDrawFixed
+        cb_role.DropDownStyle = ComboBoxStyle.DropDownList
+        cb_role.FillColor = Color.Snow
+        cb_role.FocusedColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
+        cb_role.FocusedState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
+        cb_role.Font = New Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Pixel)
+        cb_role.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
+        cb_role.HoverState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
+        cb_role.ItemHeight = 30
+        cb_role.Items.AddRange(New Object() {"Select Role", "Admin", "Viewer"})
+        cb_role.Location = New Point(129, 199)
+        cb_role.Name = "cb_role"
+        cb_role.ShadowDecoration.BorderRadius = 0
+        cb_role.ShadowDecoration.CustomizableEdges = CustomizableEdges63
+        cb_role.ShadowDecoration.Depth = 64
+        cb_role.ShadowDecoration.Enabled = True
+        cb_role.ShadowDecoration.Shadow = New Padding(0, 0, 0, 5)
+        cb_role.Size = New Size(300, 36)
+        cb_role.StartIndex = 0
+        cb_role.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material
+        cb_role.TabIndex = 19
         ' 
-        ' Guna2TextBox2
+        ' txt_password
         ' 
-        Guna2TextBox2.Anchor = AnchorStyles.Left
-        Guna2TextBox2.BorderColor = Color.FromArgb(CByte(38), CByte(166), CByte(154))
-        Guna2TextBox2.BorderThickness = 2
-        Guna2TextBox2.CustomizableEdges = CustomizableEdges64
-        Guna2TextBox2.DefaultText = ""
-        Guna2TextBox2.DisabledState.BorderColor = Color.FromArgb(CByte(208), CByte(208), CByte(208))
-        Guna2TextBox2.DisabledState.FillColor = Color.FromArgb(CByte(226), CByte(226), CByte(226))
-        Guna2TextBox2.DisabledState.ForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
-        Guna2TextBox2.DisabledState.PlaceholderForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
-        Guna2TextBox2.FillColor = Color.Snow
-        Guna2TextBox2.FocusedState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
-        Guna2TextBox2.Font = New Font("Franklin Gothic Medium", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
-        Guna2TextBox2.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
-        Guna2TextBox2.HoverState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
-        Guna2TextBox2.Location = New Point(129, 118)
-        Guna2TextBox2.Margin = New Padding(2, 4, 2, 4)
-        Guna2TextBox2.Name = "Guna2TextBox2"
-        Guna2TextBox2.PasswordChar = ChrW(0)
-        Guna2TextBox2.PlaceholderForeColor = Color.FromArgb(CByte(135), CByte(146), CByte(149))
-        Guna2TextBox2.PlaceholderText = "Password"
-        Guna2TextBox2.SelectedText = ""
-        Guna2TextBox2.ShadowDecoration.BorderRadius = 0
-        Guna2TextBox2.ShadowDecoration.CustomizableEdges = CustomizableEdges65
-        Guna2TextBox2.ShadowDecoration.Depth = 64
-        Guna2TextBox2.ShadowDecoration.Enabled = True
-        Guna2TextBox2.ShadowDecoration.Shadow = New Padding(0, 0, 0, 5)
-        Guna2TextBox2.Size = New Size(300, 36)
-        Guna2TextBox2.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material
-        Guna2TextBox2.TabIndex = 9
+        txt_password.Anchor = AnchorStyles.Left
+        txt_password.BorderColor = Color.FromArgb(CByte(38), CByte(166), CByte(154))
+        txt_password.BorderThickness = 2
+        txt_password.CustomizableEdges = CustomizableEdges64
+        txt_password.DefaultText = ""
+        txt_password.DisabledState.BorderColor = Color.FromArgb(CByte(208), CByte(208), CByte(208))
+        txt_password.DisabledState.FillColor = Color.FromArgb(CByte(226), CByte(226), CByte(226))
+        txt_password.DisabledState.ForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
+        txt_password.DisabledState.PlaceholderForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
+        txt_password.FillColor = Color.Snow
+        txt_password.FocusedState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
+        txt_password.Font = New Font("Franklin Gothic Medium", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
+        txt_password.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
+        txt_password.HoverState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
+        txt_password.Location = New Point(129, 118)
+        txt_password.Margin = New Padding(2, 4, 2, 4)
+        txt_password.Name = "txt_password"
+        txt_password.PasswordChar = ChrW(0)
+        txt_password.PlaceholderForeColor = Color.FromArgb(CByte(135), CByte(146), CByte(149))
+        txt_password.PlaceholderText = "Password"
+        txt_password.SelectedText = ""
+        txt_password.ShadowDecoration.BorderRadius = 0
+        txt_password.ShadowDecoration.CustomizableEdges = CustomizableEdges65
+        txt_password.ShadowDecoration.Depth = 64
+        txt_password.ShadowDecoration.Enabled = True
+        txt_password.ShadowDecoration.Shadow = New Padding(0, 0, 0, 5)
+        txt_password.Size = New Size(300, 36)
+        txt_password.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material
+        txt_password.TabIndex = 9
         ' 
-        ' Guna2TextBox1
+        ' txt_username
         ' 
-        Guna2TextBox1.Anchor = AnchorStyles.Left
-        Guna2TextBox1.BorderColor = Color.FromArgb(CByte(38), CByte(166), CByte(154))
-        Guna2TextBox1.BorderThickness = 2
-        Guna2TextBox1.CustomizableEdges = CustomizableEdges66
-        Guna2TextBox1.DefaultText = ""
-        Guna2TextBox1.DisabledState.BorderColor = Color.FromArgb(CByte(208), CByte(208), CByte(208))
-        Guna2TextBox1.DisabledState.FillColor = Color.FromArgb(CByte(226), CByte(226), CByte(226))
-        Guna2TextBox1.DisabledState.ForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
-        Guna2TextBox1.DisabledState.PlaceholderForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
-        Guna2TextBox1.FillColor = Color.Snow
-        Guna2TextBox1.FocusedState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
-        Guna2TextBox1.Font = New Font("Franklin Gothic Medium", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
-        Guna2TextBox1.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
-        Guna2TextBox1.HoverState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
-        Guna2TextBox1.Location = New Point(129, 37)
-        Guna2TextBox1.Margin = New Padding(2, 4, 2, 4)
-        Guna2TextBox1.Name = "Guna2TextBox1"
-        Guna2TextBox1.PasswordChar = ChrW(0)
-        Guna2TextBox1.PlaceholderForeColor = Color.FromArgb(CByte(135), CByte(146), CByte(149))
-        Guna2TextBox1.PlaceholderText = "Username"
-        Guna2TextBox1.SelectedText = ""
-        Guna2TextBox1.ShadowDecoration.BorderRadius = 0
-        Guna2TextBox1.ShadowDecoration.CustomizableEdges = CustomizableEdges67
-        Guna2TextBox1.ShadowDecoration.Depth = 64
-        Guna2TextBox1.ShadowDecoration.Enabled = True
-        Guna2TextBox1.ShadowDecoration.Shadow = New Padding(0, 0, 0, 5)
-        Guna2TextBox1.Size = New Size(300, 36)
-        Guna2TextBox1.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material
-        Guna2TextBox1.TabIndex = 8
+        txt_username.Anchor = AnchorStyles.Left
+        txt_username.BorderColor = Color.FromArgb(CByte(38), CByte(166), CByte(154))
+        txt_username.BorderThickness = 2
+        txt_username.CustomizableEdges = CustomizableEdges66
+        txt_username.DefaultText = ""
+        txt_username.DisabledState.BorderColor = Color.FromArgb(CByte(208), CByte(208), CByte(208))
+        txt_username.DisabledState.FillColor = Color.FromArgb(CByte(226), CByte(226), CByte(226))
+        txt_username.DisabledState.ForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
+        txt_username.DisabledState.PlaceholderForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
+        txt_username.FillColor = Color.Snow
+        txt_username.FocusedState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
+        txt_username.Font = New Font("Franklin Gothic Medium", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
+        txt_username.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
+        txt_username.HoverState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
+        txt_username.Location = New Point(129, 37)
+        txt_username.Margin = New Padding(2, 4, 2, 4)
+        txt_username.Name = "txt_username"
+        txt_username.PasswordChar = ChrW(0)
+        txt_username.PlaceholderForeColor = Color.FromArgb(CByte(135), CByte(146), CByte(149))
+        txt_username.PlaceholderText = "Username"
+        txt_username.SelectedText = ""
+        txt_username.ShadowDecoration.BorderRadius = 0
+        txt_username.ShadowDecoration.CustomizableEdges = CustomizableEdges67
+        txt_username.ShadowDecoration.Depth = 64
+        txt_username.ShadowDecoration.Enabled = True
+        txt_username.ShadowDecoration.Shadow = New Padding(0, 0, 0, 5)
+        txt_username.Size = New Size(300, 36)
+        txt_username.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material
+        txt_username.TabIndex = 8
         ' 
         ' Guna2HtmlLabel1
         ' 
@@ -7886,31 +7928,32 @@ Partial Class frm_Main
         Guna2HtmlLabel1.TabIndex = 0
         Guna2HtmlLabel1.Text = Nothing
         ' 
-        ' Guna2Button23
+        ' btn_updateProfile
         ' 
-        Guna2Button23.Anchor = AnchorStyles.Top Or AnchorStyles.Right
-        Guna2Button23.BackColor = Color.Transparent
-        Guna2Button23.BorderRadius = 10
-        Guna2Button23.CustomizableEdges = CustomizableEdges70
-        Guna2Button23.DisabledState.BorderColor = Color.DarkGray
-        Guna2Button23.DisabledState.CustomBorderColor = Color.DarkGray
-        Guna2Button23.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
-        Guna2Button23.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
-        Guna2Button23.FillColor = Color.FromArgb(CByte(255), CByte(213), CByte(79))
-        Guna2Button23.Font = New Font("Franklin Gothic Medium", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
-        Guna2Button23.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
-        Guna2Button23.Image = My.Resources.Resources.icon_update
-        Guna2Button23.ImageSize = New Size(25, 25)
-        Guna2Button23.Location = New Point(1018, 112)
-        Guna2Button23.Name = "Guna2Button23"
-        Guna2Button23.ShadowDecoration.BorderRadius = 10
-        Guna2Button23.ShadowDecoration.CustomizableEdges = CustomizableEdges71
-        Guna2Button23.ShadowDecoration.Depth = 64
-        Guna2Button23.ShadowDecoration.Enabled = True
-        Guna2Button23.ShadowDecoration.Shadow = New Padding(0, 0, 5, 5)
-        Guna2Button23.Size = New Size(121, 57)
-        Guna2Button23.TabIndex = 16
-        Guna2Button23.Text = "Update"
+        btn_updateProfile.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btn_updateProfile.BackColor = Color.Transparent
+        btn_updateProfile.BorderRadius = 10
+        btn_updateProfile.Cursor = Cursors.No
+        btn_updateProfile.CustomizableEdges = CustomizableEdges70
+        btn_updateProfile.DisabledState.BorderColor = Color.DarkGray
+        btn_updateProfile.DisabledState.CustomBorderColor = Color.DarkGray
+        btn_updateProfile.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
+        btn_updateProfile.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
+        btn_updateProfile.FillColor = Color.FromArgb(CByte(255), CByte(213), CByte(79))
+        btn_updateProfile.Font = New Font("Franklin Gothic Medium", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
+        btn_updateProfile.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
+        btn_updateProfile.Image = My.Resources.Resources.icon_update
+        btn_updateProfile.ImageSize = New Size(25, 25)
+        btn_updateProfile.Location = New Point(1018, 112)
+        btn_updateProfile.Name = "btn_updateProfile"
+        btn_updateProfile.ShadowDecoration.BorderRadius = 10
+        btn_updateProfile.ShadowDecoration.CustomizableEdges = CustomizableEdges71
+        btn_updateProfile.ShadowDecoration.Depth = 64
+        btn_updateProfile.ShadowDecoration.Enabled = True
+        btn_updateProfile.ShadowDecoration.Shadow = New Padding(0, 0, 5, 5)
+        btn_updateProfile.Size = New Size(121, 57)
+        btn_updateProfile.TabIndex = 16
+        btn_updateProfile.Text = "Update"
         ' 
         ' Label8
         ' 
@@ -7928,9 +7971,9 @@ Partial Class frm_Main
         Guna2Panel22.BackColor = Color.Transparent
         Guna2Panel22.BorderColor = Color.FromArgb(CByte(38), CByte(166), CByte(154))
         Guna2Panel22.BorderThickness = 2
-        Guna2Panel22.Controls.Add(Guna2TextBox6)
-        Guna2Panel22.Controls.Add(Guna2TextBox5)
-        Guna2Panel22.Controls.Add(Guna2TextBox4)
+        Guna2Panel22.Controls.Add(txt_schoolAdd)
+        Guna2Panel22.Controls.Add(txt_schoolName)
+        Guna2Panel22.Controls.Add(txt_schoolId)
         Guna2Panel22.CustomizableEdges = CustomizableEdges78
         Guna2Panel22.Location = New Point(22, 31)
         Guna2Panel22.Name = "Guna2Panel22"
@@ -7938,139 +7981,104 @@ Partial Class frm_Main
         Guna2Panel22.Size = New Size(1128, 110)
         Guna2Panel22.TabIndex = 15
         ' 
-        ' Guna2TextBox6
+        ' txt_schoolAdd
         ' 
-        Guna2TextBox6.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
-        Guna2TextBox6.BorderColor = Color.FromArgb(CByte(38), CByte(166), CByte(154))
-        Guna2TextBox6.BorderThickness = 2
-        Guna2TextBox6.CustomizableEdges = CustomizableEdges72
-        Guna2TextBox6.DefaultText = ""
-        Guna2TextBox6.DisabledState.BorderColor = Color.FromArgb(CByte(208), CByte(208), CByte(208))
-        Guna2TextBox6.DisabledState.FillColor = Color.FromArgb(CByte(226), CByte(226), CByte(226))
-        Guna2TextBox6.DisabledState.ForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
-        Guna2TextBox6.DisabledState.PlaceholderForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
-        Guna2TextBox6.FillColor = Color.Snow
-        Guna2TextBox6.FocusedState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
-        Guna2TextBox6.Font = New Font("Franklin Gothic Medium", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
-        Guna2TextBox6.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
-        Guna2TextBox6.HoverState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
-        Guna2TextBox6.Location = New Point(742, 30)
-        Guna2TextBox6.Margin = New Padding(2, 4, 2, 4)
-        Guna2TextBox6.Name = "Guna2TextBox6"
-        Guna2TextBox6.PasswordChar = ChrW(0)
-        Guna2TextBox6.PlaceholderForeColor = Color.FromArgb(CByte(135), CByte(146), CByte(149))
-        Guna2TextBox6.PlaceholderText = "School Address"
-        Guna2TextBox6.SelectedText = ""
-        Guna2TextBox6.ShadowDecoration.BorderRadius = 0
-        Guna2TextBox6.ShadowDecoration.CustomizableEdges = CustomizableEdges73
-        Guna2TextBox6.ShadowDecoration.Depth = 64
-        Guna2TextBox6.ShadowDecoration.Enabled = True
-        Guna2TextBox6.ShadowDecoration.Shadow = New Padding(0, 0, 0, 5)
-        Guna2TextBox6.Size = New Size(300, 36)
-        Guna2TextBox6.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material
-        Guna2TextBox6.TabIndex = 9
+        txt_schoolAdd.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
+        txt_schoolAdd.BorderColor = Color.FromArgb(CByte(38), CByte(166), CByte(154))
+        txt_schoolAdd.BorderThickness = 2
+        txt_schoolAdd.CustomizableEdges = CustomizableEdges72
+        txt_schoolAdd.DefaultText = ""
+        txt_schoolAdd.DisabledState.BorderColor = Color.FromArgb(CByte(208), CByte(208), CByte(208))
+        txt_schoolAdd.DisabledState.FillColor = Color.FromArgb(CByte(226), CByte(226), CByte(226))
+        txt_schoolAdd.DisabledState.ForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
+        txt_schoolAdd.DisabledState.PlaceholderForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
+        txt_schoolAdd.FillColor = Color.Snow
+        txt_schoolAdd.FocusedState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
+        txt_schoolAdd.Font = New Font("Franklin Gothic Medium", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
+        txt_schoolAdd.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
+        txt_schoolAdd.HoverState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
+        txt_schoolAdd.Location = New Point(758, 30)
+        txt_schoolAdd.Margin = New Padding(3, 6, 3, 6)
+        txt_schoolAdd.Name = "txt_schoolAdd"
+        txt_schoolAdd.PasswordChar = ChrW(0)
+        txt_schoolAdd.PlaceholderForeColor = Color.FromArgb(CByte(135), CByte(146), CByte(149))
+        txt_schoolAdd.PlaceholderText = "School Address"
+        txt_schoolAdd.SelectedText = ""
+        txt_schoolAdd.ShadowDecoration.BorderRadius = 0
+        txt_schoolAdd.ShadowDecoration.CustomizableEdges = CustomizableEdges73
+        txt_schoolAdd.ShadowDecoration.Depth = 64
+        txt_schoolAdd.ShadowDecoration.Enabled = True
+        txt_schoolAdd.ShadowDecoration.Shadow = New Padding(0, 0, 0, 5)
+        txt_schoolAdd.Size = New Size(300, 36)
+        txt_schoolAdd.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material
+        txt_schoolAdd.TabIndex = 9
+        txt_schoolAdd.TextAlign = HorizontalAlignment.Center
         ' 
-        ' Guna2TextBox5
+        ' txt_schoolName
         ' 
-        Guna2TextBox5.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        Guna2TextBox5.BorderColor = Color.FromArgb(CByte(38), CByte(166), CByte(154))
-        Guna2TextBox5.BorderThickness = 2
-        Guna2TextBox5.CustomizableEdges = CustomizableEdges74
-        Guna2TextBox5.DefaultText = ""
-        Guna2TextBox5.DisabledState.BorderColor = Color.FromArgb(CByte(208), CByte(208), CByte(208))
-        Guna2TextBox5.DisabledState.FillColor = Color.FromArgb(CByte(226), CByte(226), CByte(226))
-        Guna2TextBox5.DisabledState.ForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
-        Guna2TextBox5.DisabledState.PlaceholderForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
-        Guna2TextBox5.FillColor = Color.Snow
-        Guna2TextBox5.FocusedState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
-        Guna2TextBox5.Font = New Font("Franklin Gothic Medium", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
-        Guna2TextBox5.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
-        Guna2TextBox5.HoverState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
-        Guna2TextBox5.Location = New Point(406, 30)
-        Guna2TextBox5.Margin = New Padding(2, 4, 2, 4)
-        Guna2TextBox5.Name = "Guna2TextBox5"
-        Guna2TextBox5.PasswordChar = ChrW(0)
-        Guna2TextBox5.PlaceholderForeColor = Color.FromArgb(CByte(135), CByte(146), CByte(149))
-        Guna2TextBox5.PlaceholderText = "School Name"
-        Guna2TextBox5.SelectedText = ""
-        Guna2TextBox5.ShadowDecoration.BorderRadius = 0
-        Guna2TextBox5.ShadowDecoration.CustomizableEdges = CustomizableEdges75
-        Guna2TextBox5.ShadowDecoration.Depth = 64
-        Guna2TextBox5.ShadowDecoration.Enabled = True
-        Guna2TextBox5.ShadowDecoration.Shadow = New Padding(0, 0, 0, 5)
-        Guna2TextBox5.Size = New Size(300, 36)
-        Guna2TextBox5.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material
-        Guna2TextBox5.TabIndex = 8
+        txt_schoolName.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        txt_schoolName.BorderColor = Color.FromArgb(CByte(38), CByte(166), CByte(154))
+        txt_schoolName.BorderThickness = 2
+        txt_schoolName.CustomizableEdges = CustomizableEdges74
+        txt_schoolName.DefaultText = ""
+        txt_schoolName.DisabledState.BorderColor = Color.FromArgb(CByte(208), CByte(208), CByte(208))
+        txt_schoolName.DisabledState.FillColor = Color.FromArgb(CByte(226), CByte(226), CByte(226))
+        txt_schoolName.DisabledState.ForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
+        txt_schoolName.DisabledState.PlaceholderForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
+        txt_schoolName.FillColor = Color.Snow
+        txt_schoolName.FocusedState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
+        txt_schoolName.Font = New Font("Franklin Gothic Medium", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
+        txt_schoolName.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
+        txt_schoolName.HoverState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
+        txt_schoolName.Location = New Point(414, 30)
+        txt_schoolName.Margin = New Padding(3, 6, 3, 6)
+        txt_schoolName.Name = "txt_schoolName"
+        txt_schoolName.PasswordChar = ChrW(0)
+        txt_schoolName.PlaceholderForeColor = Color.FromArgb(CByte(135), CByte(146), CByte(149))
+        txt_schoolName.PlaceholderText = "School Name"
+        txt_schoolName.SelectedText = ""
+        txt_schoolName.ShadowDecoration.BorderRadius = 0
+        txt_schoolName.ShadowDecoration.CustomizableEdges = CustomizableEdges75
+        txt_schoolName.ShadowDecoration.Depth = 64
+        txt_schoolName.ShadowDecoration.Enabled = True
+        txt_schoolName.ShadowDecoration.Shadow = New Padding(0, 0, 0, 5)
+        txt_schoolName.Size = New Size(300, 36)
+        txt_schoolName.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material
+        txt_schoolName.TabIndex = 8
+        txt_schoolName.TextAlign = HorizontalAlignment.Center
         ' 
-        ' Guna2TextBox4
+        ' txt_schoolId
         ' 
-        Guna2TextBox4.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
-        Guna2TextBox4.BorderColor = Color.FromArgb(CByte(38), CByte(166), CByte(154))
-        Guna2TextBox4.BorderThickness = 2
-        Guna2TextBox4.CustomizableEdges = CustomizableEdges76
-        Guna2TextBox4.DefaultText = ""
-        Guna2TextBox4.DisabledState.BorderColor = Color.FromArgb(CByte(208), CByte(208), CByte(208))
-        Guna2TextBox4.DisabledState.FillColor = Color.FromArgb(CByte(226), CByte(226), CByte(226))
-        Guna2TextBox4.DisabledState.ForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
-        Guna2TextBox4.DisabledState.PlaceholderForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
-        Guna2TextBox4.FillColor = Color.Snow
-        Guna2TextBox4.FocusedState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
-        Guna2TextBox4.Font = New Font("Franklin Gothic Medium", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
-        Guna2TextBox4.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
-        Guna2TextBox4.HoverState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
-        Guna2TextBox4.Location = New Point(70, 30)
-        Guna2TextBox4.Margin = New Padding(2, 4, 2, 4)
-        Guna2TextBox4.Name = "Guna2TextBox4"
-        Guna2TextBox4.PasswordChar = ChrW(0)
-        Guna2TextBox4.PlaceholderForeColor = Color.FromArgb(CByte(135), CByte(146), CByte(149))
-        Guna2TextBox4.PlaceholderText = "School Id"
-        Guna2TextBox4.SelectedText = ""
-        Guna2TextBox4.ShadowDecoration.BorderRadius = 0
-        Guna2TextBox4.ShadowDecoration.CustomizableEdges = CustomizableEdges77
-        Guna2TextBox4.ShadowDecoration.Depth = 64
-        Guna2TextBox4.ShadowDecoration.Enabled = True
-        Guna2TextBox4.ShadowDecoration.Shadow = New Padding(0, 0, 0, 5)
-        Guna2TextBox4.Size = New Size(300, 36)
-        Guna2TextBox4.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material
-        Guna2TextBox4.TabIndex = 7
-        ' 
-        ' tbctrl_Section
-        ' 
-        tbctrl_Section.Controls.Add(tbp_Setting)
-        tbctrl_Section.Controls.Add(tbp_Dashboard)
-        tbctrl_Section.Controls.Add(tbp_Course)
-        tbctrl_Section.Controls.Add(tbp_Program)
-        tbctrl_Section.Controls.Add(tbp_Instructor)
-        tbctrl_Section.Controls.Add(tbp_Room)
-        tbctrl_Section.Controls.Add(tbp_Schedule)
-        tbctrl_Section.Controls.Add(tbp_Print)
-        tbctrl_Section.Controls.Add(tbp_Section)
-        tbctrl_Section.Controls.Add(tbp_Monitor)
-        tbctrl_Section.Dock = DockStyle.Fill
-        tbctrl_Section.ItemSize = New Size(50, 40)
-        tbctrl_Section.Location = New Point(260, 94)
-        tbctrl_Section.Name = "tbctrl_Section"
-        tbctrl_Section.SelectedIndex = 0
-        tbctrl_Section.Size = New Size(1180, 806)
-        tbctrl_Section.TabButtonHoverState.BorderColor = Color.Empty
-        tbctrl_Section.TabButtonHoverState.FillColor = Color.FromArgb(CByte(40), CByte(52), CByte(70))
-        tbctrl_Section.TabButtonHoverState.Font = New Font("Segoe UI Semibold", 10F)
-        tbctrl_Section.TabButtonHoverState.ForeColor = Color.White
-        tbctrl_Section.TabButtonHoverState.InnerColor = Color.FromArgb(CByte(40), CByte(52), CByte(70))
-        tbctrl_Section.TabButtonIdleState.BorderColor = Color.Empty
-        tbctrl_Section.TabButtonIdleState.FillColor = Color.FromArgb(CByte(33), CByte(42), CByte(57))
-        tbctrl_Section.TabButtonIdleState.Font = New Font("Segoe UI Semibold", 10F)
-        tbctrl_Section.TabButtonIdleState.ForeColor = Color.FromArgb(CByte(156), CByte(160), CByte(167))
-        tbctrl_Section.TabButtonIdleState.InnerColor = Color.FromArgb(CByte(33), CByte(42), CByte(57))
-        tbctrl_Section.TabButtonSelectedState.BorderColor = Color.Empty
-        tbctrl_Section.TabButtonSelectedState.FillColor = Color.FromArgb(CByte(29), CByte(37), CByte(49))
-        tbctrl_Section.TabButtonSelectedState.Font = New Font("Segoe UI Semibold", 10F)
-        tbctrl_Section.TabButtonSelectedState.ForeColor = Color.White
-        tbctrl_Section.TabButtonSelectedState.InnerColor = Color.FromArgb(CByte(76), CByte(132), CByte(255))
-        tbctrl_Section.TabButtonSize = New Size(50, 40)
-        tbctrl_Section.TabIndex = 3
-        tbctrl_Section.TabMenuBackColor = Color.FromArgb(CByte(33), CByte(42), CByte(57))
-        tbctrl_Section.TabMenuOrientation = Guna.UI2.WinForms.TabMenuOrientation.HorizontalTop
+        txt_schoolId.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
+        txt_schoolId.BorderColor = Color.FromArgb(CByte(38), CByte(166), CByte(154))
+        txt_schoolId.BorderThickness = 2
+        txt_schoolId.CustomizableEdges = CustomizableEdges76
+        txt_schoolId.DefaultText = ""
+        txt_schoolId.DisabledState.BorderColor = Color.FromArgb(CByte(208), CByte(208), CByte(208))
+        txt_schoolId.DisabledState.FillColor = Color.FromArgb(CByte(226), CByte(226), CByte(226))
+        txt_schoolId.DisabledState.ForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
+        txt_schoolId.DisabledState.PlaceholderForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
+        txt_schoolId.FillColor = Color.Snow
+        txt_schoolId.FocusedState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
+        txt_schoolId.Font = New Font("Franklin Gothic Medium", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
+        txt_schoolId.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
+        txt_schoolId.HoverState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
+        txt_schoolId.Location = New Point(70, 30)
+        txt_schoolId.Margin = New Padding(3, 6, 3, 6)
+        txt_schoolId.Name = "txt_schoolId"
+        txt_schoolId.PasswordChar = ChrW(0)
+        txt_schoolId.PlaceholderForeColor = Color.FromArgb(CByte(135), CByte(146), CByte(149))
+        txt_schoolId.PlaceholderText = "School Id"
+        txt_schoolId.SelectedText = ""
+        txt_schoolId.ShadowDecoration.BorderRadius = 0
+        txt_schoolId.ShadowDecoration.CustomizableEdges = CustomizableEdges77
+        txt_schoolId.ShadowDecoration.Depth = 64
+        txt_schoolId.ShadowDecoration.Enabled = True
+        txt_schoolId.ShadowDecoration.Shadow = New Padding(0, 0, 0, 5)
+        txt_schoolId.Size = New Size(300, 36)
+        txt_schoolId.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material
+        txt_schoolId.TabIndex = 7
+        txt_schoolId.TextAlign = HorizontalAlignment.Center
         ' 
         ' openFile
         ' 
@@ -8078,6 +8086,29 @@ Partial Class frm_Main
         ' 
         ' Timer1
         ' 
+        ' 
+        ' Guna2HtmlToolTip1
+        ' 
+        Guna2HtmlToolTip1.AllowLinksHandling = True
+        Guna2HtmlToolTip1.MaximumSize = New Size(0, 0)
+        ' 
+        ' msg_confirm
+        ' 
+        msg_confirm.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OKCancel
+        msg_confirm.Caption = "WARNING"
+        msg_confirm.Icon = Guna.UI2.WinForms.MessageDialogIcon.Warning
+        msg_confirm.Parent = Me
+        msg_confirm.Style = Guna.UI2.WinForms.MessageDialogStyle.Default
+        msg_confirm.Text = Nothing
+        ' 
+        ' msg_information
+        ' 
+        msg_information.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OK
+        msg_information.Caption = "INFORMATION"
+        msg_information.Icon = Guna.UI2.WinForms.MessageDialogIcon.Information
+        msg_information.Parent = Me
+        msg_information.Style = Guna.UI2.WinForms.MessageDialogStyle.Default
+        msg_information.Text = Nothing
         ' 
         ' frm_Main
         ' 
@@ -8101,7 +8132,7 @@ Partial Class frm_Main
         CType(Guna2PictureBox5, ComponentModel.ISupportInitialize).EndInit()
         TableLayoutPanel15.ResumeLayout(False)
         TableLayoutPanel15.PerformLayout()
-        CType(Guna2CirclePictureBox2, ComponentModel.ISupportInitialize).EndInit()
+        CType(login_pic, ComponentModel.ISupportInitialize).EndInit()
         pnl_sidebar.ResumeLayout(False)
         pnl_sidebar.PerformLayout()
         CType(ProgramsBindingSource, ComponentModel.ISupportInitialize).EndInit()
@@ -8234,14 +8265,14 @@ Partial Class frm_Main
         Guna2Panel63.ResumeLayout(False)
         Guna2Panel67.ResumeLayout(False)
         CType(dtgv_insNotSche, ComponentModel.ISupportInitialize).EndInit()
+        tbctrl_Section.ResumeLayout(False)
         tbp_Setting.ResumeLayout(False)
         tbp_Setting.PerformLayout()
         Guna2Panel25.ResumeLayout(False)
         Guna2Panel24.ResumeLayout(False)
         Guna2Panel24.PerformLayout()
-        CType(Guna2DataGridView1, ComponentModel.ISupportInitialize).EndInit()
+        CType(dtgv_users, ComponentModel.ISupportInitialize).EndInit()
         Guna2Panel22.ResumeLayout(False)
-        tbctrl_Section.ResumeLayout(False)
         ResumeLayout(False)
     End Sub
 
@@ -8314,7 +8345,7 @@ Partial Class frm_Main
     Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewTextBoxColumn
     Friend WithEvents TableLayoutPanel15 As TableLayoutPanel
     Friend WithEvents btn_logout As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents Guna2CirclePictureBox2 As Guna.UI2.WinForms.Guna2CirclePictureBox
+    Friend WithEvents login_pic As Guna.UI2.WinForms.Guna2CirclePictureBox
     Friend WithEvents lbl_role As Label
     Friend WithEvents DataGridViewTextBoxColumn42 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn43 As DataGridViewTextBoxColumn
@@ -8329,18 +8360,6 @@ Partial Class frm_Main
     Friend WithEvents print_doc As Printing.PrintDocument
     Friend WithEvents print_dialog As PrintPreviewDialog
     Friend WithEvents tbctrl_Section As Guna.UI2.WinForms.Guna2TabControl
-    Friend WithEvents tbp_Setting As TabPage
-    Friend WithEvents Label22 As Label
-    Friend WithEvents Guna2Panel25 As Guna.UI2.WinForms.Guna2Panel
-    Friend WithEvents Guna2Button22 As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents Guna2Button24 As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents Guna2Button25 As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents Label21 As Label
-    Friend WithEvents Guna2Panel24 As Guna.UI2.WinForms.Guna2Panel
-    Friend WithEvents Guna2HtmlLabel1 As Guna.UI2.WinForms.Guna2HtmlLabel
-    Friend WithEvents Guna2Button23 As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents Label8 As Label
-    Friend WithEvents Guna2Panel22 As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents tbp_Dashboard As TabPage
     Friend WithEvents Label55 As Label
     Friend WithEvents TableLayoutPanel10 As TableLayoutPanel
@@ -8588,22 +8607,37 @@ Partial Class frm_Main
     Friend WithEvents Guna2Panel60 As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents Guna2Panel77 As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents Guna2PictureBox5 As Guna.UI2.WinForms.Guna2PictureBox
-    Friend WithEvents SaveFileDialog1 As SaveFileDialog
-    Friend WithEvents btn_upload As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents file_save As SaveFileDialog
     Friend WithEvents openFile As OpenFileDialog
-    Friend WithEvents txt_file As Guna.UI2.WinForms.Guna2TextBox
-    Friend WithEvents btn_browse As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents Guna2TextBox6 As Guna.UI2.WinForms.Guna2TextBox
-    Friend WithEvents Guna2TextBox5 As Guna.UI2.WinForms.Guna2TextBox
-    Friend WithEvents Guna2TextBox4 As Guna.UI2.WinForms.Guna2TextBox
-    Friend WithEvents Guna2TextBox2 As Guna.UI2.WinForms.Guna2TextBox
-    Friend WithEvents Guna2TextBox1 As Guna.UI2.WinForms.Guna2TextBox
-    Friend WithEvents Guna2DataGridView1 As Guna.UI2.WinForms.Guna2DataGridView
-    Friend WithEvents Guna2ComboBox1 As Guna.UI2.WinForms.Guna2ComboBox
-    Friend WithEvents btn_reset As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents btn_save As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents btn_import As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents Guna2HtmlToolTip1 As Guna.UI2.WinForms.Guna2HtmlToolTip
+    Friend WithEvents msg_confirm As Guna.UI2.WinForms.Guna2MessageDialog
+    Friend WithEvents msg_information As Guna.UI2.WinForms.Guna2MessageDialog
+    Friend WithEvents tbp_Setting As TabPage
+    Friend WithEvents btn_import As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents btn_save As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents btn_reset As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents Label22 As Label
+    Friend WithEvents Guna2Panel25 As Guna.UI2.WinForms.Guna2Panel
+    Friend WithEvents btn_browse As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents txt_file As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents btn_upload As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents btn_deleteUser As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents btn_updateUser As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents btn_addUser As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents Label21 As Label
+    Friend WithEvents Guna2Panel24 As Guna.UI2.WinForms.Guna2Panel
+    Friend WithEvents dtgv_users As Guna.UI2.WinForms.Guna2DataGridView
+    Friend WithEvents cb_role As Guna.UI2.WinForms.Guna2ComboBox
+    Friend WithEvents txt_password As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents txt_username As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents Guna2HtmlLabel1 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents btn_updateProfile As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Guna2Panel22 As Guna.UI2.WinForms.Guna2Panel
+    Friend WithEvents txt_schoolAdd As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents txt_schoolName As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents txt_schoolId As Guna.UI2.WinForms.Guna2TextBox
 
 
 End Class

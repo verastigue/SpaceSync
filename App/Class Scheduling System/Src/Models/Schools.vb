@@ -7,7 +7,7 @@ Public Class Schools
     Public Sub CreateNewSchool(school_id As String, school_name As String, address As String)
         Try
             sql = "INSERT INTO tbl_schools (school_id, school_name, address) VALUES ('" & school_id & "', '" & school_name & "', '" & address & "')"
-            create(sql)
+            executeQuery(sql)
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
         End Try
@@ -53,9 +53,9 @@ Public Class Schools
 
 
     'UPDATE SCHOOL '
-    Sub UpdateSchool(school_id As String, school_name As String, address As String)
+    Sub UpdateSchool(school_id As String, school_name As String, address As String, oldSchoolId As String)
         Try
-            sql = "UPDATE tbl_schools SET school_id = '" & school_id & "', school_name = '" & school_name & "', address = '" & address & "' WHERE school_id = '" & school_id & "'"
+            sql = "UPDATE tbl_schools SET school_id = '" & school_id & "', school_name = '" & school_name & "', address = '" & address & "' WHERE school_id = '" & oldSchoolId & "'"
             update(sql)
         Catch ex As Exception
             Console.WriteLine(ex.ToString)

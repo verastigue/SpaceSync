@@ -54,6 +54,7 @@ Partial Class frm_Login
         Dim CustomizableEdges25 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges26 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges27 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_Login))
         btn_stExit = New Guna.UI2.WinForms.Guna2Button()
         btn_stSubmit = New Guna.UI2.WinForms.Guna2Button()
         Guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
@@ -455,7 +456,7 @@ Partial Class frm_Login
         ckb_role.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(67))
         ckb_role.HoverState.BorderColor = Color.FromArgb(CByte(151), CByte(254), CByte(237))
         ckb_role.ItemHeight = 30
-        ckb_role.Items.AddRange(New Object() {"Select Role", "Admin", "Editor", "Viewer"})
+        ckb_role.Items.AddRange(New Object() {"Select Role", "Admin", "Viewer"})
         ckb_role.Location = New Point(103, 293)
         ckb_role.Name = "ckb_role"
         ckb_role.ShadowDecoration.BorderRadius = 10
@@ -465,7 +466,7 @@ Partial Class frm_Login
         ckb_role.ShadowDecoration.Shadow = New Padding(0, 0, 5, 5)
         ckb_role.Size = New Size(300, 36)
         ckb_role.StartIndex = 0
-        ckb_role.TabIndex = 5
+        ckb_role.TabIndex = 3
         ckb_role.TabStop = False
         ckb_role.TextOffset = New Point(5, 0)
         ' 
@@ -506,7 +507,7 @@ Partial Class frm_Login
         txt_password.ShadowDecoration.Enabled = True
         txt_password.ShadowDecoration.Shadow = New Padding(0, 0, 5, 5)
         txt_password.Size = New Size(300, 35)
-        txt_password.TabIndex = 3
+        txt_password.TabIndex = 2
         txt_password.TextOffset = New Point(5, 0)
         ' 
         ' Label9
@@ -580,10 +581,10 @@ Partial Class frm_Login
         ' msg_succes
         ' 
         msg_succes.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OK
-        msg_succes.Caption = Nothing
+        msg_succes.Caption = "INFORMATION"
         msg_succes.Icon = Guna.UI2.WinForms.MessageDialogIcon.Information
         msg_succes.Parent = Me
-        msg_succes.Style = Guna.UI2.WinForms.MessageDialogStyle.Dark
+        msg_succes.Style = Guna.UI2.WinForms.MessageDialogStyle.Default
         msg_succes.Text = Nothing
         ' 
         ' frm_Login
@@ -594,6 +595,7 @@ Partial Class frm_Login
         Controls.Add(Guna2Panel2)
         Controls.Add(Guna2Panel1)
         FormBorderStyle = FormBorderStyle.None
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "frm_Login"
         StartPosition = FormStartPosition.CenterScreen
         Text = "frm_Login"

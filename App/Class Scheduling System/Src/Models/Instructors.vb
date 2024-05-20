@@ -182,15 +182,6 @@ Public Class Instructors
     End Sub
 
 
-    Function validateCoursesToInstructor(instructor_no As String, course_code As String)
-        Try
-            sql = "SELECT COUNT(*) FROM tbl_subjects WHERE instructor_no = '" & instructor_no & "' AND course_code = '" & course_code & "'"
-            check(sql)
-        Catch ex As Exception
-            Console.WriteLine(ex.ToString)
-        End Try
-    End Function
-
     'UPDATE SECTIONS TO INSTRUCTOR'
     Public Sub UpdateSectionsToInstructor(insturctor_no As String, section As String, oldInstructor As String, oldSection As String)
         Try

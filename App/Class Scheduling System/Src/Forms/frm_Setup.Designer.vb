@@ -46,6 +46,7 @@ Partial Class frm_Setup
         Dim CustomizableEdges23 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges20 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges21 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_Setup))
         Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
         Label3 = New Label()
         Guna2Panel4 = New Guna.UI2.WinForms.Guna2Panel()
@@ -71,6 +72,7 @@ Partial Class frm_Setup
         Guna2ShadowForm1 = New Guna.UI2.WinForms.Guna2ShadowForm(components)
         Guna2BorderlessForm1 = New Guna.UI2.WinForms.Guna2BorderlessForm(components)
         Guna2AnimateWindow1 = New Guna.UI2.WinForms.Guna2AnimateWindow(components)
+        msg_information = New Guna.UI2.WinForms.Guna2MessageDialog()
         Guna2Panel2.SuspendLayout()
         Guna2Panel4.SuspendLayout()
         Guna2Panel1.SuspendLayout()
@@ -187,7 +189,7 @@ Partial Class frm_Setup
         txt_password.ShadowDecoration.Enabled = True
         txt_password.ShadowDecoration.Shadow = New Padding(0, 0, 5, 5)
         txt_password.Size = New Size(300, 35)
-        txt_password.TabIndex = 14
+        txt_password.TabIndex = 5
         ' 
         ' txt_username
         ' 
@@ -216,7 +218,7 @@ Partial Class frm_Setup
         txt_username.ShadowDecoration.Enabled = True
         txt_username.ShadowDecoration.Shadow = New Padding(0, 0, 5, 5)
         txt_username.Size = New Size(300, 35)
-        txt_username.TabIndex = 13
+        txt_username.TabIndex = 4
         ' 
         ' txt_schoolAdd
         ' 
@@ -245,7 +247,7 @@ Partial Class frm_Setup
         txt_schoolAdd.ShadowDecoration.Enabled = True
         txt_schoolAdd.ShadowDecoration.Shadow = New Padding(0, 0, 5, 5)
         txt_schoolAdd.Size = New Size(300, 35)
-        txt_schoolAdd.TabIndex = 12
+        txt_schoolAdd.TabIndex = 3
         ' 
         ' Label2
         ' 
@@ -352,7 +354,7 @@ Partial Class frm_Setup
         txt_schoolId.ShadowDecoration.Enabled = True
         txt_schoolId.ShadowDecoration.Shadow = New Padding(0, 0, 5, 5)
         txt_schoolId.Size = New Size(300, 35)
-        txt_schoolId.TabIndex = 3
+        txt_schoolId.TabIndex = 2
         ' 
         ' Label9
         ' 
@@ -481,6 +483,15 @@ Partial Class frm_Setup
         Guna2AnimateWindow1.Interval = 200
         Guna2AnimateWindow1.TargetForm = Me
         ' 
+        ' msg_information
+        ' 
+        msg_information.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OK
+        msg_information.Caption = "INFORMATION"
+        msg_information.Icon = Guna.UI2.WinForms.MessageDialogIcon.Information
+        msg_information.Parent = Me
+        msg_information.Style = Guna.UI2.WinForms.MessageDialogStyle.Default
+        msg_information.Text = Nothing
+        ' 
         ' frm_Setup
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -489,6 +500,7 @@ Partial Class frm_Setup
         Controls.Add(Guna2Panel2)
         Controls.Add(Guna2Panel1)
         FormBorderStyle = FormBorderStyle.None
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "frm_Setup"
         StartPosition = FormStartPosition.CenterScreen
         Text = "frm_Setup"
@@ -526,4 +538,5 @@ Partial Class frm_Setup
     Friend WithEvents Guna2PictureBox1 As Guna.UI2.WinForms.Guna2PictureBox
     Friend WithEvents Label5 As Label
     Friend WithEvents Label11 As Label
+    Friend WithEvents msg_information As Guna.UI2.WinForms.Guna2MessageDialog
 End Class

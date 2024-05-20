@@ -4,11 +4,22 @@ Imports System.Drawing.Imaging
 Imports System.Drawing.Printing
 Imports System.Globalization
 Imports System.IO
+Imports System.Runtime.InteropServices
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports Google.Protobuf.WellKnownTypes
 Imports Guna.UI2.WinForms
 Imports Newtonsoft.Json
 Public Class frm_Main
+
+    ' Import the ShowWindow function from the user32.dll library
+    <DllImport("user32.dll", SetLastError:=True)>
+    Private Shared Function ShowWindow(ByVal hWnd As IntPtr, ByVal nCmdShow As Integer) As Boolean
+    End Function
+
+    ' Define the constants for the ShowWindow function
+    Private Const SW_HIDE As Integer = 0
+    Private Const SW_SHOW As Integer = 5
+
     'FORM LOAD
     Private Sub frm_Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         tbctrl_Section.TabMenuVisible = False
@@ -79,6 +90,8 @@ Public Class frm_Main
         Timer1.Interval = 1000
         Timer1.Start()
 
+        btn_updateProfile.Cursor = Cursors.No
+
     End Sub
     'TIMER
     Private Sub time_date_Tick(sender As Object, e As EventArgs) Handles time_date.Tick
@@ -92,6 +105,7 @@ Public Class frm_Main
         If count > 0 Then
             Timer1.Interval = 10000
             Timer1.Start()
+            refreshRoomsData()
             refreshData()
         End If
 
@@ -99,9 +113,19 @@ Public Class frm_Main
         Timer1.Start()
     End Sub
 
+    'Maximized
     Private Sub ctrlbx_max_Click(sender As Object, e As EventArgs) Handles ctrlbx_max.Click
         refreshRoomsData()
         CenterLabel()
+
+        ' Check if the form is maximized
+        If Me.WindowState = FormWindowState.Maximized Then
+            ' Show the taskbar
+            ShowWindow(Me.Handle, SW_SHOW)
+        Else
+            ' Hide the taskbar if the form is not maximized
+            ShowWindow(Me.Handle, SW_HIDE)
+        End If
     End Sub
 
 
@@ -1132,7 +1156,6 @@ Public Class frm_Main
             Next
         End If
     End Sub
-
     Private Sub cb_scheduleCourse_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cb_scheduleCourse.SelectedIndexChanged
 
         cb_scheduleSection.Items.Clear()
@@ -1500,7 +1523,7 @@ Public Class frm_Main
 
         Dim format As New StringFormat
         format.Alignment = StringAlignment.Center
-        e.Graphics.DrawString("Colegio De Montalban", New Font("Franklin Gothic Medium", 16, FontStyle.Bold), Brushes.Black, New PointF(e.PageBounds.Width / 2, 52), format)
+        e.Graphics.DrawString(oldSchoolName, New Font("Franklin Gothic Medium", 16, FontStyle.Bold), Brushes.Black, New PointF(e.PageBounds.Width / 2, 52), format)
         e.Graphics.DrawString("Class Scheduling System", New Font("Franklin Gothic Medium", 12, FontStyle.Bold), Brushes.Black, New PointF(e.PageBounds.Width / 2, 80), format)
 
         Dim fmt As StringFormat = New StringFormat(StringFormatFlags.LineLimit)
@@ -1614,12 +1637,12 @@ Public Class frm_Main
     Private Sub btn_upload_Click(sender As Object, e As EventArgs) Handles btn_upload.Click
         Try
             If String.IsNullOrEmpty(txt_file.Text) Then
-                MessageBox.Show("Please select a file first.")
+                msg_warning.Show("Please select a file first.")
                 Return
             End If
 
             If Path.GetExtension(txt_file.Text).ToLower() <> ".json" Then
-                MessageBox.Show("Only JSON files can be uploaded.")
+                msg_warning.Show("Only JSON files can be uploaded.")
                 Return
             End If
 
@@ -1631,13 +1654,13 @@ Public Class frm_Main
             End If
 
             File.Copy(txt_file.Text, uploadPath, True)
-            MessageBox.Show("File Uploaded")
+            msg_information.Show("File Uploaded")
 
             ' Load and process the JSON file
             ProcessJsonFile(uploadPath)
 
         Catch ex As Exception
-            MessageBox.Show("Error uploading file: " & ex.Message)
+            msg_warning.Show("Error processing JSON file: " & ex.Message)
         End Try
     End Sub
 
@@ -1655,10 +1678,13 @@ Public Class frm_Main
                 Next
             Next
 
-            MessageBox.Show("Data uploaded successfully")
+            msg_information.Show("Data uploaded successfully")
+
+            refreshData()
+
 
         Catch ex As Exception
-            MessageBox.Show("Error processing JSON file: " & ex.Message)
+            msg_warning.Show("Error processing JSON file: " & ex.Message)
         End Try
     End Sub
 
@@ -1682,15 +1708,180 @@ Public Class frm_Main
         Public Property Section As String
     End Class
 
-
-    'SAVE THE DATA
-    Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
-
+    'UPDATE PROFILE
+    Private Sub btn_updateProfile_Click(sender As Object, e As EventArgs) Handles btn_updateProfile.Click
+        If btn_updateProfile.Cursor = Cursors.Hand Then
+            school.UpdateSchool(txt_schoolId.Text, txt_schoolName.Text, txt_schoolAdd.Text, oldSchoolId)
+            refreshData()
+        End If
     End Sub
 
-    Private Sub Guna2Button25_Click(sender As Object, e As EventArgs) Handles Guna2Button25.Click
-
+    Private Sub txt_schoolId_TextChanged(sender As Object, e As EventArgs) Handles txt_schoolId.TextChanged
+        If txt_schoolId.Text = oldSchoolId Then
+            btn_updateProfile.Cursor = Cursors.No
+        Else
+            btn_updateProfile.Cursor = Cursors.Hand
+        End If
     End Sub
 
+    Private Sub txt_schoolName_TextChanged(sender As Object, e As EventArgs) Handles txt_schoolName.TextChanged
+        If txt_schoolName.Text = oldSchoolName Then
+            btn_updateProfile.Cursor = Cursors.No
+        Else
+            btn_updateProfile.Cursor = Cursors.Hand
+        End If
+    End Sub
 
+    Private Sub txt_schoolAdd_TextChanged(sender As Object, e As EventArgs) Handles txt_schoolAdd.TextChanged
+        If txt_schoolAdd.Text = oldSchoolAdd Then
+            btn_updateProfile.Cursor = Cursors.No
+        Else
+            btn_updateProfile.Cursor = Cursors.Hand
+        End If
+    End Sub
+
+    Private Sub btn_reset_Click(sender As Object, e As EventArgs) Handles btn_reset.Click
+        Dim tables As String() = {"tbl_users", "tbl_schools", "tbl_students", "tbl_programs", "tbl_instructors", "tbl_rooms"}
+
+        Dim result As DialogResult = msg_confirm.Show("Are you sure you want to reset the system all the data will gone also your grade?")
+
+        If result = DialogResult.Yes Then
+            For Each table As String In tables
+                executeQuery($"DELETE FROM {table}")
+            Next
+            msg_warning.Show("Succesfully Deleted!")
+            refreshData()
+            txt_file.Clear()
+            Me.Hide()
+            frm_Setup.Show()
+        End If
+    End Sub
+
+    Private Async Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
+        ' Change cursor to loading cursor
+        Me.Cursor = Cursors.WaitCursor
+
+        file_save.Filter = "SQL dump files (*.sql)|*.sql"
+        file_save.Title = "Save MySQL Database"
+        file_save.ShowDialog()
+
+        If file_save.FileName <> "" Then
+            Dim databaseName As String = dbName
+            Dim filename As String = file_save.FileName
+
+            Dim xamppPath As String = "C:\xampp\mysql\bin\"
+
+            ' Prepare the mysqldump command with output redirection handled by cmd.exe
+            Dim dumpCommand As String = $"{xamppPath}mysqldump -u{dbUser} -p{dbPassword} {databaseName} > ""{filename}"""
+
+            Dim processInfo As New ProcessStartInfo()
+            processInfo.FileName = "cmd.exe"
+            processInfo.Arguments = $"/c {dumpCommand}"
+            processInfo.UseShellExecute = False
+            processInfo.RedirectStandardError = True
+            processInfo.RedirectStandardOutput = True
+            processInfo.CreateNoWindow = True
+
+            Dim process As New Process()
+            process.StartInfo = processInfo
+
+            Try
+                Await Task.Run(Sub()
+                                   process.Start()
+                                   process.WaitForExit()
+                               End Sub)
+
+                If process.ExitCode = 0 Then
+                    msg_information.Show("Database saved successfully!")
+                Else
+                    Dim errorMessage As String = process.StandardError.ReadToEnd()
+                    msg_warning.Show($"Error occurred while saving database: {errorMessage}")
+                End If
+            Catch ex As Exception
+                msg_warning.Show($"Error occurred while saving database: {ex.Message}")
+            Finally
+                ' Revert cursor back to default
+                Me.Cursor = Cursors.Default
+            End Try
+        End If
+    End Sub
+
+    Private Async Sub btn_import_Click(sender As Object, e As EventArgs) Handles btn_import.Click
+        ' Change cursor to loading cursor
+        Me.Cursor = Cursors.WaitCursor
+
+        ' Configure the OpenFileDialog to select the SQL file
+        Dim file_import As New OpenFileDialog()
+        file_import.Filter = "SQL dump files (*.sql)|*.sql"
+        file_import.Title = "Import MySQL Database"
+        file_import.ShowDialog()
+
+        If file_import.FileName <> "" Then
+            Dim databaseName As String = dbName
+            Dim filename As String = file_import.FileName
+
+            Dim xamppPath As String = "C:\xampp\mysql\bin\"
+
+            ' Prepare the mysql command to import the SQL file
+            Dim importCommand As String = $"{xamppPath}mysql -u{dbUser} -p{dbPassword} {databaseName} < ""{filename}"""
+
+            Dim processInfo As New ProcessStartInfo()
+            processInfo.FileName = "cmd.exe"
+            processInfo.Arguments = $"/c {importCommand}"
+            processInfo.UseShellExecute = False
+            processInfo.RedirectStandardError = True
+            processInfo.RedirectStandardOutput = True
+            processInfo.CreateNoWindow = True
+
+            Dim process As New Process()
+            process.StartInfo = processInfo
+
+            Try
+                Await Task.Run(Sub()
+                                   process.Start()
+                                   process.WaitForExit()
+                               End Sub)
+
+                If process.ExitCode = 0 Then
+                    msg_information.Show("Database imported successfully!")
+                Else
+                    Dim errorMessage As String = process.StandardError.ReadToEnd()
+                    msg_warning.Show($"Error occurred while importing database: {errorMessage}")
+                End If
+            Catch ex As Exception
+                msg_warning.Show($"Error occurred while importing database: {ex.Message}")
+            Finally
+                ' Revert cursor back to default
+                Me.Cursor = Cursors.Default
+            End Try
+        End If
+    End Sub
+
+    Private Sub user_SelectionChange(sender As Object, e As EventArgs) Handles dtgv_users.SelectionChanged
+        If dtgv_users.SelectedRows.Count > 0 Then
+
+            'FILL THE PROGRAM DETAILS
+            Dim selectedRows As DataGridViewRow = dtgv_users.SelectedRows(0)
+            txt_username.Text = selectedRows.Cells("username").Value.ToString
+            txt_password.Text = selectedRows.Cells("password").Value.ToString
+            cb_role.SelectedItem = selectedRows.Cells("role").Value.ToString
+
+            'VALIDATE THE BUTTON
+            btn_addUser.Cursor = Cursors.No
+            btn_updateUser.Cursor = Cursors.Hand
+            btn_deleteUser.Cursor = Cursors.Hand
+        Else
+            'VALIDATE THE BUTTON
+            btn_addUser.Cursor = Cursors.Hand
+            btn_updateUser.Cursor = Cursors.No
+            btn_deleteUser.Cursor = Cursors.No
+        End If
+    End Sub
+
+    Private Sub tbp_Setting_Click(sender As Object, e As EventArgs) Handles tbp_Setting.Click
+        txt_username.Clear()
+        txt_password.Clear()
+        cb_role.SelectedIndex = 0
+        dtgv_users.ClearSelection()
+    End Sub
 End Class
