@@ -29,6 +29,24 @@ Public Class Instructors
         End Try
     End Sub
 
+    Sub DeleteCourseByInstructor(instructor_no As String)
+        Try
+            sql = "DELETE FROM tbl_subjects WHERE instructor_no = '" & instructor_no & "'"
+            executeQuery(sql)
+        Catch ex As Exception
+            Console.WriteLine(ex.ToString)
+        End Try
+    End Sub
+
+    Sub DeleteSectionByInstructor(instructor_no As String)
+        Try
+            sql = "DELETE FROM tbl_sessions WHERE instructor_no = '" & instructor_no & "'"
+            executeQuery(sql)
+        Catch ex As Exception
+            Console.WriteLine(ex.ToString)
+        End Try
+    End Sub
+
 
 
     'READ ALL INSTRUCTORS'
@@ -164,7 +182,7 @@ Public Class Instructors
     'ADD COURSES TO INSTRUCTOR'
     Public Sub AddCoursesToInstructor(insturctor_no As String, course_code As String)
         Try
-            sql = "INSERT INTO tbl_subjects (instructor_no, course_code) VALUES ('" & insturctor_no & "', '" & course_code & "')"
+            sql = "INSERT INTO tbl_subjects (instructor_no, course_code) VALUES ('" & insturctor_no & "','" & course_code & "')"
             executeQuery(sql)
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
@@ -174,7 +192,7 @@ Public Class Instructors
     'ADD SECTIONS TO INSTRUCTOR'
     Public Sub AddSectionsToInstructor(insturctor_no As String, section As String)
         Try
-            sql = "INSERT INTO tbl_sessions (instructor_no, section) VALUES ('" & insturctor_no & "', '" & section & "')"
+            sql = "INSERT INTO tbl_sessions (instructor_no, section) VALUES ('" & insturctor_no & "','" & section & "')"
             executeQuery(sql)
         Catch ex As Exception
             Console.WriteLine(ex.ToString)

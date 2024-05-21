@@ -120,15 +120,9 @@ Module Data
         dataCopy.Columns.Remove("year")
         dataCopy.Columns.Remove("name")
 
-        'frm_Main.dtgv_instructorSection.DataSource = dataCopy
+        frm_Main.dtgv_instructorSection.DataSource = dataCopy
 
 
-        Dim selectRow As DataRow = dataCopy.NewRow()
-        selectRow(0) = "Select Sections"
-        dataCopy.Rows.InsertAt(selectRow, 0)
-
-        frm_Main.cb_InstrucSection.DataSource = dataCopy
-        frm_Main.cb_InstrucSection.DisplayMember = dataCopy.Columns(0).ColumnName
 
 
 
@@ -150,14 +144,7 @@ Module Data
         dataCopy.Columns.Remove("yrLevel")
         dataCopy.Columns.Remove("TypeOfRoom")
 
-        Dim selectRow As DataRow = dataCopy.NewRow()
-        selectRow(0) = "Select Courses"
-        dataCopy.Rows.InsertAt(selectRow, 0)
-
-
-        frm_Main.cb_instrucCourse.DataSource = dataCopy
-        frm_Main.cb_instrucCourse.DisplayMember = dataCopy.Columns(0).ColumnName
-
+        frm_Main.dtgv_instructorCourse.DataSource = dataCopy
 
         For Each row As DataGridViewRow In frm_Main.dtgv_course.SelectedRows
             row.Selected = False

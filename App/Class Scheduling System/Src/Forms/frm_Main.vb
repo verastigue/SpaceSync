@@ -24,6 +24,17 @@ Public Class frm_Main
     Private Sub frm_Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         tbctrl_Section.TabMenuVisible = False
 
+        Dim checkBoxCourse As New DataGridViewCheckBoxColumn()
+        checkBoxCourse.HeaderText = "Check"
+        checkBoxCourse.Name = "check"
+        dtgv_instructorCourse.Columns.Add(checkBoxCourse)
+
+        Dim checkBoxSection As New DataGridViewCheckBoxColumn()
+        checkBoxSection.HeaderText = "Check"
+        checkBoxSection.Name = "check"
+        dtgv_instructorSection.Columns.Add(checkBoxSection)
+
+
         'REFRESH ALL DATA
         refreshData()
 
@@ -39,6 +50,7 @@ Public Class frm_Main
         dtgv_section.Columns("program_code").HeaderText = "Program Code"
         dtgv_section.Columns("year").HeaderText = "Year"
         dtgv_section.Columns("name").HeaderText = "Name"
+        dtgv_instructorSection.Columns("category").HeaderText = "Sections"
 
         'IN COURSE
         dtgv_course.Columns("course_code").HeaderText = "Subject Code"
@@ -47,7 +59,8 @@ Public Class frm_Main
         dtgv_course.Columns("program_code").HeaderText = "Program"
         dtgv_course.Columns("yrLevel").HeaderText = "Year Level"
         dtgv_course.Columns("TypeOfRoom").HeaderText = "Type of Room"
-
+        dtgv_instructorCourse.Columns("course_code").HeaderText = "Subject"
+        dtgv_instructorCourse.Columns("program_code").HeaderText = "Program"
 
         'IN INSTRUCTOR
         dtgv_instructor.Columns("instructor_no").HeaderText = "Instructor No"
@@ -75,12 +88,6 @@ Public Class frm_Main
 
         dtgv_roomNotSche.Columns("room_no").HeaderText = "Room No"
         dtgv_secNotSche.Columns("category").HeaderText = "Section"
-
-        lb_course.Items.Clear()
-        lb_section.Items.Clear()
-        cb_instrucCourse.DropDownHeight = 300
-        cb_InstrucSection.DropDownHeight = 300
-
 
         UpdateDate()
         time_date.Interval = 1000
@@ -194,8 +201,6 @@ Public Class frm_Main
             Next
         Next
 
-        lb_course.Items.Clear()
-        lb_section.Items.Clear()
 
         DefaultCheckbox(checkBoxes)
         ClearTextbox(textboxes)
@@ -773,15 +778,12 @@ Public Class frm_Main
     Dim oldInstructor As String
     Dim oldSection As String
     Dim oldCourse As String
-    Dim courseList As List(Of String)
 
     Private Sub instructor_SelectedChange() Handles dtgv_instructor.SelectionChanged
         Dim checkBoxes() As Guna2CheckBox = {cbk_instrucMon, cbk_instrucTue, cbk_instrucWed, cbk_instrucThu, cbk_instrucFri, cbk_instrucSat, cbk_instrucSun}
 
         If dtgv_instructor.SelectedRows.Count > 0 Then
             DefaultCheckbox(checkBoxes)
-            lb_course.Items.Clear()
-            lb_section.Items.Clear()
 
             Dim selectedRow As DataGridViewRow = dtgv_instructor.SelectedRows(0)
 
@@ -818,19 +820,29 @@ Public Class frm_Main
                 End Select
             Next
 
-            Dim courseString As String = selectedRow.Cells("Courses").Value.ToString()
-            courseList = courseString.Split(","c).ToList()
+            Dim coursesString As String = selectedRow.Cells("courses").Value.ToString()
+            Dim coursesList As List(Of String) = coursesString.Split(","c).Select(Function(course) course.Trim()).ToList()
 
-            For Each course As String In courseList
-                lb_course.Items.Add(course)
+            For Each course As String In coursesList
+                For Each row As DataGridViewRow In dtgv_instructorCourse.Rows
+                    If row.Cells("course_code").Value.ToString() = course Then
+                        row.Cells("check").Value = True
+                    End If
+                Next
             Next
 
-            Dim sectionString As String = selectedRow.Cells("Sections").Value.ToString()
-            Dim sectionList As List(Of String) = sectionString.Split(","c).ToList()
+            Dim sectionString As String = selectedRow.Cells("sections").Value.ToString()
+            Dim sectionList As List(Of String) = sectionString.Split(","c).Select(Function(section) section.Trim()).ToList()
 
             For Each section As String In sectionList
-                lb_section.Items.Add(section)
+                For Each row As DataGridViewRow In dtgv_instructorSection.Rows
+                    If row.Cells("category").Value.ToString() = section Then
+                        row.Cells("check").Value = True
+                    End If
+                Next
             Next
+
+
 
             oldInstructor = selectedRow.Cells("instructor_no").Value.ToString()
             oldCourse = selectedRow.Cells("Courses").Value.ToString()
@@ -899,17 +911,43 @@ Public Class frm_Main
                 instructor.CreateNewInstructor(txt_instructorNo.Text, txt_instructorFName.Text, txt_instructorLName.Text, txt_instructorEmail.Text, cb_instructorGender.SelectedItem.ToString(), cb_instructorStatus.SelectedItem.ToString(), availabilityList)
 
 
-                For Each course As String In lb_course.Items
-                    instructor.AddCoursesToInstructor(txt_instructorNo.Text, course)
+                For Each row As DataGridViewRow In dtgv_instructorCourse.Rows
+                    Dim cell As DataGridViewCheckBoxCell = TryCast(row.Cells("check"), DataGridViewCheckBoxCell)
+                    If cell IsNot Nothing AndAlso cell.Value IsNot Nothing AndAlso Convert.ToBoolean(cell.Value) Then
+                        Dim subjectCode As String = row.Cells("course_code").Value.ToString().TrimStart
+                        instructor.AddCoursesToInstructor(txt_instructorNo.Text, subjectCode)
+                    End If
                 Next
 
-
-                For Each section As String In lb_section.Items
-                    instructor.AddSectionsToInstructor(txt_instructorNo.Text, section)
+                For Each row As DataGridViewRow In dtgv_instructorSection.Rows
+                    Dim cell As DataGridViewCheckBoxCell = TryCast(row.Cells("check"), DataGridViewCheckBoxCell)
+                    If cell IsNot Nothing AndAlso cell.Value IsNot Nothing AndAlso Convert.ToBoolean(cell.Value) Then
+                        Dim section As String = row.Cells("category").Value.ToString().TrimStart
+                        instructor.AddSectionsToInstructor(txt_instructorNo.Text, section)
+                    End If
                 Next
 
-                lb_course.Items.Clear()
-                lb_section.Items.Clear()
+                For Each row As DataGridViewRow In dtgv_instructor.SelectedRows
+                    row.Selected = False
+                Next
+
+                For Each row As DataGridViewRow In dtgv_instructorCourse.SelectedRows
+                    row.Selected = False
+
+                Next
+
+                For Each row As DataGridViewRow In dtgv_instructorCourse.Rows
+                    row.Cells("check").Value = False
+                Next
+
+                For Each row As DataGridViewRow In dtgv_instructorSection.SelectedRows
+                    row.Selected = False
+                Next
+
+                For Each row As DataGridViewRow In dtgv_instructorSection.Rows
+                    row.Cells("check").Value = False
+                Next
+
                 refreshData()
 
                 ClearTextbox(textboxes)
@@ -969,18 +1007,47 @@ Public Class frm_Main
 
                 instructor.UpdateInstructor(txt_instructorNo.Text, txt_instructorFName.Text, txt_instructorLName.Text, txt_instructorEmail.Text, cb_instructorGender.SelectedItem.ToString, cb_instructorStatus.SelectedItem.ToString, availabilityList, oldInstructor)
 
+                instructor.DeleteCourseByInstructor(txt_instructorNo.Text)
+                instructor.DeleteSectionByInstructor(txt_instructorNo.Text)
 
-                For Each course As String In lb_course.Items
-                    instructor.AddCoursesToInstructor(txt_instructorNo.Text, course)
+                For Each row As DataGridViewRow In dtgv_instructorCourse.Rows
+                    Dim cell As DataGridViewCheckBoxCell = TryCast(row.Cells("check"), DataGridViewCheckBoxCell)
+                    If cell IsNot Nothing AndAlso cell.Value IsNot Nothing AndAlso Convert.ToBoolean(cell.Value) Then
+                        Dim subjectCode As String = row.Cells("course_code").Value.ToString().TrimStart
+                        instructor.AddCoursesToInstructor(txt_instructorNo.Text, subjectCode)
+                    End If
                 Next
 
-
-                For Each section As String In lb_section.Items
-                    instructor.AddSectionsToInstructor(txt_instructorNo.Text, section)
+                For Each row As DataGridViewRow In dtgv_instructorSection.Rows
+                    Dim cell As DataGridViewCheckBoxCell = TryCast(row.Cells("check"), DataGridViewCheckBoxCell)
+                    If cell IsNot Nothing AndAlso cell.Value IsNot Nothing AndAlso Convert.ToBoolean(cell.Value) Then
+                        Dim section As String = row.Cells("category").Value.ToString().TrimStart
+                        instructor.AddSectionsToInstructor(txt_instructorNo.Text, section)
+                    End If
                 Next
-
 
                 refreshData()
+
+                For Each row As DataGridViewRow In dtgv_instructor.SelectedRows
+                    row.Selected = False
+                Next
+
+                For Each row As DataGridViewRow In dtgv_instructorCourse.SelectedRows
+                    row.Selected = False
+
+                Next
+
+                For Each row As DataGridViewRow In dtgv_instructorCourse.Rows
+                    row.Cells("check").Value = False
+                Next
+
+                For Each row As DataGridViewRow In dtgv_instructorSection.SelectedRows
+                    row.Selected = False
+                Next
+
+                For Each row As DataGridViewRow In dtgv_instructorSection.Rows
+                    row.Cells("check").Value = False
+                Next
 
                 ClearTextbox(textboxes)
                 DefaultCombobox(comboBoxes)
@@ -997,6 +1064,27 @@ Public Class frm_Main
             Dim checkBoxes() As Guna2CheckBox = {cbk_instrucMon, cbk_instrucTue, cbk_instrucWed, cbk_instrucThu, cbk_instrucFri, cbk_instrucSat, cbk_instrucSun}
 
             instructor.DeleteInstructorNo(txt_instructorNo.Text)
+
+            For Each row As DataGridViewRow In dtgv_instructor.SelectedRows
+                row.Selected = False
+            Next
+
+            For Each row As DataGridViewRow In dtgv_instructorCourse.SelectedRows
+                row.Selected = False
+
+            Next
+
+            For Each row As DataGridViewRow In dtgv_instructorCourse.Rows
+                row.Cells("check").Value = False
+            Next
+
+            For Each row As DataGridViewRow In dtgv_instructorSection.SelectedRows
+                row.Selected = False
+            Next
+
+            For Each row As DataGridViewRow In dtgv_instructorSection.Rows
+                row.Cells("check").Value = False
+            Next
 
             refreshData()
 
@@ -1016,8 +1104,23 @@ Public Class frm_Main
             row.Selected = False
         Next
 
-        lb_course.Items.Clear()
-        lb_section.Items.Clear()
+        For Each row As DataGridViewRow In dtgv_instructorCourse.SelectedRows
+            row.Selected = False
+
+        Next
+
+        For Each row As DataGridViewRow In dtgv_instructorCourse.Rows
+            row.Cells("check").Value = False
+        Next
+
+        For Each row As DataGridViewRow In dtgv_instructorSection.SelectedRows
+            row.Selected = False
+        Next
+
+        For Each row As DataGridViewRow In dtgv_instructorSection.Rows
+            row.Cells("check").Value = False
+        Next
+
         ClearTextbox(textboxes)
         DefaultCombobox(comboBoxes)
         DefaultCheckbox(checkBoxes)
@@ -1039,42 +1142,6 @@ Public Class frm_Main
             dtgv_instructor.DataSource = instructorsData
         End If
     End Sub
-
-    Private Sub btn_insertCourse_Click(sender As Object, e As EventArgs) Handles btn_insertCourse.Click
-        Dim comboBoxes() As Guna2ComboBox = {cb_instrucCourse}
-        Dim selectedText As String = cb_instrucCourse.Text
-        Dim isNotSelected As Boolean = ISComboBoxChange(comboBoxes)
-
-        If Not isNotSelected Then
-            If Not lb_course.Items.Contains(selectedText) Then
-
-                lb_course.Items.Add(selectedText)
-            Else
-                msg_warning.Show("Courses is already Taken")
-
-            End If
-        End If
-    End Sub
-
-    Private Sub btn_insertSection_Click(sender As Object, e As EventArgs) Handles btn_insertSection.Click
-        Dim comboBoxes() As Guna2ComboBox = {cb_InstrucSection}
-        Dim selectedText As String = cb_InstrucSection.Text
-        Dim isNotSelected As Boolean = ISComboBoxChange(comboBoxes)
-
-        If Not isNotSelected Then
-            If Not lb_section.Items.Contains(selectedText) Then
-
-                lb_section.Items.Add(selectedText)
-            Else
-                msg_warning.Show("Section is already Taken")
-
-            End If
-        End If
-    End Sub
-
-
-
-
 
 
     'SCHEDULE SECTION
@@ -1299,7 +1366,6 @@ Public Class frm_Main
                     msg_warning.Show("Schedule conflict detected!")
                 ElseIf schedule.IsOverlap(cb_scheduleRoom.SelectedItem.ToString, cb_scheduleSection.SelectedItem.ToString, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), classList, scheCourse, scheSection, scheRoom) Then
                     msg_warning.Show("Schedule overlap detected!")
-
                 Else
                     schedule.AddSchedule(cb_scheduleRoom.SelectedItem.ToString, cb_scheduleCourse.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"))
 
@@ -1634,7 +1700,7 @@ Public Class frm_Main
         End If
     End Sub
 
-    Private Sub btn_upload_Click(sender As Object, e As EventArgs) Handles btn_upload.Click
+    Private Sub btn_upload_Click_1(sender As Object, e As EventArgs) Handles btn_upload.Click
         Try
             If String.IsNullOrEmpty(txt_file.Text) Then
                 msg_warning.Show("Please select a file first.")
@@ -1757,105 +1823,7 @@ Public Class frm_Main
         End If
     End Sub
 
-    Private Async Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
-        ' Change cursor to loading cursor
-        Me.Cursor = Cursors.WaitCursor
 
-        file_save.Filter = "SQL dump files (*.sql)|*.sql"
-        file_save.Title = "Save MySQL Database"
-        file_save.ShowDialog()
-
-        If file_save.FileName <> "" Then
-            Dim databaseName As String = dbName
-            Dim filename As String = file_save.FileName
-
-            Dim xamppPath As String = "C:\xampp\mysql\bin\"
-
-            ' Prepare the mysqldump command with output redirection handled by cmd.exe
-            Dim dumpCommand As String = $"{xamppPath}mysqldump -u{dbUser} -p{dbPassword} {databaseName} > ""{filename}"""
-
-            Dim processInfo As New ProcessStartInfo()
-            processInfo.FileName = "cmd.exe"
-            processInfo.Arguments = $"/c {dumpCommand}"
-            processInfo.UseShellExecute = False
-            processInfo.RedirectStandardError = True
-            processInfo.RedirectStandardOutput = True
-            processInfo.CreateNoWindow = True
-
-            Dim process As New Process()
-            process.StartInfo = processInfo
-
-            Try
-                Await Task.Run(Sub()
-                                   process.Start()
-                                   process.WaitForExit()
-                               End Sub)
-
-                If process.ExitCode = 0 Then
-                    msg_information.Show("Database saved successfully!")
-                Else
-                    Dim errorMessage As String = process.StandardError.ReadToEnd()
-                    msg_warning.Show($"Error occurred while saving database: {errorMessage}")
-                End If
-            Catch ex As Exception
-                msg_warning.Show($"Error occurred while saving database: {ex.Message}")
-            Finally
-                ' Revert cursor back to default
-                Me.Cursor = Cursors.Default
-            End Try
-        End If
-    End Sub
-
-    Private Async Sub btn_import_Click(sender As Object, e As EventArgs) Handles btn_import.Click
-        ' Change cursor to loading cursor
-        Me.Cursor = Cursors.WaitCursor
-
-        ' Configure the OpenFileDialog to select the SQL file
-        Dim file_import As New OpenFileDialog()
-        file_import.Filter = "SQL dump files (*.sql)|*.sql"
-        file_import.Title = "Import MySQL Database"
-        file_import.ShowDialog()
-
-        If file_import.FileName <> "" Then
-            Dim databaseName As String = dbName
-            Dim filename As String = file_import.FileName
-
-            Dim xamppPath As String = "C:\xampp\mysql\bin\"
-
-            ' Prepare the mysql command to import the SQL file
-            Dim importCommand As String = $"{xamppPath}mysql -u{dbUser} -p{dbPassword} {databaseName} < ""{filename}"""
-
-            Dim processInfo As New ProcessStartInfo()
-            processInfo.FileName = "cmd.exe"
-            processInfo.Arguments = $"/c {importCommand}"
-            processInfo.UseShellExecute = False
-            processInfo.RedirectStandardError = True
-            processInfo.RedirectStandardOutput = True
-            processInfo.CreateNoWindow = True
-
-            Dim process As New Process()
-            process.StartInfo = processInfo
-
-            Try
-                Await Task.Run(Sub()
-                                   process.Start()
-                                   process.WaitForExit()
-                               End Sub)
-
-                If process.ExitCode = 0 Then
-                    msg_information.Show("Database imported successfully!")
-                Else
-                    Dim errorMessage As String = process.StandardError.ReadToEnd()
-                    msg_warning.Show($"Error occurred while importing database: {errorMessage}")
-                End If
-            Catch ex As Exception
-                msg_warning.Show($"Error occurred while importing database: {ex.Message}")
-            Finally
-                ' Revert cursor back to default
-                Me.Cursor = Cursors.Default
-            End Try
-        End If
-    End Sub
 
     Private Sub user_SelectionChange(sender As Object, e As EventArgs) Handles dtgv_users.SelectionChanged
         If dtgv_users.SelectedRows.Count > 0 Then
@@ -1883,5 +1851,8 @@ Public Class frm_Main
         txt_password.Clear()
         cb_role.SelectedIndex = 0
         dtgv_users.ClearSelection()
+
+
     End Sub
+
 End Class
