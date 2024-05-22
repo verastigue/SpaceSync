@@ -7,7 +7,7 @@ Module Database
     Public dbServer As String = "localhost"
     Public dbUser As String = "root"
     Public dbPassword As String = ""
-    Public dbName As String = "scheduling_schema"
+    Public dbName As String = "try"
 
     Sub openConn()
         Try
