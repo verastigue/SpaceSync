@@ -15,13 +15,14 @@
     'READ ALL SECTION BASE ON COURSE AND INSTRUCTOR
     Function ReadSectionByCourseAndInstructor(course_code As String, instructor_no As String) As DataTable
         Dim dataTable As New DataTable
+        'AND section NOT IN (SELECT section FROM tbl_schedules WHERE instructor_no = '" & instructor_no & "' OR course_code = '" & course_code & "')
         Try
             sql = "SELECT section 
                    FROM tbl_sessions
                    INNER JOIN tbl_sections ON tbl_sections.category = tbl_sessions.section
                    INNER JOIN tbl_courses ON tbl_courses.program_code = tbl_sections.program_code AND tbl_courses.yrLevel = tbl_sections.year 
                    WHERE instructor_no = '" & instructor_no & "' AND course_code = '" & course_code & "'
-                    AND section NOT IN (SELECT section FROM tbl_schedules WHERE instructor_no = '" & instructor_no & "' OR course_code = '" & course_code & "')"
+                   "
             dataTable = read(sql)
         Catch ex As Exception
             Console.WriteLine(ex.ToString)

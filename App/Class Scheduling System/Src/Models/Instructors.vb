@@ -29,6 +29,7 @@ Public Class Instructors
         End Try
     End Sub
 
+    'DELETE INSTRUCTORS COURSES
     Sub DeleteCourseByInstructor(instructor_no As String)
         Try
             sql = "DELETE FROM tbl_subjects WHERE instructor_no = '" & instructor_no & "'"
@@ -38,6 +39,7 @@ Public Class Instructors
         End Try
     End Sub
 
+    'DELETE INSTRUCTORS SECTIONS
     Sub DeleteSectionByInstructor(instructor_no As String)
         Try
             sql = "DELETE FROM tbl_sessions WHERE instructor_no = '" & instructor_no & "'"
@@ -46,8 +48,6 @@ Public Class Instructors
             Console.WriteLine(ex.ToString)
         End Try
     End Sub
-
-
 
     'READ ALL INSTRUCTORS'
     Function ReadAllInstructors() As DataTable
@@ -68,6 +68,7 @@ Public Class Instructors
         Return dataTable
     End Function
 
+    'INSTRUCTORS SCHEDULE
     Function ReadAllInstructorSchedule() As DataTable
         Dim dataTable As New DataTable
         Try
@@ -80,7 +81,7 @@ Public Class Instructors
         Return dataTable
     End Function
 
-
+    'INSTRUCTORS AVAILABILITY
     Function ReadInstructorAvailability(instructor_no As String) As DataTable
         Dim dataTable As New DataTable
         Try
@@ -93,7 +94,7 @@ Public Class Instructors
         Return dataTable
     End Function
 
-
+    'FIND INSTRUCTOR NO
     Function FindInstructorNoByName(firstname As String, lastname As String) As DataTable
         Dim dataTable As New DataTable
         Try
@@ -106,7 +107,7 @@ Public Class Instructors
         Return dataTable
     End Function
 
-    'DELETE INSTRUCTOR BY INSTRUCTOR NUMBER'
+    'DELETE INSTRUCTOR
     Public Sub DeleteInstructorNo(instructor_no As String)
         Try
             sql = "DELETE FROM tbl_instructors WHERE instructor_no = '" & instructor_no & "'"
@@ -199,19 +200,6 @@ Public Class Instructors
         End Try
     End Sub
 
-
-    'UPDATE SECTIONS TO INSTRUCTOR'
-    Public Sub UpdateSectionsToInstructor(insturctor_no As String, section As String, oldInstructor As String, oldSection As String)
-        Try
-            sql = "UPDATE tbl_sessions SET instructor_no = '" & insturctor_no & "', section = '" & section & "' WHERE instructor_no = '" & oldInstructor & "' AND section = '" & oldSection & "'"
-            executeQuery(sql)
-        Catch ex As Exception
-            Console.WriteLine(ex.ToString)
-        End Try
-    End Sub
-
-
-
     'INSTRUCTOR NO SCHEDULE'
     Public Function InstructorNoSchedule() As DataTable
         Dim dt As New DataTable()
@@ -223,7 +211,6 @@ Public Class Instructors
         End Try
         Return dt
     End Function
-
 
     Function ReadSubjectCodeByInstrucNo(instructor_no As String) As DataTable
         Dim datatable As New DataTable

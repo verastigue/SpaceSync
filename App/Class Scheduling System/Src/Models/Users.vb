@@ -4,7 +4,7 @@
 
     Sub createNewUser(username As String, password As String, role As String)
         Try
-            sql = "INSERT INTO tbl_users (username, password, role) VALUES('" & username & "', '" & password & "', '" & role & "')"
+            sql = "INSERT INTO tbl_users (username, password, role) VALUES('" & username & "', MD5('" & password & "'), '" & role & "')"
             executeQuery(sql)
         Catch ex As Exception
             Console.WriteLine(ex.ToString)

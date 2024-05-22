@@ -105,6 +105,12 @@ Public Class frm_Main
         UpdateDate()
     End Sub
 
+    'LOGOUT
+    Private Sub btn_logout_Click(sender As Object, e As EventArgs) Handles btn_logout.Click
+        Me.Hide()
+        frm_Login.Show()
+    End Sub
+
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Dim currentTime As String = Date.Now.ToString("HH:mm:ss")
         Dim count As Integer = schedule.CountTime(currentTime)
@@ -294,8 +300,16 @@ Public Class frm_Main
         If btn_deleteProg.Cursor = Cursors.Hand Then
             Dim textboxes() As Guna2TextBox = {txt_porgCode, txt_progDescript, txt_progDepart}
             Dim comboBoxes() As Guna2ComboBox = {cb_progNoYear}
+            Try
+                Dim result As DialogResult = msg_confirm.Show("Are you sure you want to delete this?")
 
-            program.DeleteProgramByNo(txt_porgCode.Text)
+                If result = DialogResult.Yes Then
+                    program.DeleteProgramByNo(txt_porgCode.Text)
+                End If
+            Catch ex As Exception
+                msg_warning.Show("Error: " & ex.Message)
+            End Try
+
             refreshData()
 
             ClearTextbox(textboxes)
@@ -400,7 +414,6 @@ Public Class frm_Main
         End If
     End Sub
 
-
     'UPDATE SECTION
     Private Sub btn_updateSection_Click(sender As Object, e As EventArgs) Handles btn_updateSection.Click
         If btn_updateSection.Cursor = Cursors.Hand Then
@@ -443,7 +456,17 @@ Public Class frm_Main
             Dim textboxes = {txt_sectionName}
             Dim comboBoxes = {cb_sectionProg, cb_sectionYear}
 
-            section.DeleteSectionByCategory(category)
+            Try
+                Dim result As DialogResult = msg_confirm.Show("Are you sure you want to delete this?")
+
+                If result = DialogResult.Yes Then
+                    section.DeleteSectionByCategory(category)
+                End If
+            Catch ex As Exception
+                msg_warning.Show("Error: " & ex.Message)
+            End Try
+
+
             refreshData()
 
             ClearTextbox(textboxes)
@@ -567,7 +590,15 @@ Public Class frm_Main
             Dim textboxes() As Guna2TextBox = {txt_roomNo, txt_roomBldg}
             Dim comboBoxes() As Guna2ComboBox = {cb_roomType, cb_roomFloorLevel}
 
-            room.DeletebyRoomNo(txt_roomNo.Text)
+            Try
+                Dim result As DialogResult = msg_confirm.Show("Are you sure you want to delete this?")
+
+                If result = DialogResult.Yes Then
+                    room.DeletebyRoomNo(txt_roomNo.Text)
+                End If
+            Catch ex As Exception
+                msg_warning.Show("Error: " & ex.Message)
+            End Try
 
             refreshData()
 
@@ -728,7 +759,15 @@ Public Class frm_Main
             Dim textboxes() As Guna2TextBox = {txt_subjectCode, txt_courseDescript, txt_courseUnit}
             Dim comboBoxes() As Guna2ComboBox = {cb_courseProg, cb_courseRoom, cb_courseYear}
 
-            course.DeleteCourseByCode(txt_subjectCode.Text)
+            Try
+                Dim result As DialogResult = msg_confirm.Show("Are you sure you want to delete this?")
+
+                If result = DialogResult.Yes Then
+                    course.DeleteCourseByCode(txt_subjectCode.Text)
+                End If
+            Catch ex As Exception
+                msg_warning.Show("Error: " & ex.Message)
+            End Try
 
             refreshData()
 
@@ -753,7 +792,6 @@ Public Class frm_Main
         ClearTextbox(textboxes)
         DefaultCombobox(comboBoxes)
     End Sub
-
 
     'SEARCH COURSE
     Private Sub txt_searchCourse_TextChanged(sender As Object, e As EventArgs) Handles txt_searchCourse.TextChanged
@@ -784,6 +822,22 @@ Public Class frm_Main
 
         If dtgv_instructor.SelectedRows.Count > 0 Then
             DefaultCheckbox(checkBoxes)
+
+            For Each row As DataGridViewRow In dtgv_instructorCourse.SelectedRows
+                row.Selected = False
+            Next
+
+            For Each row As DataGridViewRow In dtgv_instructorCourse.Rows
+                row.Cells("check").Value = False
+            Next
+
+            For Each row As DataGridViewRow In dtgv_instructorSection.SelectedRows
+                row.Selected = False
+            Next
+
+            For Each row As DataGridViewRow In dtgv_instructorSection.Rows
+                row.Cells("check").Value = False
+            Next
 
             Dim selectedRow As DataGridViewRow = dtgv_instructor.SelectedRows(0)
 
@@ -841,8 +895,6 @@ Public Class frm_Main
                     End If
                 Next
             Next
-
-
 
             oldInstructor = selectedRow.Cells("instructor_no").Value.ToString()
             oldCourse = selectedRow.Cells("Courses").Value.ToString()
@@ -1026,6 +1078,8 @@ Public Class frm_Main
                     End If
                 Next
 
+                msg_information.Show("Successfully Updated!")
+
                 refreshData()
 
                 For Each row As DataGridViewRow In dtgv_instructor.SelectedRows
@@ -1063,7 +1117,15 @@ Public Class frm_Main
             Dim comboBoxes() As Guna2ComboBox = {cb_instructorGender, cb_instructorStatus}
             Dim checkBoxes() As Guna2CheckBox = {cbk_instrucMon, cbk_instrucTue, cbk_instrucWed, cbk_instrucThu, cbk_instrucFri, cbk_instrucSat, cbk_instrucSun}
 
-            instructor.DeleteInstructorNo(txt_instructorNo.Text)
+            Try
+                Dim result As DialogResult = msg_confirm.Show("Are you sure you want to delete this?")
+
+                If result = DialogResult.Yes Then
+                    instructor.DeleteInstructorNo(txt_instructorNo.Text)
+                End If
+            Catch ex As Exception
+                msg_warning.Show("Error: " & ex.Message)
+            End Try
 
             For Each row As DataGridViewRow In dtgv_instructor.SelectedRows
                 row.Selected = False
@@ -1362,9 +1424,11 @@ Public Class frm_Main
             ElseIf Not isNoCheck Then
                 msg_warning.Show("Select class day")
             Else
-                If schedule.IsConflict(cb_scheduleRoom.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), scheCourse, scheSection, scheRoom) Then
+                'schedule.IsConflict(cb_scheduleRoom.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), scheCourse, scheSection, scheRoom)
+                If schedule.ConflictSched(cb_scheduleRoom.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss")) Then
                     msg_warning.Show("Schedule conflict detected!")
-                ElseIf schedule.IsOverlap(cb_scheduleRoom.SelectedItem.ToString, cb_scheduleSection.SelectedItem.ToString, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), classList, scheCourse, scheSection, scheRoom) Then
+                    'schedule.IsOverlap(cb_scheduleRoom.SelectedItem.ToString, cb_scheduleSection.SelectedItem.ToString, cb_scheduleCourse.SelectedItem.ToString, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), classList, scheCourse, scheSection, scheRoom)
+                ElseIf schedule.OverlapSched(cb_scheduleRoom.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss")) Then
                     msg_warning.Show("Schedule overlap detected!")
                 Else
                     schedule.AddSchedule(cb_scheduleRoom.SelectedItem.ToString, cb_scheduleCourse.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"))
@@ -1400,9 +1464,9 @@ Public Class frm_Main
             ElseIf Not isNoCheck Then
                 msg_warning.Show("Select class day")
             Else
-                If schedule.IsConflict(cb_scheduleRoom.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), scheCourse, scheSection, scheRoom) Then
+                If schedule.ConflictSched(cb_scheduleRoom.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss")) Then
                     msg_warning.Show("Schedule conflict detected!")
-                ElseIf schedule.IsOverlap(cb_scheduleRoom.SelectedItem.ToString, cb_scheduleSection.SelectedItem.ToString, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), classList, scheCourse, scheSection, scheRoom) Then
+                ElseIf schedule.OverlapSched(cb_scheduleRoom.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss")) Then
                     msg_warning.Show("Schedule overlap detected!")
                 Else
                     schedule.UpdateSchedule(cb_scheduleRoom.SelectedItem.ToString, cb_scheduleCourse.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), scheCourse, scheSection, scheRoom)
@@ -1423,7 +1487,15 @@ Public Class frm_Main
             Dim checkBoxes() As Guna2CheckBox = {cbk_scheduleSun, cbk_scheduleMon, cbk_scheduleTue, cbk_scheduleWed, cbk_scheduleThu, cbk_scheduleFri, cbk_scheduleSat}
 
 
-            schedule.DeleteScheduleBySelected(scheCourse, scheSection, scheRoom)
+            Try
+                Dim result As DialogResult = msg_confirm.Show("Are you sure you want to delete this?")
+
+                If result = DialogResult.Yes Then
+                    schedule.DeleteScheduleBySelected(scheCourse, scheSection, scheRoom, scheClass)
+                End If
+            Catch ex As Exception
+                msg_warning.Show("Error: " & ex.Message)
+            End Try
 
             refreshData()
 
@@ -1464,7 +1536,6 @@ Public Class frm_Main
             dtgv_schedule.DataSource = schedulesData
         End If
     End Sub
-
 
 
     'PRINT SECTION
@@ -1687,12 +1758,6 @@ Public Class frm_Main
         e.HasMorePages = False
     End Sub
 
-    Private Sub btn_logout_Click(sender As Object, e As EventArgs) Handles btn_logout.Click
-        Me.Hide()
-        frm_Login.Show()
-    End Sub
-
-
     Private Sub btn_browse_Click(sender As Object, e As EventArgs) Handles btn_browse.Click
         Dim result As DialogResult = openFile.ShowDialog()
         If result = DialogResult.OK Then
@@ -1700,34 +1765,94 @@ Public Class frm_Main
         End If
     End Sub
 
-    Private Sub btn_upload_Click_1(sender As Object, e As EventArgs) Handles btn_upload.Click
-        Try
-            If String.IsNullOrEmpty(txt_file.Text) Then
-                msg_warning.Show("Please select a file first.")
-                Return
-            End If
+    'ADD STUDENTS
+    Private Sub btn_addStudents_Click(sender As Object, e As EventArgs) Handles btn_addStudents.Click
+        If btn_addStudents.Cursor = Cursors.Hand Then
 
-            If Path.GetExtension(txt_file.Text).ToLower() <> ".json" Then
-                msg_warning.Show("Only JSON files can be uploaded.")
-                Return
-            End If
+            Try
+                If String.IsNullOrEmpty(txt_file.Text) Then
+                    msg_warning.Show("Please select a file first.")
+                    Return
+                End If
 
-            Dim filename As String = Path.GetFileName(txt_file.Text)
-            Dim uploadPath As String = Path.Combine("Upload", filename)
+                If Path.GetExtension(txt_file.Text).ToLower() <> ".json" Then
+                    msg_warning.Show("Only JSON files can be uploaded.")
+                    Return
+                End If
 
-            If Not Directory.Exists("Upload") Then
-                Directory.CreateDirectory("Upload")
-            End If
+                Dim filename As String = Path.GetFileName(txt_file.Text)
+                Dim uploadPath As String = Path.Combine("Upload", filename)
 
-            File.Copy(txt_file.Text, uploadPath, True)
-            msg_information.Show("File Uploaded")
+                If Not Directory.Exists("Upload") Then
+                    Directory.CreateDirectory("Upload")
+                End If
 
-            ' Load and process the JSON file
-            ProcessJsonFile(uploadPath)
+                File.Copy(txt_file.Text, uploadPath, True)
+                msg_information.Show("File Uploaded")
 
-        Catch ex As Exception
-            msg_warning.Show("Error processing JSON file: " & ex.Message)
-        End Try
+                ' Load and process the JSON file
+                ProcessJsonFile(uploadPath)
+
+            Catch ex As Exception
+                msg_warning.Show("Error processing JSON file: " & ex.Message)
+            End Try
+            refreshData()
+        End If
+    End Sub
+
+    'UPDATE STUDENTS
+    Private Sub btn_updateStudents_Click(sender As Object, e As EventArgs) Handles btn_updateStudents.Click
+        If btn_updateStudents.Cursor = Cursors.Hand Then
+            person.DeleteStudents()
+
+            Try
+                If String.IsNullOrEmpty(txt_file.Text) Then
+                    msg_warning.Show("Please select a file first.")
+                    Return
+                End If
+
+                If Path.GetExtension(txt_file.Text).ToLower() <> ".json" Then
+                    msg_warning.Show("Only JSON files can be uploaded.")
+                    Return
+                End If
+
+                Dim filename As String = Path.GetFileName(txt_file.Text)
+                Dim uploadPath As String = Path.Combine("Upload", filename)
+
+                If Not Directory.Exists("Upload") Then
+                    Directory.CreateDirectory("Upload")
+                End If
+
+                File.Copy(txt_file.Text, uploadPath, True)
+                msg_information.Show("File Uploaded")
+
+                ' Load and process the JSON file
+                ProcessJsonFile(uploadPath)
+
+            Catch ex As Exception
+                msg_warning.Show("Error processing JSON file: " & ex.Message)
+            End Try
+
+            refreshData()
+        End If
+    End Sub
+
+    'DELETE STUDENT
+    Private Sub btn_deleteStudents_Click(sender As Object, e As EventArgs) Handles btn_deleteStudents.Click
+        If btn_deleteStudents.Cursor = Cursors.Hand Then
+            Try
+                Dim result As DialogResult = msg_confirm.Show("Are you sure you want to delete this?")
+
+                If result = DialogResult.Yes Then
+                    person.DeleteStudents()
+                    msg_information.Show("Successfully Deleted!")
+                    txt_file.Clear()
+                    refreshData()
+                End If
+            Catch ex As Exception
+                msg_warning.Show("Error: " & ex.Message)
+            End Try
+        End If
     End Sub
 
     Private Sub ProcessJsonFile(filePath As String)
@@ -1737,7 +1862,7 @@ Public Class frm_Main
 
             For Each student In studentsData.Students
 
-                person.AddNewStudent(student.StudentNo, student.LastName, student.FirstName, student.Email, student.Gender, student.StudentStatus, student.ProgramCode)
+                person.AddNewStudent(student.StudentNo, student.FirstName, student.LastName, student.Email, student.Gender, student.StudentStatus, student.ProgramCode)
 
                 For Each enrollment In student.Enrollments
                     person.enrollCourseToStudent(student.StudentNo, enrollment.CourseCode, enrollment.Section)
@@ -1815,7 +1940,7 @@ Public Class frm_Main
             For Each table As String In tables
                 executeQuery($"DELETE FROM {table}")
             Next
-            msg_warning.Show("Succesfully Deleted!")
+            msg_information.Show("Succesfully Deleted!")
             refreshData()
             txt_file.Clear()
             Me.Hide()
@@ -1851,8 +1976,9 @@ Public Class frm_Main
         txt_password.Clear()
         cb_role.SelectedIndex = 0
         dtgv_users.ClearSelection()
-
-
     End Sub
 
+    Private Sub btn_addUser_Click(sender As Object, e As EventArgs) Handles btn_addUser.Click
+
+    End Sub
 End Class

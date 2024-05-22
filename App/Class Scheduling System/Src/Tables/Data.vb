@@ -34,6 +34,7 @@ Module Data
     Public nextSchedule As DataTable
     Public finishSchedule As DataTable
     Public scheduleTime As DataTable = schedule.ReadAllStartTimeSchedule
+    Public dataChart As DataTable
 
     'ALL DATA
     Sub refreshData()
@@ -210,6 +211,8 @@ Module Data
 
         frm_Main.dtgv_schedule.DataSource = schedulesData
 
+        dataChart = schedule.DataChart
+
         For Each row As DataRow In schedulesData.Rows
 
             For Each rowInstructor In instructorsData.Rows
@@ -231,7 +234,9 @@ Module Data
         frm_Main.lbl_countFullTime.Text = instructor.CountInstructorByFulltime
         frm_Main.lbl_countPartTime.Text = instructor.CountInstructorByPartTime
 
-        frm_Main.lbl_countStudent.Text = person.CountAllStudents
+        Dim countStudents As Integer = person.CountAllStudents
+
+        frm_Main.lbl_countStudent.Text = countStudents
         frm_Main.lbl_stuRegular.Text = person.CountRegularStudent
         frm_Main.lbl_countStuIrregular.Text = person.CountIrregularStudent
 
@@ -244,6 +249,18 @@ Module Data
         frm_Main.lbl_countQueueSchedule.Text = schedule.CountUpcomingScheduleByDay
         frm_Main.lbl_countGoingSchedule.Text = schedule.CountOnGoingScheduleByDay
         frm_Main.lbl_countFinishedSchedule.Text = schedule.CountFinishedScheduleByDay
+
+        If countStudents > 0 Then
+            frm_Main.lbl_students.Text = "Student's Already Added!"
+            frm_Main.btn_addStudents.Cursor = Cursors.No
+            frm_Main.btn_updateStudents.Cursor = Cursors.Hand
+            frm_Main.btn_deleteStudents.Cursor = Cursors.Hand
+        Else
+            frm_Main.lbl_students.Text = "No Student's Data!"
+            frm_Main.btn_addStudents.Cursor = Cursors.Hand
+            frm_Main.btn_updateStudents.Cursor = Cursors.No
+            frm_Main.btn_deleteStudents.Cursor = Cursors.No
+        End If
     End Sub
 
 End Module

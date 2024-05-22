@@ -83,9 +83,8 @@ Module Database
             openConn()
             cmd = New MySqlCommand(sql, conn)
             cmd.ExecuteNonQuery()
-            frm_Main.msg_delete.Show("Successfully Deleted!")
         Catch ex As Exception
-            Console.WriteLine("Error deleting data: " & ex.ToString)
+            Console.WriteLine("Error deleting data: " & ex.Message)
         Finally
             closeConn()
         End Try

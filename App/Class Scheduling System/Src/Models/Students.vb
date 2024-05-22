@@ -4,7 +4,7 @@
     'ADD STUDENTS'
     Public Sub AddNewStudent(students_no As String, firstname As String, lastname As String, email As String, gender As String, student_status As String, program_code As String)
         Try
-            sql = "INSERT INTO tbl_students (students_no, firstname, lastname, email, gender, student_status, program_code) VALUES('" & students_no & "', '" & firstname & "', '" & lastname & "', '" & email & "', '" & gender & "', '" & student_status & "', '" & program_code & "' )"
+            sql = "INSERT INTO tbl_students (student_no, firstname, lastname, email, gender, student_status, program_code) VALUES('" & students_no & "', '" & firstname & "', '" & lastname & "', '" & email & "', '" & gender & "', '" & student_status & "', '" & program_code & "' )"
             executeQuery(sql)
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
@@ -13,31 +13,17 @@
 
     Sub enrollCourseToStudent(students_no As String, course_code As String, section As String)
         Try
-            sql = "INSERT INTO tbl_enrollments (students_no, course_code, section) VALUES('" & students_no & "', '" & course_code & "', '" & section & "')"
+            sql = "INSERT INTO tbl_enrollments (student_no, course_code, section) VALUES('" & students_no & "', '" & course_code & "', '" & section & "')"
             executeQuery(sql)
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
         End Try
     End Sub
 
-
-    'SEARCH STUDENTS BY INPUT'
-    Public Function SearchStudents(input As String) As DataTable
-        Dim dt As New DataTable
+    Sub DeleteStudents()
         Try
-            sql = "SELECT * FROM tbl_students WHERE students_no = '" & input & "' OR firstname = '" & input & "' OR lastname = '" & input & "' OR email = '" & input & "', gender = '" & input & "', student_status = '" & input & "'"
-            dt = read(sql)
-        Catch ex As Exception
-            Console.WriteLine(ex.ToString)
-        End Try
-        Return dt
-    End Function
-
-    'UPDATE STUDENT'
-    Public Sub UpdateStudent(students_no As String, firstname As String, lastname As String, email As String, gender As String, student_status As String)
-        Try
-            sql = "UPDATE tbl_students SET students_no = '" & students_no & "', firstname = '" & firstname & "', lastname = '" & lastname & "', email = '" & email & "', gender = '" & gender & "', student_status = '" & students_no & "'"
-            update(sql)
+            sql = "DELETE FROM tbl_students"
+            executeQuery(sql)
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
         End Try
@@ -46,7 +32,7 @@
     'DELETE STUDENT BY NO'
     Public Sub DeleteStudent(students_no As String)
         Try
-            sql = "DELETE FROM tbl_students WHERE students_no = '" & students_no & "'"
+            sql = "DELETE FROM tbl_students WHERE student_no = '" & students_no & "'"
             delete(sql)
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
@@ -97,29 +83,6 @@
 
         Return tryCount
     End Function
-
-    'STUDENT THAT HAS BEEN ENROLLED'
-    Public Function StudentEnrolled() As DataTable
-        Dim dt As New DataTable
-        Try
-            sql = "SELECT tbl_students.students_no,tbl_enrollments.course_code, tbl_enrollments.section FROM tbl_students INNER JOIN tbl_enrollments ON tbl_students.students_no = tbl_enrollments.students_no"
-            dt = read(sql)
-        Catch ex As Exception
-            Console.WriteLine(ex.ToString)
-        End Try
-        Return dt
-    End Function
-
-    'COUNT STUDENT THAT HAS BEEN ENROLLED'
-    Public Sub CountStudentEnrolled()
-        Try
-            sql = "SELECT COUNT(*) FROM tbl_enrollments"
-            read(sql)
-        Catch ex As Exception
-            Console.WriteLine(ex.ToString)
-        End Try
-    End Sub
-
 
     'STUDENTS SCHEDULE
     Function ReadAllStudentsShedule() As DataTable

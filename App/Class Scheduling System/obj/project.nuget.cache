@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Twj6DX1oKTOF+Ql4GURUdyfpN5w2nuoQokK5DtSqDDu9q1wmqJwDM0FiklgwkGN+QgH/WCAgUQ+7ZiRa5JiaOA==",
+  "dgSpecHash": "KMW0L9g+rRginQ20qzRgGenG2LB4diFlezWwCHHVTsJ+1IL3CnXyrNr4/6EqPvRhDh/Q7bypnZGwxGYEfccC8A==",
   "success": true,
   "projectFilePath": "C:\\Users\\carly\\OneDrive\\Desktop\\SpaceSync\\App\\Class Scheduling System\\Class Scheduling System.vbproj",
   "expectedPackageFiles": [
     "C:\\Users\\carly\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\carly\\.nuget\\packages\\google.protobuf\\3.25.1\\google.protobuf.3.25.1.nupkg.sha512",
+    "C:\\Users\\carly\\.nuget\\packages\\guna.charts.winforms\\1.0.9\\guna.charts.winforms.1.0.9.nupkg.sha512",
     "C:\\Users\\carly\\.nuget\\packages\\guna.ui2.winforms\\2.0.4.6\\guna.ui2.winforms.2.0.4.6.nupkg.sha512",
     "C:\\Users\\carly\\.nuget\\packages\\k4os.compression.lz4\\1.3.5\\k4os.compression.lz4.1.3.5.nupkg.sha512",
     "C:\\Users\\carly\\.nuget\\packages\\k4os.compression.lz4.streams\\1.3.5\\k4os.compression.lz4.streams.1.3.5.nupkg.sha512",

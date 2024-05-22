@@ -27,17 +27,6 @@ Public Class Schools
         Return tryCount
     End Function
 
-    'READ SCHOOL'
-    Function ReadSchoolByNo(school_no As String) As DataTable
-        Dim dataTable As New DataTable
-        Try
-            sql = "SELECT * FROM tbl_schools WHERE school_no = '" & school_no & "'"
-            dataTable = read(sql)
-        Catch ex As Exception
-            Console.WriteLine(ex.ToString)
-        End Try
-        Return dataTable
-    End Function
 
     'READ ALL SCHOOL'
     Function ReadAllSchool() As DataTable
@@ -62,15 +51,6 @@ Public Class Schools
         End Try
     End Sub
 
-    'DELETE SCHOOL BY NUMBER'
-    Public Sub DeleteBySchoolId(school_id As String)
-        Try
-            sql = "DELETE FROM tbl_schools WHERE school_id = '" & school_id & "'"
-            delete(sql)
-        Catch ex As Exception
-            Console.WriteLine(ex.ToString)
-        End Try
-    End Sub
 
     Function ValidateSchool(schoolId As String) As Boolean
         Dim isTaken As Boolean = False
