@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\carly\\OneDrive\\Desktop\\SpaceSync\\App\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0670261D-D2D1-488F-A338-6B065F0AAA29}|Class Scheduling System\\Class Scheduling System.vbproj|C:\\Users\\carly\\OneDrive\\Desktop\\SpaceSync\\App\\class scheduling system\\src\\forms\\frm_main.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
-      "RelativeMoniker": "D:0:0:{0670261D-D2D1-488F-A338-6B065F0AAA29}|Class Scheduling System\\Class Scheduling System.vbproj|solutionrelative:class scheduling system\\src\\forms\\frm_main.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0670261D-D2D1-488F-A338-6B065F0AAA29}|Class Scheduling System\\Class Scheduling System.vbproj|C:\\Users\\carly\\OneDrive\\Desktop\\SpaceSync\\App\\class scheduling system\\src\\forms\\frm_main.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{0670261D-D2D1-488F-A338-6B065F0AAA29}|Class Scheduling System\\Class Scheduling System.vbproj|solutionrelative:class scheduling system\\src\\forms\\frm_main.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0670261D-D2D1-488F-A338-6B065F0AAA29}|Class Scheduling System\\Class Scheduling System.vbproj|c:\\users\\carly\\onedrive\\desktop\\spacesync\\app\\class scheduling system\\src\\forms\\frm_main.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{0670261D-D2D1-488F-A338-6B065F0AAA29}|Class Scheduling System\\Class Scheduling System.vbproj|solutionrelative:class scheduling system\\src\\forms\\frm_main.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0670261D-D2D1-488F-A338-6B065F0AAA29}|Class Scheduling System\\Class Scheduling System.vbproj|C:\\Users\\carly\\OneDrive\\Desktop\\SpaceSync\\App\\class scheduling system\\src\\models\\schedules.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
@@ -34,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
@@ -47,18 +47,17 @@
               "ViewState": "AQIAAD8AAAAAAAAAAAAmwFMAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2024-05-22T06:03:35.195Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "frm_Main.vb",
               "DocumentMoniker": "C:\\Users\\carly\\OneDrive\\Desktop\\SpaceSync\\App\\Class Scheduling System\\Src\\Forms\\frm_Main.vb",
               "RelativeDocumentMoniker": "Class Scheduling System\\Src\\Forms\\frm_Main.vb",
               "ToolTip": "C:\\Users\\carly\\OneDrive\\Desktop\\SpaceSync\\App\\Class Scheduling System\\Src\\Forms\\frm_Main.vb",
               "RelativeToolTip": "Class Scheduling System\\Src\\Forms\\frm_Main.vb",
-              "ViewState": "AQIAALIHAAAAAAAAAAAIwL0HAAAAAAAA",
+              "ViewState": "AQIAAG4AAAAAAAAAAAAwwIwAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2024-05-20T18:00:31.73Z",
               "EditorCaption": ""
@@ -73,12 +72,11 @@
               "RelativeToolTip": "Class Scheduling System\\Src\\Tables\\Data.vb",
               "ViewState": "AQIAANUAAAAAAAAAAAAQwOUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-05-19T23:25:56.762Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-19T23:25:56.762Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "frm_Main.vb [Design]",
               "DocumentMoniker": "C:\\Users\\carly\\OneDrive\\Desktop\\SpaceSync\\App\\Class Scheduling System\\Src\\Forms\\frm_Main.vb",
               "RelativeDocumentMoniker": "Class Scheduling System\\Src\\Forms\\frm_Main.vb",
@@ -98,8 +96,7 @@
               "RelativeToolTip": "Class Scheduling System\\Src\\Configs\\Database.config.vb",
               "ViewState": "AQIAAGUAAAAAAAAAAAAuwFoAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-05-21T12:43:23.427Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-21T12:43:23.427Z"
             },
             {
               "$type": "Document",
@@ -111,8 +108,7 @@
               "RelativeToolTip": "Class Scheduling System\\Src\\Models\\Schedules.vb",
               "ViewState": "AQIAADMAAAAAAAAAAAAUwEUAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-05-21T11:56:52.605Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-21T11:56:52.605Z"
             }
           ]
         }

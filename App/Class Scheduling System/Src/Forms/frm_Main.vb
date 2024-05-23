@@ -12,13 +12,13 @@ Imports Newtonsoft.Json
 Public Class frm_Main
 
     ' Import the ShowWindow function from the user32.dll library
-    <DllImport("user32.dll", SetLastError:=True)>
-    Private Shared Function ShowWindow(ByVal hWnd As IntPtr, ByVal nCmdShow As Integer) As Boolean
-    End Function
+    '<DllImport("user32.dll", SetLastError:=True)>
+    'Private Shared Function ShowWindow(ByVal hWnd As IntPtr, ByVal nCmdShow As Integer) As Boolean
+    'End Function
 
     ' Define the constants for the ShowWindow function
-    Private Const SW_HIDE As Integer = 0
-    Private Const SW_SHOW As Integer = 5
+    'Private Const SW_HIDE As Integer = 0
+    'Private Const SW_SHOW As Integer = 5
 
     'FORM LOAD
     Private Sub frm_Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -132,13 +132,13 @@ Public Class frm_Main
         CenterLabel()
 
         ' Check if the form is maximized
-        If Me.WindowState = FormWindowState.Maximized Then
-            ' Show the taskbar
-            ShowWindow(Me.Handle, SW_SHOW)
-        Else
-            ' Hide the taskbar if the form is not maximized
-            ShowWindow(Me.Handle, SW_HIDE)
-        End If
+        'If Me.WindowState = FormWindowState.Maximized Then
+        ' Show the taskbar
+        'ShowWindow(Me.Handle, SW_SHOW)
+        'Else
+        ' Hide the taskbar if the form is not maximized
+        'ShowWindow(Me.Handle, SW_HIDE)
+        'End If
     End Sub
 
 

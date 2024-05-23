@@ -16,7 +16,7 @@ Imports System.Reflection
 <Assembly: System.Reflection.AssemblyCompanyAttribute("Class Scheduling System"),  _
  Assembly: System.Reflection.AssemblyConfigurationAttribute("Debug"),  _
  Assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0"),  _
- Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+45d494f44251296dc7f176807d71be36d153e754"),  _
+ Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+155a4411ebcc83053409f3c414a31f22864919bf"),  _
  Assembly: System.Reflection.AssemblyProductAttribute("Class Scheduling System"),  _
  Assembly: System.Reflection.AssemblyTitleAttribute("Class Scheduling System"),  _
  Assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0"),  _
