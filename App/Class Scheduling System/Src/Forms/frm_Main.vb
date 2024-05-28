@@ -1435,7 +1435,7 @@ Public Class frm_Main
                 If schedule.ConflictSched(cb_scheduleRoom.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), scheduleID) Then
                     msg_warning.Show("Schedule conflict detected!")
                     'schedule.IsOverlap(cb_scheduleRoom.SelectedItem.ToString, cb_scheduleSection.SelectedItem.ToString, cb_scheduleCourse.SelectedItem.ToString, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), classList, scheCourse, scheSection, scheRoom)
-                ElseIf schedule.OverlapSched(cb_scheduleRoom.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), scheduleID) Then
+                ElseIf Not schedule.OverlapSched(cb_scheduleRoom.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), scheduleID) Then
                     msg_warning.Show("Schedule overlap detected!")
                 Else
                     schedule.AddSchedule(cb_scheduleRoom.SelectedItem.ToString, cb_scheduleCourse.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"))
