@@ -437,6 +437,8 @@ Partial Class frm_Main
         Dim DataGridViewCellStyle18 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle19 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle20 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim CustomizableEdges42 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges43 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges44 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges45 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges46 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
@@ -480,8 +482,6 @@ Partial Class frm_Main
         Dim CustomizableEdges77 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges78 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges79 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
-        Dim CustomizableEdges42 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
-        Dim CustomizableEdges43 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_Main))
         Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
         ctrlbx_max = New Guna.UI2.WinForms.Guna2ControlBox()
@@ -799,6 +799,7 @@ Partial Class frm_Main
         dtgv_insNotSche = New Guna.UI2.WinForms.Guna2DataGridView()
         tbctrl_Section = New Guna.UI2.WinForms.Guna2TabControl()
         tbp_Setting = New TabPage()
+        btn_clearUser = New Guna.UI2.WinForms.Guna2Button()
         btn_deleteStudents = New Guna.UI2.WinForms.Guna2Button()
         btn_updateStudents = New Guna.UI2.WinForms.Guna2Button()
         btn_addStudents = New Guna.UI2.WinForms.Guna2Button()
@@ -830,7 +831,6 @@ Partial Class frm_Main
         Guna2HtmlToolTip1 = New Guna.UI2.WinForms.Guna2HtmlToolTip()
         msg_confirm = New Guna.UI2.WinForms.Guna2MessageDialog()
         msg_information = New Guna.UI2.WinForms.Guna2MessageDialog()
-        btn_clearUser = New Guna.UI2.WinForms.Guna2Button()
         Guna2Panel1.SuspendLayout()
         Guna2Panel2.SuspendLayout()
         CType(Guna2PictureBox5, ComponentModel.ISupportInitialize).BeginInit()
@@ -7493,6 +7493,33 @@ Partial Class frm_Main
         tbp_Setting.TabIndex = 7
         tbp_Setting.Text = "Setting"
         ' 
+        ' btn_clearUser
+        ' 
+        btn_clearUser.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
+        btn_clearUser.BackColor = Color.Transparent
+        btn_clearUser.BorderRadius = 10
+        btn_clearUser.Cursor = Cursors.Hand
+        btn_clearUser.CustomizableEdges = CustomizableEdges42
+        btn_clearUser.DisabledState.BorderColor = Color.DarkGray
+        btn_clearUser.DisabledState.CustomBorderColor = Color.DarkGray
+        btn_clearUser.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
+        btn_clearUser.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
+        btn_clearUser.FillColor = Color.FromArgb(CByte(81), CByte(201), CByte(219))
+        btn_clearUser.Font = New Font("Franklin Gothic Medium", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
+        btn_clearUser.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
+        btn_clearUser.Image = My.Resources.Resources.icon_clear
+        btn_clearUser.ImageSize = New Size(25, 25)
+        btn_clearUser.Location = New Point(637, 450)
+        btn_clearUser.Name = "btn_clearUser"
+        btn_clearUser.ShadowDecoration.BorderRadius = 10
+        btn_clearUser.ShadowDecoration.CustomizableEdges = CustomizableEdges43
+        btn_clearUser.ShadowDecoration.Depth = 64
+        btn_clearUser.ShadowDecoration.Enabled = True
+        btn_clearUser.ShadowDecoration.Shadow = New Padding(0, 0, 5, 5)
+        btn_clearUser.Size = New Size(121, 57)
+        btn_clearUser.TabIndex = 29
+        btn_clearUser.Text = "Clear"
+        ' 
         ' btn_deleteStudents
         ' 
         btn_deleteStudents.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
@@ -7750,6 +7777,7 @@ Partial Class frm_Main
         btn_addUser.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
         btn_addUser.BackColor = Color.Transparent
         btn_addUser.BorderRadius = 10
+        btn_addUser.Cursor = Cursors.Hand
         btn_addUser.CustomizableEdges = CustomizableEdges62
         btn_addUser.DisabledState.BorderColor = Color.DarkGray
         btn_addUser.DisabledState.CustomBorderColor = Color.DarkGray
@@ -7804,11 +7832,11 @@ Partial Class frm_Main
         ' 
         dtgv_users.AllowUserToAddRows = False
         dtgv_users.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(206), CByte(220), CByte(221))
-        DataGridViewCellStyle1.Font = New Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
-        DataGridViewCellStyle1.ForeColor = SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(CByte(231), CByte(229), CByte(255))
-        DataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
+        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(195), CByte(214), CByte(212))
+        DataGridViewCellStyle1.Font = New Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Pixel, CByte(0))
+        DataGridViewCellStyle1.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
+        DataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(CByte(255), CByte(213), CByte(79))
+        DataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
         dtgv_users.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         dtgv_users.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         dtgv_users.BackgroundColor = Color.Silver
@@ -7830,14 +7858,13 @@ Partial Class frm_Main
         DataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
         DataGridViewCellStyle3.WrapMode = DataGridViewTriState.False
         dtgv_users.DefaultCellStyle = DataGridViewCellStyle3
-        dtgv_users.Enabled = False
         dtgv_users.GridColor = Color.FromArgb(CByte(11), CByte(102), CByte(106))
-        dtgv_users.Location = New Point(586, 37)
+        dtgv_users.Location = New Point(539, 37)
         dtgv_users.MultiSelect = False
         dtgv_users.Name = "dtgv_users"
         dtgv_users.ReadOnly = True
         dtgv_users.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle4.BackColor = Color.White
         DataGridViewCellStyle4.Font = New Font("Segoe UI", 9F)
         DataGridViewCellStyle4.ForeColor = SystemColors.WindowText
@@ -7846,14 +7873,14 @@ Partial Class frm_Main
         DataGridViewCellStyle4.WrapMode = DataGridViewTriState.True
         dtgv_users.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         dtgv_users.RowHeadersVisible = False
-        dtgv_users.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle5.BackColor = Color.FromArgb(CByte(206), CByte(220), CByte(221))
-        DataGridViewCellStyle5.Font = New Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel, CByte(0))
+        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle5.BackColor = Color.FromArgb(CByte(173), CByte(210), CByte(207))
+        DataGridViewCellStyle5.Font = New Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel, CByte(0))
         DataGridViewCellStyle5.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
         DataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(CByte(255), CByte(213), CByte(79))
         DataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
         dtgv_users.RowsDefaultCellStyle = DataGridViewCellStyle5
-        dtgv_users.Size = New Size(355, 198)
+        dtgv_users.Size = New Size(510, 198)
         dtgv_users.TabIndex = 20
         dtgv_users.ThemeStyle.AlternatingRowsStyle.BackColor = Color.FromArgb(CByte(206), CByte(220), CByte(221))
         dtgv_users.ThemeStyle.AlternatingRowsStyle.Font = Nothing
@@ -7905,6 +7932,7 @@ Partial Class frm_Main
         cb_role.StartIndex = 0
         cb_role.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material
         cb_role.TabIndex = 19
+        cb_role.TextAlign = HorizontalAlignment.Center
         ' 
         ' txt_password
         ' 
@@ -7937,6 +7965,7 @@ Partial Class frm_Main
         txt_password.Size = New Size(300, 36)
         txt_password.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material
         txt_password.TabIndex = 9
+        txt_password.TextAlign = HorizontalAlignment.Center
         ' 
         ' txt_username
         ' 
@@ -7969,6 +7998,7 @@ Partial Class frm_Main
         txt_username.Size = New Size(300, 36)
         txt_username.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material
         txt_username.TabIndex = 8
+        txt_username.TextAlign = HorizontalAlignment.Center
         ' 
         ' Guna2HtmlLabel1
         ' 
@@ -8161,33 +8191,6 @@ Partial Class frm_Main
         msg_information.Parent = Me
         msg_information.Style = Guna.UI2.WinForms.MessageDialogStyle.Default
         msg_information.Text = Nothing
-        ' 
-        ' btn_clearUser
-        ' 
-        btn_clearUser.Anchor = AnchorStyles.Top Or AnchorStyles.Right
-        btn_clearUser.BackColor = Color.Transparent
-        btn_clearUser.BorderRadius = 10
-        btn_clearUser.Cursor = Cursors.Hand
-        btn_clearUser.CustomizableEdges = CustomizableEdges42
-        btn_clearUser.DisabledState.BorderColor = Color.DarkGray
-        btn_clearUser.DisabledState.CustomBorderColor = Color.DarkGray
-        btn_clearUser.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
-        btn_clearUser.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
-        btn_clearUser.FillColor = Color.FromArgb(CByte(81), CByte(201), CByte(219))
-        btn_clearUser.Font = New Font("Franklin Gothic Medium", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
-        btn_clearUser.ForeColor = Color.FromArgb(CByte(38), CByte(51), CByte(57))
-        btn_clearUser.Image = My.Resources.Resources.icon_clear
-        btn_clearUser.ImageSize = New Size(25, 25)
-        btn_clearUser.Location = New Point(637, 450)
-        btn_clearUser.Name = "btn_clearUser"
-        btn_clearUser.ShadowDecoration.BorderRadius = 10
-        btn_clearUser.ShadowDecoration.CustomizableEdges = CustomizableEdges43
-        btn_clearUser.ShadowDecoration.Depth = 64
-        btn_clearUser.ShadowDecoration.Enabled = True
-        btn_clearUser.ShadowDecoration.Shadow = New Padding(0, 0, 5, 5)
-        btn_clearUser.Size = New Size(121, 57)
-        btn_clearUser.TabIndex = 29
-        btn_clearUser.Text = "Clear"
         ' 
         ' frm_Main
         ' 
@@ -8699,7 +8702,6 @@ Partial Class frm_Main
     Friend WithEvents btn_addUser As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Label21 As Label
     Friend WithEvents Guna2Panel24 As Guna.UI2.WinForms.Guna2Panel
-    Friend WithEvents dtgv_users As Guna.UI2.WinForms.Guna2DataGridView
     Friend WithEvents cb_role As Guna.UI2.WinForms.Guna2ComboBox
     Friend WithEvents txt_password As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents txt_username As Guna.UI2.WinForms.Guna2TextBox
@@ -8717,6 +8719,7 @@ Partial Class frm_Main
     Friend WithEvents txt_file As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents lbl_students As Label
     Friend WithEvents btn_clearUser As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents dtgv_users As Guna.UI2.WinForms.Guna2DataGridView
 
 
 End Class

@@ -21,6 +21,14 @@ Public Class frm_Main
     'Private Const SW_SHOW As Integer = 5
 
     'FORM LOAD
+
+    'LOGOUT
+    Private Sub btn_logout_Click(sender As Object, e As EventArgs) Handles btn_logout.Click
+        Me.Hide()
+        frm_Login.Show()
+    End Sub
+
+    Dim oldCount As Integer
     Private Sub frm_Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         tbctrl_Section.TabMenuVisible = False
 
@@ -34,6 +42,7 @@ Public Class frm_Main
         checkBoxSection.Name = "check"
         dtgv_instructorSection.Columns.Add(checkBoxSection)
 
+        oldCount = schedule.CountSchedules
 
         'REFRESH ALL DATA
         refreshData()
@@ -77,6 +86,7 @@ Public Class frm_Main
         dtgv_room.Columns("TypeOfRoom").HeaderText = "Type of Room"
 
         'IN SCHEDULE
+        dtgv_schedule.Columns("scheduleID").HeaderText = "Schedule ID"
         dtgv_schedule.Columns("room_no").HeaderText = "Room No"
         dtgv_schedule.Columns("course_code").HeaderText = "Subject Code"
         dtgv_schedule.Columns("instructor_no").HeaderText = "Instructor Name"
@@ -105,25 +115,20 @@ Public Class frm_Main
         UpdateDate()
     End Sub
 
-    'LOGOUT
-    Private Sub btn_logout_Click(sender As Object, e As EventArgs) Handles btn_logout.Click
-        Me.Hide()
-        frm_Login.Show()
-    End Sub
-
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Dim currentTime As String = Date.Now.ToString("HH:mm:ss")
         Dim count As Integer = schedule.CountTime(currentTime)
+        Dim newCount As Integer = schedule.CountSchedules
 
-        If count > 0 Then
+        If (count > 0) Or (oldCount <> newCount) Then
             Timer1.Interval = 10000
             Timer1.Start()
             refreshRoomsData()
             refreshData()
         End If
-
         Timer1.Interval = 1000
         Timer1.Start()
+        oldCount = schedule.CountSchedules
     End Sub
 
     'Maximized
@@ -653,7 +658,7 @@ Public Class frm_Main
         If dtgv_course.SelectedRows.Count > 0 Then
 
             'SET THE SIZE OF THE COLUMN
-            Dim tWidth As Integer = dtgv_course.Width
+            Dim tWidth = dtgv_course.Width
             dtgv_course.Columns("course_code").Width = CInt(tWidth * 0.15)
             dtgv_course.Columns("description").Width = CInt(tWidth * 0.25)
             dtgv_course.Columns("credits").Width = CInt(tWidth * 0.15)
@@ -662,7 +667,7 @@ Public Class frm_Main
             dtgv_course.Columns("TypeOfRoom").Width = CInt(tWidth * 0.15)
 
             'FILL THE PROGRAM DETAILS
-            Dim selectedRows As DataGridViewRow = dtgv_course.SelectedRows(0)
+            Dim selectedRows = dtgv_course.SelectedRows(0)
             txt_subjectCode.Text = selectedRows.Cells("course_code").Value.ToString
             txt_courseDescript.Text = selectedRows.Cells("description").Value.ToString
             txt_courseUnit.Text = selectedRows.Cells("credits").Value.ToString
@@ -1325,6 +1330,7 @@ Public Class frm_Main
     Dim scheStart As DateTime
     Dim scheEnd As DateTime
     Dim scheClass As List(Of String)
+    Dim scheduleID As Integer
     'SELECTED SCHEDULE
     Private Sub schedule_SelectedChange() Handles dtgv_schedule.SelectionChanged
         Dim comboBoxes() As Guna2ComboBox = {cb_scheduleRoom, cb_scheduleCourse, cb_scheduleSection, cb_scheduleInstructor}
@@ -1384,6 +1390,7 @@ Public Class frm_Main
                 scheCourse = selectedRows.Cells("course_code").Value.ToString
                 scheSection = selectedRows.Cells("section").Value.ToString
                 scheRoom = selectedRows.Cells("room_no").Value.ToString
+                scheduleID = selectedRows.Cells("scheduleID").Value
                 scheStart = startTime
                 scheEnd = endTime
                 scheClass = classDayList
@@ -1425,10 +1432,10 @@ Public Class frm_Main
                 msg_warning.Show("Select class day")
             Else
                 'schedule.IsConflict(cb_scheduleRoom.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), scheCourse, scheSection, scheRoom)
-                If schedule.ConflictSched(cb_scheduleRoom.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss")) Then
+                If schedule.ConflictSched(cb_scheduleRoom.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), scheduleID) Then
                     msg_warning.Show("Schedule conflict detected!")
                     'schedule.IsOverlap(cb_scheduleRoom.SelectedItem.ToString, cb_scheduleSection.SelectedItem.ToString, cb_scheduleCourse.SelectedItem.ToString, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), classList, scheCourse, scheSection, scheRoom)
-                ElseIf schedule.OverlapSched(cb_scheduleRoom.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss")) Then
+                ElseIf schedule.OverlapSched(cb_scheduleRoom.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), scheduleID) Then
                     msg_warning.Show("Schedule overlap detected!")
                 Else
                     schedule.AddSchedule(cb_scheduleRoom.SelectedItem.ToString, cb_scheduleCourse.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"))
@@ -1464,12 +1471,12 @@ Public Class frm_Main
             ElseIf Not isNoCheck Then
                 msg_warning.Show("Select class day")
             Else
-                If schedule.ConflictSched(cb_scheduleRoom.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss")) Then
+                If schedule.ConflictSched(cb_scheduleRoom.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), scheduleID) Then
                     msg_warning.Show("Schedule conflict detected!")
-                ElseIf schedule.OverlapSched(cb_scheduleRoom.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss")) Then
+                ElseIf schedule.OverlapSched(cb_scheduleRoom.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), scheduleID) Then
                     msg_warning.Show("Schedule overlap detected!")
                 Else
-                    schedule.UpdateSchedule(cb_scheduleRoom.SelectedItem.ToString, cb_scheduleCourse.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), scheCourse, scheSection, scheRoom)
+                    schedule.UpdateSchedule(cb_scheduleRoom.SelectedItem.ToString, cb_scheduleCourse.SelectedItem.ToString, instructor_no, cb_scheduleSection.SelectedItem.ToString, classList, dtp_startTime.Value.ToString("HH:mm:ss"), dtp_endTime.Value.ToString("HH:mm:ss"), scheduleID)
 
                     refreshData()
 
@@ -1491,7 +1498,7 @@ Public Class frm_Main
                 Dim result As DialogResult = msg_confirm.Show("Are you sure you want to delete this?")
 
                 If result = DialogResult.Yes Then
-                    schedule.DeleteScheduleBySelected(scheCourse, scheSection, scheRoom, scheClass)
+                    schedule.DeleteScheduleBySelected(scheduleID)
                 End If
             Catch ex As Exception
                 msg_warning.Show("Error: " & ex.Message)
@@ -1652,18 +1659,19 @@ Public Class frm_Main
         ' Set the transparency of the image
         Dim attributes As New Imaging.ImageAttributes()
         Dim colorMatrix As New Imaging.ColorMatrix()
-        colorMatrix.Matrix33 = 0.2F ' Set opacity to 10%
+        colorMatrix.Matrix33 = 0.2F ' Set opacity to 20%
         attributes.SetColorMatrix(colorMatrix, Imaging.ColorMatrixFlag.Default, Imaging.ColorAdjustType.Bitmap)
 
         ' Draw the background image
         e.Graphics.DrawImage(backgroundImage, New Rectangle(imageX, imageY, backgroundImage.Width, backgroundImage.Height), 0, 0, backgroundImage.Width, backgroundImage.Height, GraphicsUnit.Pixel, attributes)
 
+        ' Header text formatting
         Dim format As New StringFormat
         format.Alignment = StringAlignment.Center
         e.Graphics.DrawString(oldSchoolName, New Font("Franklin Gothic Medium", 16, FontStyle.Bold), Brushes.Black, New PointF(e.PageBounds.Width / 2, 52), format)
         e.Graphics.DrawString("Class Scheduling System", New Font("Franklin Gothic Medium", 12, FontStyle.Bold), Brushes.Black, New PointF(e.PageBounds.Width / 2, 80), format)
 
-        Dim fmt As StringFormat = New StringFormat(StringFormatFlags.LineLimit)
+        Dim fmt As New StringFormat(StringFormatFlags.LineLimit)
         fmt.LineAlignment = StringAlignment.Center
         fmt.Alignment = StringAlignment.Center
 
@@ -1676,15 +1684,15 @@ Public Class frm_Main
         Dim totalTableWidth As Integer = 0
         Dim cellWidths(dtgv_print.Columns.Count - 1) As Integer
 
-        ' Use the Graphics object from PrintPageEventArgs to measure string width
+        ' Measure column widths
         For i As Integer = 0 To dtgv_print.Columns.Count - 1
             If dtgv_print.Columns(i).Visible Then
-                Dim maxWidth As Integer = CInt(e.Graphics.MeasureString(dtgv_print.Columns(i).HeaderText, dtgv_print.Font).Width) + 10 ' Add some padding
+                Dim maxWidth As Integer = CInt(e.Graphics.MeasureString(dtgv_print.Columns(i).HeaderText, dtgv_print.Font).Width) + 10 ' Add padding
 
                 ' Measure the width of each cell in the column
                 For Each row In dtgv_print.Rows
                     Dim cellText As String = row.Cells(i).FormattedValue.ToString()
-                    Dim cellWidth As Integer = CInt(e.Graphics.MeasureString(cellText, dtgv_print.Font).Width) + 10 ' Add some padding
+                    Dim cellWidth As Integer = CInt(e.Graphics.MeasureString(cellText, dtgv_print.Font).Width) + 10 ' Add padding
                     If cellWidth > maxWidth Then
                         maxWidth = cellWidth
                     End If
@@ -1757,6 +1765,7 @@ Public Class frm_Main
         mRow = 0
         e.HasMorePages = False
     End Sub
+
 
     Private Sub btn_browse_Click(sender As Object, e As EventArgs) Handles btn_browse.Click
         Dim result As DialogResult = openFile.ShowDialog()
@@ -1932,7 +1941,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub btn_reset_Click(sender As Object, e As EventArgs) Handles btn_reset.Click
-        Dim tables As String() = {"tbl_users", "tbl_schools", "tbl_students", "tbl_programs", "tbl_instructors", "tbl_rooms"}
+        Dim tables As String() = {"tbl_users", "tbl_schools", "tbl_students", "tbl_programs", "tbl_instructors", "tbl_rooms", "tbl_courses"}
 
         Dim result As DialogResult = msg_confirm.Show("Are you sure you want to reset the system all the data will gone also your grade?")
 
@@ -1948,13 +1957,15 @@ Public Class frm_Main
         End If
     End Sub
 
+    Dim oldUsername As String
 
-
+    'SELECTED USER
     Private Sub user_SelectionChange(sender As Object, e As EventArgs) Handles dtgv_users.SelectionChanged
         If dtgv_users.SelectedRows.Count > 0 Then
 
             'FILL THE PROGRAM DETAILS
-            Dim selectedRows As DataGridViewRow = dtgv_users.SelectedRows(0)
+            Dim selectedRows = dtgv_users.SelectedRows(0)
+            oldUsername = selectedRows.Cells("username").Value.ToString
             txt_username.Text = selectedRows.Cells("username").Value.ToString
             txt_password.Text = selectedRows.Cells("password").Value.ToString
             cb_role.SelectedItem = selectedRows.Cells("role").Value.ToString
@@ -1978,7 +1989,63 @@ Public Class frm_Main
         dtgv_users.ClearSelection()
     End Sub
 
-    Private Sub btn_addUser_Click(sender As Object, e As EventArgs) Handles btn_addUser.Click
+    'CLEAR USER
+    Private Sub btn_clearUser_Click(sender As Object, e As EventArgs) Handles btn_clearUser.Click
+        txt_username.Clear()
+        txt_password.Clear()
+        cb_role.SelectedIndex = 0
 
+        For Each row As DataGridViewRow In dtgv_users.SelectedRows
+            row.Selected = False
+        Next
+    End Sub
+
+    'DELETE USER
+    Private Sub btn_deleteUser_Click(sender As Object, e As EventArgs) Handles btn_deleteUser.Click
+        If btn_deleteUser.Cursor = Cursors.Hand Then
+            Try
+                Dim result As DialogResult = msg_confirm.Show("Are you sure you want to delete this?")
+
+                If result = DialogResult.Yes Then
+                    user.deleteUserByUsername(txt_username.Text)
+                    msg_information.Show("Successfully Deleted!")
+                    refreshData()
+                End If
+            Catch ex As Exception
+                msg_warning.Show("Error: " & ex.Message)
+            End Try
+        End If
+    End Sub
+
+    'UPDATE USER
+    Private Sub btn_updateUser_Click(sender As Object, e As EventArgs) Handles btn_updateUser.Click
+        If btn_updateUser.Cursor = Cursors.Hand Then
+            user.updateUserByUsername(txt_username.Text, txt_password.Text, cb_role.SelectedItem.ToString, oldUsername)
+            refreshData()
+        End If
+    End Sub
+
+    'ADD USER
+    Private Sub btn_addUser_Click(sender As Object, e As EventArgs) Handles btn_addUser.Click
+        If btn_addUser.Cursor = Cursors.Hand Then
+            Dim textboxes() As Guna2TextBox = {txt_username, txt_password}
+            Dim comboBoxes() As Guna2ComboBox = {cb_role}
+
+            Dim isEmpty As Boolean = UpdateTextBoxes(textboxes)
+            Dim isNotSelected As Boolean = ISComboBoxChange(comboBoxes)
+
+            If isEmpty Or isNotSelected Then
+                msg_warning.Show("Fill the reqired Fields")
+            Else
+
+                user.createNewUser(txt_username.Text, txt_password.Text, cb_role.SelectedItem.ToString)
+
+                refreshData()
+
+                ClearTextbox(textboxes)
+                DefaultCombobox(comboBoxes)
+            End If
+
+        End If
     End Sub
 End Class

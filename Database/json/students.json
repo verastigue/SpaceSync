@@ -1,0 +1,70 @@
+{
+    "students": [
+        {
+            "studentNo": "22-01383",
+            "firstName": "Jhon Brian",
+            "lastName": "Arce",
+            "email": "arce.jhonbrian@gmail.com",
+            "gender": "Male",
+            "studentStatus": "Regular",
+            "programCode": "BSIT",
+            "enrollments": [
+                {"courseCode": "ITELECT2", "section": "BSIT 2B"},
+                {"courseCode": "ACSS", "section": "BSIT 2B"},
+                {"courseCode": "ETHICS1", "section": "BSIT 2B"},
+                {"courseCode": "ITIPTECH", "section": "BSIT 2B"}
+
+            ]
+        },
+        {
+            "studentNo": "22-01126",
+            "firstName": "Jose Enrique",
+            "lastName": "Soliman",
+            "email": "soliman@gmail.com",
+            "gender": "Male",
+            "studentStatus": "Regular",
+            "programCode": "BSIT",
+            "enrollments": [
+                {"courseCode": "ITELECT2", "section": "BSIT 2B"}
+            ]
+        },
+        {
+            "studentNo": "22-00106",
+            "firstName": "Harlenkiens",
+            "lastName": "Sanchez",
+            "email": "sanchez@gmail.com",
+            "gender": "Male",
+            "studentStatus": "Regular",
+            "programCode": "BSIT",
+            "enrollments": [
+                {"courseCode": "ITELECT2", "section": "BSIT 2B"}
+            ]
+        },
+        {
+            "studentNo": "22-01820",
+            "firstName": "Justine Norie",
+            "lastName": "Dela Cruz",
+            "email": "dela@gmail.com",
+            "gender": "Male",
+            "studentStatus": "Regular",
+            "programCode": "BSIT",
+            "enrollments": [
+                {"courseCode": "ITELECT2", "section": "BSIT 2B"}
+            ]
+        },
+        {
+            "studentNo": "22-00025",
+            "firstName": "Angela",
+            "lastName": "Francisco",
+            "email": "francisco@gmail.com",
+            "gender": "Female",
+            "studentStatus": "Regular",
+            "programCode": "BSIT",
+            "enrollments": [
+                {"courseCode": "ITELECT2", "section": "BSIT 2B"},
+                {"courseCode": "ACSS", "section": "BSIT 2B"}
+            ]
+        }
+
+    ]
+}

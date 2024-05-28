@@ -9,8 +9,33 @@
             "studentStatus": "Regular",
             "programCode": "BSIT",
             "enrollments": [
-                {"courseCode": "ACSS", "section": "BSIT 2B"}
+                {"courseCode": "ITELECT2", "section": "BSIT 2B"}
+            ]
+        },
+        {
+            "studentNo": "22-01126",
+            "firstName": "Jose Enrique",
+            "lastName": "Soliman",
+            "email": "soliman@gmail.com",
+            "gender": "Male",
+            "studentStatus": "Regular",
+            "programCode": "BSIT",
+            "enrollments": [
+                {"courseCode": "ITELECT2", "section": "BSIT 2B"}
+            ]
+        },
+        {
+            "studentNo": "22-00106",
+            "firstName": "Harlenkiens",
+            "lastName": "Sanchez",
+            "email": "sanchez@gmail.com",
+            "gender": "Male",
+            "studentStatus": "Regular",
+            "programCode": "BSIT",
+            "enrollments": [
+                {"courseCode": "ITELECT2", "section": "BSIT 2B"}
             ]
         }
+
     ]
 }

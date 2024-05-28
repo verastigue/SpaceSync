@@ -18,15 +18,13 @@ Public Class Schedules
         End Try
     End Sub
 
-
     'UPDATE SCHEDULE'
-    Public Sub UpdateSchedule(room_no As String, course_no As String, instructor_no As String, section As String, classList As List(Of String), start_time As DateTime, end_time As DateTime, oldCourse As String, oldSection As String, oldRoom As String)
+    Public Sub UpdateSchedule(room_no As String, course_no As String, instructor_no As String, section As String, classList As List(Of String), start_time As DateTime, end_time As DateTime, scheduleID As Integer)
         Dim classDay As String = String.Join(",", classList)
-
         Try
             Dim startTime As String = start_time.ToString("HH:mm")
             Dim endTime As String = end_time.ToString("HH:mm")
-            sql = "UPDATE tbl_schedules SET room_no = '" & room_no & "',  course_code = '" & course_no & "',  instructor_no = '" & instructor_no & "',  section = '" & section & "',  class_day = '" & classDay & "',  start_time = '" & startTime & "',  end_time = '" & endTime & "' WHERE course_code = '" & oldCourse & "' AND section = '" & oldSection & "' AND room_no = '" & oldRoom & "'"
+            sql = "UPDATE tbl_schedules SET room_no = '" & room_no & "',  course_code = '" & course_no & "',  instructor_no = '" & instructor_no & "',  section = '" & section & "',  class_day = '" & classDay & "',  start_time = '" & startTime & "',  end_time = '" & endTime & "' WHERE scheduleID = '" & scheduleID & "'"
             update(sql)
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
@@ -37,7 +35,7 @@ Public Class Schedules
     Public Function ReadAllSchedules() As DataTable
         Dim dt As New DataTable
         Try
-            sql = "SELECT room_no, course_code, instructor_no, section, class_day, TIME_FORMAT(start_time, '%h:%i %p') AS start_time, TIME_FORMAT(end_time, '%h:%i %p') AS end_time FROM tbl_schedules;"
+            sql = "SELECT scheduleID, room_no, course_code, instructor_no, section, class_day, TIME_FORMAT(start_time, '%h:%i %p') AS start_time, TIME_FORMAT(end_time, '%h:%i %p') AS end_time FROM tbl_schedules;"
             dt = read(sql)
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
@@ -46,25 +44,23 @@ Public Class Schedules
         Return dt
     End Function
 
-    Public Function DataChart() As DataTable
-        Dim dt As New DataTable
+    Function CountSchedules()
+        Dim totalCount As Integer = 0
         Try
-            sql = "SELECT s.class_day, s.start_time, s.end_time, i.availability FROM tbl_schedules s INNER JOIN tbl_instructors i ON s.instructor_no = i.instructor_no;
-"
-            dt = read(sql)
+            sql = "SELECT COUNT(*) FROM tbl_schedules"
+            totalCount = count(sql)
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
         End Try
 
-        Return dt
+        Return totalCount
     End Function
 
 
     'DELETE SCHEDLE
-    Sub DeleteScheduleBySelected(oldCourse As String, oldSection As String, oldRoom As String, classList As List(Of String))
-        Dim classDay As String = String.Join(",", classList)
+    Sub DeleteScheduleBySelected(scheduleID As Integer)
         Try
-            sql = "DELETE FROM tbl_schedules WHERE course_code = '" & oldCourse & "' AND room_no = '" & oldRoom & "' AND section = '" & oldSection & "' AND class_day LIKE '%" & classDay & "%';"
+            sql = "DELETE FROM tbl_schedules WHERE scheduleID = '" & scheduleID & "'"
             delete(sql)
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
@@ -86,9 +82,6 @@ Public Class Schedules
         End Try
         Return isAvailable
     End Function
-
-
-
     Function IsConflict(room_no As String, classList As List(Of String), start_time As String, end_time As String, oldCourse As String, oldSection As String, oldRoom As String) As Boolean
         Dim conflict_found As Boolean = False
         Dim classDayCondition As New List(Of String)()
@@ -140,14 +133,14 @@ Public Class Schedules
         Return overlap_found
     End Function
 
-    Function OverlapSched(room_no As String, instructor_no As String, section As String, classList As List(Of String), start_time As String, end_time As String)
+    Function OverlapSched(room_no As String, instructor_no As String, section As String, classList As List(Of String), start_time As String, end_time As String, scheduleID As Integer)
         Dim result As Boolean = False
         Dim classDay As String = String.Join(",", classList)
         Try
             sql = "SELECT COUNT(*) FROM tbl_schedules WHERE 
-                   (room_no = '" & room_no & "' AND class_day LIKE '%" & classDay & "%' AND start_time = '" & start_time & "' AND end_time = '" & end_time & "') OR
+                   ((room_no = '" & room_no & "' AND class_day LIKE '%" & classDay & "%' AND start_time = '" & start_time & "' AND end_time = '" & end_time & "') OR
                    (instructor_no = '" & instructor_no & "' AND class_day LIKE '%" & classDay & "%' AND start_time = '" & start_time & "' AND end_time = '" & end_time & "') OR
-                   (section = '" & section & "' AND class_day LIKE '%" & classDay & "%' AND start_time = '" & start_time & "' AND end_time = '" & end_time & "')"
+                   (section = '" & section & "' AND class_day LIKE '%" & classDay & "%' AND start_time = '" & start_time & "' AND end_time = '" & end_time & "')) AND scheduleID != '" & scheduleID & "'"
             result = count(sql) > 0
         Catch ex As Exception
             Console.WriteLine(ex.Message)
@@ -156,14 +149,14 @@ Public Class Schedules
         Return result
     End Function
 
-    Function ConflictSched(room_no As String, instructor_no As String, section As String, classList As List(Of String), start_time As String, end_time As String)
+    Function ConflictSched(room_no As String, instructor_no As String, section As String, classList As List(Of String), start_time As String, end_time As String, scheduleID As Integer)
         Dim result As Boolean = False
         Dim classDay As String = String.Join(",", classList)
         Try
             sql = "SELECT COUNT(*) FROM tbl_schedules WHERE 
-                   (instructor_no = '" & instructor_no & "'  AND class_day LIKE '%" & classDay & "%' AND '" & start_time & "' < end_time AND '" & end_time & "' > start_time) OR
+                   ((instructor_no = '" & instructor_no & "'  AND class_day LIKE '%" & classDay & "%' AND '" & start_time & "' < end_time AND '" & end_time & "' > start_time) OR
                    (section = '" & section & "' AND class_day LIKE '%" & classDay & "%' AND '" & start_time & "' < end_time AND '" & end_time & "' > start_time) OR
-                   (room_no = '" & room_no & "' AND class_day LIKE '%" & classDay & "%' AND '" & start_time & "' < end_time AND '" & end_time & "' > start_time)"
+                   (room_no = '" & room_no & "' AND class_day LIKE '%" & classDay & "%' AND '" & start_time & "' < end_time AND '" & end_time & "' > start_time)) AND scheduleID != '" & scheduleID & "'"
             result = count(sql) > 0
         Catch ex As Exception
             Console.WriteLine(ex.Message)

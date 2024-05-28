@@ -57,6 +57,10 @@ Module Data
         usersData.Columns.Remove("id")
 
         frm_Main.dtgv_users.DataSource = usersData
+
+        For Each row As DataGridViewRow In frm_Main.dtgv_users.SelectedRows
+            row.Selected = False
+        Next
     End Sub
 
     'SCHOOL
@@ -123,10 +127,6 @@ Module Data
 
         frm_Main.dtgv_instructorSection.DataSource = dataCopy
 
-
-
-
-
         For Each row As DataGridViewRow In frm_Main.dtgv_section.SelectedRows
             row.Selected = False
         Next
@@ -151,9 +151,6 @@ Module Data
             row.Selected = False
         Next
     End Sub
-
-
-
 
     'INSTRUCTOR
     Sub refreshInstructorsData()
@@ -196,7 +193,9 @@ Module Data
         roomNotSche = room.roomNotSchedule
         frm_Main.dtgv_roomNotSche.DataSource = roomNotSche
 
-
+        For Each row As DataGridViewRow In frm_Main.dtgv_room.SelectedRows
+            row.Selected = False
+        Next
     End Sub
 
 
@@ -211,8 +210,6 @@ Module Data
 
         frm_Main.dtgv_schedule.DataSource = schedulesData
 
-        dataChart = schedule.DataChart
-
         For Each row As DataRow In schedulesData.Rows
 
             For Each rowInstructor In instructorsData.Rows
@@ -221,7 +218,6 @@ Module Data
                 End If
             Next
         Next
-
 
         For Each row As DataGridViewRow In frm_Main.dtgv_schedule.SelectedRows
             row.Selected = False
@@ -261,6 +257,9 @@ Module Data
             frm_Main.btn_updateStudents.Cursor = Cursors.No
             frm_Main.btn_deleteStudents.Cursor = Cursors.No
         End If
+
     End Sub
+
+
 
 End Module

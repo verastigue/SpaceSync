@@ -23,9 +23,9 @@
         Return dataTable
     End Function
 
-    Sub updateUserByUsername(username As String, newPassword As String, newRole As String)
+    Sub updateUserByUsername(newUsername As String, newPassword As String, newRole As String, username As String)
         Try
-            sql = "UPDATE tbl_users SET password = '" & newPassword & "', role = '" & newRole & "' WHERE username = '" & username & "'"
+            sql = "UPDATE tbl_users SET username = '" & newUsername & "', password = MD5('" & newPassword & "'), role = '" & newRole & "' WHERE username = '" & username & "'"
             update(sql)
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
@@ -44,7 +44,7 @@
     Function readAllUsers() As DataTable
         Dim dataTable As New DataTable
         Try
-            sql = "SELECT * FROM tbl_users"
+            sql = "SELECT * FROM tbl_users LIMIT 18446744073709551615 OFFSET 1;"
             dataTable = read(sql)
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
@@ -68,7 +68,7 @@
     Function loginUser(username As String, password As String, role As String) As Boolean
         Dim success As Boolean = False
         Try
-            sql = "SELECT COUNT(*) FROM tbl_users WHERE username = '" & username & "' AND password =  '" & password & "' AND  role = '" & role & "'"
+            sql = "SELECT COUNT(*) FROM tbl_users WHERE username = '" & username & "' AND password =  MD5('" & password & "') AND  role = '" & role & "'"
 
             success = check(sql)
         Catch ex As Exception
